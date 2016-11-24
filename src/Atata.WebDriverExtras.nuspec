@@ -5,8 +5,8 @@
     <version>0.11.0</version>
     <authors>Yevgeniy Shunevych</authors>
     <owners>Yevgeniy Shunevych</owners>
-    <licenseUrl>https://raw.githubusercontent.com/atata-framework/atata/master/LICENSE</licenseUrl>
-    <projectUrl>https://atata-framework.github.io/</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/atata-framework/atata-webdriverextras/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/atata-framework/atata-webdriverextras</projectUrl>
     <!-- <iconUrl></iconUrl> -->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A set of extension methods and other extra classes for Selenium WebDriver. A part of Atata Framework.</description>
@@ -16,8 +16,8 @@
     <copyright>Copyright © Yevgeniy Shunevych 2016</copyright>
     <tags>atata automation testing selenium webdriver browser</tags>
     <dependencies>
-      <dependency id="Selenium.WebDriver" version="3.0.1" />
-      <dependency id="Selenium.Support" version="3.0.1" />
+      <dependency id="Selenium.WebDriver" version="3.0.0" />
+      <dependency id="Selenium.Support" version="3.0.0" />
     </dependencies>
   </metadata>
   <files>
