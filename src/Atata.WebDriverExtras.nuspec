@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Atata.WebDriverExtras</id>
+    <version>0.11.0</version>
+    <authors>Yevgeniy Shunevych</authors>
+    <owners>Yevgeniy Shunevych</owners>
+    <licenseUrl>https://raw.githubusercontent.com/atata-framework/atata/master/LICENSE</licenseUrl>
+    <projectUrl>https://atata-framework.github.io/</projectUrl>
+    <!-- <iconUrl></iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of extension methods and other extra classes for Selenium WebDriver. A part of Atata Framework.</description>
+    <releaseNotes>
+0.11.0 - Initial release.
+    </releaseNotes>
+    <copyright>Copyright © Yevgeniy Shunevych 2016</copyright>
+    <tags>atata automation testing selenium webdriver browser</tags>
+    <dependencies>
+      <dependency id="Selenium.WebDriver" version="3.0.1" />
+      <dependency id="Selenium.Support" version="3.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\LICENSE" />
+    <file src="Atata.WebDriverExtras\bin\Release\Atata.WebDriverExtras.dll" target="lib\net40" />
+    <file src="Atata.WebDriverExtras\bin\Release\Atata.WebDriverExtras.xml" target="lib\net40" />
+  </files>
+</package>
