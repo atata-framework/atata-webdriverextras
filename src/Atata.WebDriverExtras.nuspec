@@ -10,6 +10,7 @@
     <projectUrl>https://github.com/atata-framework/atata-webdriverextras</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.</summary>
     <description>A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.</description>
     <releaseNotes>
 0.11.0 - Initial release.
