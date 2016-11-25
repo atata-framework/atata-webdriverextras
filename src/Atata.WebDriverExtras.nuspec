@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Atata.WebDriverExtras</id>
-    <title>Atata.WebDriverExtras</title>
+    <title>Atata WebDriver Extras</title>
     <version>0.11.0</version>
     <authors>Yevgeniy Shunevych</authors>
     <owners>Yevgeniy Shunevych</owners>
