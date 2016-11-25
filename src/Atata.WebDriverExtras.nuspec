@@ -16,8 +16,8 @@
     <copyright>Copyright © Yevgeniy Shunevych 2016</copyright>
     <tags>atata automation testing selenium webdriver browser</tags>
     <dependencies>
-      <dependency id="Selenium.WebDriver" version="3.0.0" />
-      <dependency id="Selenium.Support" version="3.0.0" />
+      <dependency id="Selenium.WebDriver" version="3.0.1" />
+      <dependency id="Selenium.Support" version="3.0.1" />
     </dependencies>
   </metadata>
   <files>
