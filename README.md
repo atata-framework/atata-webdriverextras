@@ -1,6 +1,8 @@
 # Atata.WebDriverExtras
 
-A set of extension methods and other extra classes for Selenium WebDriver. Is a part of [Atata Framework](https://github.com/atata-framework/atata).
+[![NuGet](http://img.shields.io/nuget/v/Atata.WebDriverExtras.svg?style=flat)](https://www.nuget.org/packages/Atata.WebDriverExtras/)
+
+A set of C#/.NET extension methods and other extra classes for Selenium WebDriver. Is a part of [Atata Framework](https://github.com/atata-framework/atata).
 
 ## Usage
 
@@ -10,7 +12,7 @@ RemoteWebDriver driver = GetSomeDriver();
 // Sets the retry timeout as 5 seconds. The default value of the timeout is 10 seconds.
 driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(5));
 
-// Get the visible element within 5 seconds. Throws `NoSuchElementException` if the element is not found.
+// Get the visible element within 5 seconds. Throws NoSuchElementException if the element is not found.
 IWebElement element1 = driver.Get(By.Id("some-id"));
 
 // Get the visible element safely (without thow on failure) within 5 seconds. Returns null if the element is not found.
@@ -28,7 +30,7 @@ IWebElement element4 = driver.Get(By.Id("another-id").OfAnyVisibility().AtOnce()
 // Gets a value indicating whether the element exists at once.
 bool isElementExists = driver.Exists(By.Name("some-name").Safely().AtOnce());
 
-// Waits until the element will be missing within 15 seconds; else throws `NotMissingElementException`.
+// Waits until the element will be missing within 15 seconds; else throws NotMissingElementException.
 driver.Missing(By.Name("some-name").Within(TimeSpan.FromSeconds(15)));
 ```
 
