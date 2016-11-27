@@ -1,5 +1,7 @@
 # Atata.WebDriverExtras
 
+[![Join the chat at https://gitter.im/atata-framework/atata-webdriverextras](https://badges.gitter.im/atata-framework/atata-webdriverextras.svg)](https://gitter.im/atata-framework/atata-webdriverextras?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![NuGet](http://img.shields.io/nuget/v/Atata.WebDriverExtras.svg?style=flat)](https://www.nuget.org/packages/Atata.WebDriverExtras/)
 
 A set of C#/.NET extension methods and other extra classes for Selenium WebDriver. Is a part of [Atata Framework](https://github.com/atata-framework/atata).
