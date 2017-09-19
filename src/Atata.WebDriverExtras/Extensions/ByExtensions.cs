@@ -104,8 +104,7 @@ namespace Atata
 
             ExtendedBy extendedBy = new ExtendedBy(formattedBy);
 
-            ExtendedBy originalByAsExtended = by as ExtendedBy;
-            if (originalByAsExtended != null)
+            if (by is ExtendedBy originalByAsExtended)
             {
                 extendedBy.ElementName = originalByAsExtended.ElementName;
                 extendedBy.ElementKind = originalByAsExtended.ElementKind;

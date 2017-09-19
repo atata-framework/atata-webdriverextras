@@ -57,8 +57,7 @@ namespace Atata
 
         private static string SearchContextToString(ISearchContext context)
         {
-            IWebElement element = context as IWebElement;
-            if (element != null)
+            if (context is IWebElement element)
             {
                 return $@"Context element:
 {element.ToDetailedString()}";

@@ -34,17 +34,10 @@ namespace Atata
         public SafeWait(T input, IClock clock)
         {
             if (input == null)
-            {
-                throw new ArgumentNullException("input", "input cannot be null");
-            }
-
-            if (clock == null)
-            {
-                throw new ArgumentNullException("clock", "input cannot be null");
-            }
+                throw new ArgumentNullException(nameof(input));
 
             this.input = input;
-            this.clock = clock;
+            this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
         }
 
         /// <summary>
