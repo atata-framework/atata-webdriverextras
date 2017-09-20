@@ -10,17 +10,17 @@ A set of C#/.NET extension methods and other extra classes for Selenium WebDrive
 ```C#
 RemoteWebDriver driver = GetSomeDriver();
 
-// Sets the retry timeout as 5 seconds. The default value of the timeout is 10 seconds.
-driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(5));
+// Sets the retry timeout as 7 seconds. The default value of the timeout is 5 seconds.
+driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(7));
 
-// Get the visible element within 5 seconds. Throws NoSuchElementException if the element is not found.
+// Get the visible element within 7 seconds. Throws NoSuchElementException if the element is not found.
 IWebElement element1 = driver.Get(By.Id("some-id"));
 
-// Get the visible element safely (without thow on failure) within 5 seconds. Returns null if the element is not found.
+// Get the visible element safely (without thow on failure) within 7 seconds. Returns null if the element is not found.
 IWebElement element2 = driver.Get(By.XPath(".//some[xpath]").Safely());
 
-// Get all the visible elements within 8 seconds.
-ReadOnlyCollection<IWebElement> elements = driver.GetAll(By.ClassName("some-class").Within(TimeSpan.FromSeconds(8)));
+// Get all the visible elements within 15 seconds.
+ReadOnlyCollection<IWebElement> elements = driver.GetAll(By.ClassName("some-class").Within(TimeSpan.FromSeconds(15)));
 
 // Get the hidden element safely at once (without retry).
 IWebElement element3 = driver.Get(By.CssSelector(".some-css").Hidden().Safely().AtOnce());
