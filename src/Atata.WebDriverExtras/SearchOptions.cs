@@ -65,6 +65,11 @@ namespace Atata
             return new SearchOptions { IsSafely = isSafely, Timeout = TimeSpan.Zero };
         }
 
+        public static SearchOptions UnsafelyAtOnce()
+        {
+            return new SearchOptions { IsSafely = false, Timeout = TimeSpan.Zero };
+        }
+
         public static SearchOptions OfVisibility(Visibility visibility)
         {
             return new SearchOptions { Visibility = visibility };
@@ -95,7 +100,7 @@ namespace Atata
             return options;
         }
 
-        public static SearchOptions Within(double timeoutSeconds, double? retryIntervalSeconds)
+        public static SearchOptions Within(double timeoutSeconds, double? retryIntervalSeconds = null)
         {
             SearchOptions options = new SearchOptions { Timeout = TimeSpan.FromSeconds(timeoutSeconds) };
 
@@ -115,7 +120,7 @@ namespace Atata
             return options;
         }
 
-        public static SearchOptions SafelyWithin(double timeoutSeconds, double? retryIntervalSeconds)
+        public static SearchOptions SafelyWithin(double timeoutSeconds, double? retryIntervalSeconds = null)
         {
             SearchOptions options = new SearchOptions { IsSafely = true, Timeout = TimeSpan.FromSeconds(timeoutSeconds) };
 
