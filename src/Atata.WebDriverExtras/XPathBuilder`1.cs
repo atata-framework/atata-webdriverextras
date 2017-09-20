@@ -114,6 +114,13 @@ namespace Atata
             return newBuidler;
         }
 
+        public TBuilder Class(params string[] classNames)
+        {
+            return classNames != null && classNames.Any()
+                ? JoinAnd(classNames.Select(x => $"contains(concat(' ', normalize-space(@class), ' '), ' {x} ')"))
+                : (TBuilder)this;
+        }
+
         public TBuilder Where(Func<TBuilder, string> condition)
         {
             string subPath = CreateSubPath(condition);
@@ -133,6 +140,13 @@ namespace Atata
         public TBuilder WhereIndex(int index)
         {
             return _($"[{index + 1}]");
+        }
+
+        public TBuilder WhereClass(params string[] classNames)
+        {
+            return classNames != null && classNames.Any()
+                ? _($"[{CreateInstance().Class(classNames).XPath}]")
+                : (TBuilder)this;
         }
 
         public TBuilder Wrap(Func<TBuilder, string> buildAction)
