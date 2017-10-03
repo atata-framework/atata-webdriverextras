@@ -14,16 +14,16 @@ namespace Atata
 
         public TimeSpan Timeout
         {
-            get { return timeout ?? RetrySettings.Timeout; }
-            set { timeout = value; }
+            get => timeout ?? RetrySettings.Timeout;
+            set => timeout = value;
         }
 
         public bool IsTimeoutSet => timeout.HasValue;
 
         public TimeSpan RetryInterval
         {
-            get { return retryInterval ?? RetrySettings.Interval; }
-            set { retryInterval = value; }
+            get => retryInterval ?? RetrySettings.Interval;
+            set => retryInterval = value;
         }
 
         public bool IsRetryIntervalSet => retryInterval.HasValue;
@@ -33,8 +33,8 @@ namespace Atata
         /// </summary>
         public Visibility Visibility
         {
-            get { return visibility ?? Visibility.Visible; }
-            set { visibility = value; }
+            get => visibility ?? Visibility.Visible;
+            set => visibility = value;
         }
 
         public bool IsVisibilitySet => visibility.HasValue;
@@ -44,8 +44,8 @@ namespace Atata
         /// </summary>
         public bool IsSafely
         {
-            get { return isSafely ?? false; }
-            set { isSafely = value; }
+            get => isSafely ?? false;
+            set => isSafely = value;
         }
 
         public bool IsSafelySet => isSafely.HasValue;
@@ -135,10 +135,7 @@ namespace Atata
             return new SearchOptions { Timeout = TimeSpan.Zero };
         }
 
-        object ICloneable.Clone()
-        {
-            return Clone();
-        }
+        object ICloneable.Clone() => Clone();
 
         public SearchOptions Clone()
         {
