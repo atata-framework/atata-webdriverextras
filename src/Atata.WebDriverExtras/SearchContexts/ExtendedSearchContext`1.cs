@@ -178,15 +178,27 @@ namespace Atata
 
         public TResult Until<TResult>(Func<T, TResult> condition, TimeSpan? timeout = null, TimeSpan? retryInterval = null)
         {
+            RetryOptions options = new RetryOptions();
+
+            if (timeout.HasValue)
+                options.Timeout = timeout.Value;
+
+            if (retryInterval.HasValue)
+                options.Interval = retryInterval.Value;
+
+            return Until(condition, options);
+        }
+
+        public TResult Until<TResult>(Func<T, TResult> condition, RetryOptions options)
+        {
             if (condition == null)
                 throw new ArgumentNullException("condition");
 
-            TimeSpan actualTimeout = timeout ?? Timeout;
-            TimeSpan actualRetryInterval = retryInterval ?? RetryInterval;
+            options = options ?? new RetryOptions();
 
-            if (actualTimeout > TimeSpan.Zero)
+            if (options.Timeout > TimeSpan.Zero)
             {
-                var wait = CreateWait(actualTimeout, actualRetryInterval);
+                var wait = CreateWait(options);
                 return wait.Until(condition);
             }
             else
@@ -268,15 +280,19 @@ namespace Atata
             return !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
         }
 
-        private IWait<T> CreateWait(TimeSpan timeout, TimeSpan retryInterval)
+        private IWait<T> CreateWait(RetryOptions options)
         {
             IWait<T> wait = new SafeWait<T>(Context)
             {
-                Timeout = timeout,
-                PollingInterval = retryInterval
+                Timeout = options.Timeout,
+                PollingInterval = options.Interval
             };
 
-            ////wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException), typeof(NotFoundException));
+            if (options.IgnoredExceptionTypes != null)
+            {
+                foreach (Type exceptionType in options.IgnoredExceptionTypes)
+                    wait.IgnoreExceptionTypes(exceptionType);
+            }
 
             return wait;
         }

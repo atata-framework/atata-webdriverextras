@@ -33,22 +33,19 @@ namespace Atata
         /// <param name="clock">The clock to use when measuring the timeout.</param>
         public SafeWait(T input, IClock clock)
         {
-            if (input == null)
-                throw new ArgumentNullException(nameof(input));
-
-            this.input = input;
-            this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            this.input = input.CheckNotNull(nameof(input));
+            this.clock = clock.CheckNotNull(nameof(clock));
         }
 
         /// <summary>
-        /// Gets or sets how long to wait for the evaluated condition to be true. The default timeout is 500 milliseconds.
+        /// Gets or sets how long to wait for the evaluated condition to be true. The default timeout is taken from <see cref="RetrySettings.Timeout"/> property.
         /// </summary>
-        public TimeSpan Timeout { get; set; } = TimeSpan.FromMilliseconds(500);
+        public TimeSpan Timeout { get; set; } = RetrySettings.Timeout;
 
         /// <summary>
-        /// Gets or sets how often the condition should be evaluated. The default timeout is 500 milliseconds.
+        /// Gets or sets how often the condition should be evaluated. The default interval is taken from <see cref="RetrySettings.Interval"/> property.
         /// </summary>
-        public TimeSpan PollingInterval { get; set; } = TimeSpan.FromMilliseconds(500);
+        public TimeSpan PollingInterval { get; set; } = RetrySettings.Interval;
 
         public string Message { get; set; }
 
@@ -59,18 +56,16 @@ namespace Atata
         /// <param name="exceptionTypes">The types of exceptions to ignore.</param>
         public void IgnoreExceptionTypes(params Type[] exceptionTypes)
         {
-            if (exceptionTypes == null)
-            {
-                throw new ArgumentNullException("exceptionTypes", "exceptionTypes cannot be null");
-            }
+            exceptionTypes.CheckNotNull(nameof(exceptionTypes));
 
-            foreach (Type exceptionType in exceptionTypes)
-            {
-                if (!typeof(Exception).IsAssignableFrom(exceptionType))
-                {
-                    throw new ArgumentException("All types to be ignored must derive from System.Exception", "exceptionTypes");
-                }
-            }
+            // Commented out due to performance. It is absolutely not critical to have inappropriate type passed.
+            ////foreach (Type exceptionType in exceptionTypes)
+            ////{
+            ////    if (!typeof(Exception).IsAssignableFrom(exceptionType))
+            ////    {
+            ////        throw new ArgumentException("All types to be ignored must derive from System.Exception", "exceptionTypes");
+            ////    }
+            ////}
 
             ignoredExceptions.AddRange(exceptionTypes);
         }
@@ -93,13 +88,8 @@ namespace Atata
         {
             condition.CheckNotNull(nameof(condition));
 
-            var resultType = typeof(TResult);
-            if ((resultType.IsValueType && resultType != typeof(bool)) || !typeof(object).IsAssignableFrom(resultType))
-            {
-                throw new ArgumentException("Can only wait on an object or boolean response, tried to use type: " + resultType.ToString(), "condition");
-            }
-
             var endTime = clock.LaterBy(Timeout);
+
             while (true)
             {
                 try
@@ -109,12 +99,10 @@ namespace Atata
                     if (DoesConditionResultSatisfy(result))
                         return result;
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    if (!IsIgnoredException(ex))
-                    {
+                    if (!IsIgnoredException(exception))
                         throw;
-                    }
                 }
 
                 // Check the timeout after evaluating the function to ensure conditions
