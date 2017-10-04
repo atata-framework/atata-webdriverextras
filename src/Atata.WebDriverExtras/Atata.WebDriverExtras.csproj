@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Extensions\CheckExtensions.cs" />
     <Compile Include="RetryOptions.cs" />
+    <Compile Include="StaleSafely.cs" />
     <Compile Include="Visibility.cs" />
     <Compile Include="Exceptions\ExceptionFactory.cs" />
     <Compile Include="Exceptions\NotMissingElementException.cs" />

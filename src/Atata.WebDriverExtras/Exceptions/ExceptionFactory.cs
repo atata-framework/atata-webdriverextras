@@ -22,10 +22,16 @@ namespace Atata
             return new NotMissingElementException(message);
         }
 
+        public static WebDriverTimeoutException CreateForTimeout(TimeSpan spentTime, Exception innerException = null)
+        {
+            string message = $"Timed out after {spentTime.TotalSeconds} seconds.";
+            return new WebDriverTimeoutException(message, innerException);
+        }
+
         public static ArgumentException CreateForUnsupportedEnumValue<T>(T value, string paramName)
             where T : struct
         {
-            string message = string.Format("Unsupported {0} enum value: {1}.", typeof(T).FullName, value);
+            string message = $"Unsupported {typeof(T).FullName} enum value: {value}.";
             return new ArgumentException(message, paramName);
         }
 
