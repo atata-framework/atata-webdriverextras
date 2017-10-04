@@ -7,15 +7,13 @@ namespace Atata
     {
         public static By OfKind(this By by, string kind, string name = null)
         {
-            ExtendedBy extendedBy = new ExtendedBy(by);
-            extendedBy.ElementKind = kind;
+            ExtendedBy extendedBy = new ExtendedBy(by) { ElementKind = kind };
             return name != null ? extendedBy.Named(name) : extendedBy;
         }
 
         public static By Named(this By by, string name)
         {
-            ExtendedBy extendedBy = new ExtendedBy(by);
-            extendedBy.ElementName = name;
+            ExtendedBy extendedBy = new ExtendedBy(by) { ElementName = name };
 
             if (name != null && extendedBy.ToString().Contains("{0}"))
             {
