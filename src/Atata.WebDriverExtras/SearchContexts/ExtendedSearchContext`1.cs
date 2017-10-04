@@ -288,11 +288,8 @@ namespace Atata
                 PollingInterval = options.Interval
             };
 
-            if (options.IgnoredExceptionTypes != null)
-            {
-                foreach (Type exceptionType in options.IgnoredExceptionTypes)
-                    wait.IgnoreExceptionTypes(exceptionType);
-            }
+            foreach (Type exceptionType in options.IgnoredExceptionTypes)
+                wait.IgnoreExceptionTypes(exceptionType);
 
             return wait;
         }

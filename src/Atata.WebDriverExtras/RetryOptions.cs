@@ -24,7 +24,7 @@ namespace Atata
             set => interval = value;
         }
 
-        public List<Type> IgnoredExceptionTypes { get; set; } = new List<Type>();
+        public List<Type> IgnoredExceptionTypes { get; private set; } = new List<Type>();
 
         public RetryOptions WithTimeout(TimeSpan timeout)
         {
