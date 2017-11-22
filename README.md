@@ -16,7 +16,7 @@ driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(7));
 // Get the visible element within 7 seconds. Throws NoSuchElementException if the element is not found.
 IWebElement element1 = driver.Get(By.Id("some-id"));
 
-// Get the visible element safely (without thow on failure) within 7 seconds. Returns null if the element is not found.
+// Get the visible element safely (without throw on failure) within 7 seconds. Returns null if the element is not found.
 IWebElement element2 = driver.Get(By.XPath(".//some[xpath]").Safely());
 
 // Get all the visible elements within 15 seconds.
