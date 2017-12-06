@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using OpenQA.Selenium;
 
 namespace Atata
@@ -112,27 +113,39 @@ namespace Atata
 
         public static By FormatWith(this By by, params object[] args)
         {
-            string selector = string.Format(by.GetSelector(), args);
-            By formattedBy = CreateBy(by.GetMethod(), selector);
+            By formattedBy;
 
-            ExtendedBy extendedBy = new ExtendedBy(formattedBy);
+            if (by is ByChain byChain)
+            {
+                formattedBy = new ByChain(byChain.Items.Select(x => x.FormatWith(args)));
+            }
+            else
+            {
+                string selector = string.Format(by.GetSelector(), args);
+                formattedBy = CreateBy(by.GetMethod(), selector);
+            }
 
             if (by is ExtendedBy originalByAsExtended)
             {
-                extendedBy.ElementName = originalByAsExtended.ElementName;
-                extendedBy.ElementKind = originalByAsExtended.ElementKind;
-                extendedBy.Options = originalByAsExtended.Options;
+                return new ExtendedBy(formattedBy)
+                {
+                    ElementName = originalByAsExtended.ElementName,
+                    ElementKind = originalByAsExtended.ElementKind,
+                    Options = originalByAsExtended.Options
+                };
             }
-
-            return extendedBy;
+            else
+            {
+                return formattedBy;
+            }
         }
 
-        public static string GetMethod(this By by)
+        private static string GetMethod(this By by)
         {
             return by.ToString().Split(':')[0].Replace("By.", string.Empty);
         }
 
-        public static string GetSelector(this By by)
+        private static string GetSelector(this By by)
         {
             string text = by.ToString();
             return text.Substring(text.IndexOf(':') + 2);

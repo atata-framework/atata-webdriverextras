@@ -12,7 +12,7 @@ namespace Atata.WebDriverExtras.Tests
         protected RemoteWebDriver Driver { get; private set; }
 
         [SetUp]
-        public void SetUp()
+        public virtual void SetUp()
         {
             Driver = new ChromeDriver();
         }
@@ -20,7 +20,8 @@ namespace Atata.WebDriverExtras.Tests
         [TearDown]
         public void TearDown()
         {
-            Driver.Close();
+            Driver?.Close();
+            Driver?.Dispose();
         }
 
         protected RemoteWebDriver GoTo(string relativeUrl)
