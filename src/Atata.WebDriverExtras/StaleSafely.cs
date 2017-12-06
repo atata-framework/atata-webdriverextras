@@ -61,6 +61,7 @@ namespace Atata
                 try
                 {
                     action(workingTimeout);
+                    return;
                 }
                 catch (StaleElementReferenceException exception)
                 {
