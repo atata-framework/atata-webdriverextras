@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atata.WebDriverExtras.TestApp", "Atata.WebDriverExtras.TestApp\Atata.WebDriverExtras.TestApp.csproj", "{05E35F53-ECBE-431D-A42C-D23AE26CD754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras.TestApp", "Atata.WebDriverExtras.TestApp\Atata.WebDriverExtras.TestApp.csproj", "{05E35F53-ECBE-431D-A42C-D23AE26CD754}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atata.WebDriverExtras.Tests", "Atata.WebDriverExtras.Tests\Atata.WebDriverExtras.Tests.csproj", "{0B7D6E11-1BD1-4771-A704-082467EE35B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{05E35F53-ECBE-431D-A42C-D23AE26CD754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05E35F53-ECBE-431D-A42C-D23AE26CD754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05E35F53-ECBE-431D-A42C-D23AE26CD754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7D6E11-1BD1-4771-A704-082467EE35B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7D6E11-1BD1-4771-A704-082467EE35B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7D6E11-1BD1-4771-A704-082467EE35B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7D6E11-1BD1-4771-A704-082467EE35B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
