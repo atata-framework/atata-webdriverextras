@@ -19,36 +19,8 @@
 0.13.0 - https://atata-framework.github.io/blog/2017/10/04/atata.webdriverextras-0.13.0-released/
 0.12.0 - https://atata-framework.github.io/blog/2017/09/20/atata.webdriverextras-0.12.0-released/
 0.11.0 - Initial release.</PackageReleaseNotes>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net40|AnyCPU'">
-    <DocumentationFile>bin\Debug\net40\Atata.WebDriverExtras.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\atata.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
-    <DocumentationFile>bin\Release\net40\Atata.WebDriverExtras.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\atata.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
-    <DocumentationFile>bin\Debug\net45\Atata.WebDriverExtras.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\atata.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-    <DocumentationFile>bin\Release\net45\Atata.WebDriverExtras.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\atata.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\Atata.WebDriverExtras.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\atata.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\Atata.WebDriverExtras.xml</DocumentationFile>
-    <CodeAnalysisRuleSet>..\atata.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
