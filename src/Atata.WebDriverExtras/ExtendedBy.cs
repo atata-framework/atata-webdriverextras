@@ -5,25 +5,22 @@ namespace Atata
 {
     internal class ExtendedBy : By
     {
-        private readonly By by;
-
         internal ExtendedBy(By by)
         {
             by.CheckNotNull(nameof(by));
 
             ExtendedBy byAsExtended = by as ExtendedBy;
 
-            this.by = byAsExtended?.by ?? by;
-            Description = this.by.ToString();
-
-            Options = byAsExtended?.Options?.Clone() ?? new SearchOptions();
+            By = byAsExtended?.By ?? by;
+            Description = By.ToString();
 
             if (byAsExtended != null)
-            {
-                ElementName = byAsExtended.ElementName;
-                ElementKind = byAsExtended.ElementKind;
-            }
+                ApplySettingsFrom(byAsExtended);
+            else
+                Options = new SearchOptions();
         }
+
+        internal By By { get; }
 
         internal string ElementName { get; set; }
 
@@ -31,14 +28,25 @@ namespace Atata
 
         internal SearchOptions Options { get; set; }
 
+        public ExtendedBy ApplySettingsFrom(ExtendedBy otherExtendedBy)
+        {
+            otherExtendedBy.CheckNotNull(nameof(otherExtendedBy));
+
+            ElementName = otherExtendedBy.ElementName;
+            ElementKind = otherExtendedBy.ElementKind;
+            Options = otherExtendedBy.Options.Clone();
+
+            return this;
+        }
+
         public override IWebElement FindElement(ISearchContext context)
         {
-            return by.FindElement(context);
+            return By.FindElement(context);
         }
 
         public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
         {
-            return by.FindElements(context);
+            return By.FindElements(context);
         }
 
         public string GetElementNameWithKind()
@@ -58,7 +66,7 @@ namespace Atata
 
         public override string ToString()
         {
-            return by.ToString();
+            return By.ToString();
         }
     }
 }

@@ -115,7 +115,7 @@ namespace Atata
         {
             By formattedBy;
 
-            if (by is ByChain byChain)
+            if (TryResolveByChain(by, out ByChain byChain))
             {
                 formattedBy = new ByChain(byChain.Items.Select(x => x.FormatWith(args)));
             }
@@ -125,19 +125,15 @@ namespace Atata
                 formattedBy = CreateBy(by.GetMethod(), selector);
             }
 
-            if (by is ExtendedBy originalByAsExtended)
-            {
-                return new ExtendedBy(formattedBy)
-                {
-                    ElementName = originalByAsExtended.ElementName,
-                    ElementKind = originalByAsExtended.ElementKind,
-                    Options = originalByAsExtended.Options
-                };
-            }
-            else
-            {
-                return formattedBy;
-            }
+            return by is ExtendedBy originalByAsExtended
+                ? new ExtendedBy(formattedBy).ApplySettingsFrom(originalByAsExtended)
+                : formattedBy;
+        }
+
+        private static bool TryResolveByChain(By by, out ByChain byChain)
+        {
+            byChain = (by as ByChain) ?? (by as ExtendedBy)?.By as ByChain;
+            return byChain != null;
         }
 
         private static string GetMethod(this By by)
@@ -174,6 +170,22 @@ namespace Atata
                 default:
                     throw new ArgumentException(string.Format("Unknown '{0}' method of OpenQA.Selenium.By", method), "method");
             }
+        }
+
+        public static By Then(this By by, By nextBy)
+        {
+            ExtendedBy originalByAsExtended = by as ExtendedBy;
+
+            By newByChain;
+
+            if (TryResolveByChain(by, out ByChain byChain))
+                newByChain = new ByChain(byChain.Items.Concat(new[] { nextBy }));
+            else
+                newByChain = new ByChain(originalByAsExtended?.By ?? by, nextBy);
+
+            return originalByAsExtended != null
+                ? new ExtendedBy(newByChain).ApplySettingsFrom(originalByAsExtended)
+                : newByChain;
         }
     }
 }

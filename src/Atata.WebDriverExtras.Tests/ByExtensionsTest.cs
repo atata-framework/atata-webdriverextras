@@ -4,12 +4,11 @@ using OpenQA.Selenium;
 
 namespace Atata.WebDriverExtras.Tests
 {
-    public class ByChainTests : UITestFixture
+    public class ByExtensionsTest : UITestFixture
     {
-        private readonly ByChain defaultChain = new ByChain(
-            By.Id("root-container"),
-            By.XPath("./div[@class='sub-container']"),
-            By.CssSelector("span.item"));
+        private readonly By defaultChain = By.Id("root-container").
+            Then(By.XPath("./div[@class='sub-container']")).
+            Then(By.CssSelector("span.item"));
 
         public override void SetUp()
         {
@@ -19,7 +18,7 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
-        public void ByChain_GetAll()
+        public void ByExtensions_Then_GetAll()
         {
             var elements = Driver.GetAll(defaultChain.OfAnyVisibility());
 
@@ -27,7 +26,7 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
-        public void ByChain_GetAll_Visible()
+        public void ByExtensions_Then_GetAll_Visible()
         {
             var elements = Driver.GetAll(defaultChain);
 
@@ -36,7 +35,7 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
-        public void ByChain_Get()
+        public void ByExtensions_Then_Get()
         {
             var element = Driver.Get(defaultChain);
 
@@ -44,7 +43,7 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
-        public void ByChain_Get_Hidden()
+        public void ByExtensions_Then_Get_Hidden()
         {
             var element = Driver.Get(defaultChain.Hidden());
 
@@ -52,12 +51,11 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
-        public void ByChain_Get_FormatWith()
+        public void ByExtensions_Then_Get_FormatWith()
         {
-            var element = Driver.Get(new ByChain(
-                By.Id("{0}"),
-                By.CssSelector("div.sub-container"),
-                By.XPath(".//span[.='{1}']")).FormatWith("root-container", "Item 2"));
+            var element = Driver.Get(By.Id("{0}").
+                Then(By.CssSelector("div.sub-container")).
+                Then(By.XPath(".//span[.='{1}']")).FormatWith("root-container", "Item 2"));
 
             Assert.That(element.Text, Is.EqualTo("Item 2"));
         }
