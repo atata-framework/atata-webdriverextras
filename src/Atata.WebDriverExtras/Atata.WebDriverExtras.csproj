@@ -15,7 +15,8 @@
     <PackageIconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo.png?v2</PackageIconUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
     <PackageTags>atata automation testing test selenium webdriver browser</PackageTags>
-    <PackageReleaseNotes>0.13.0 - https://atata-framework.github.io/blog/2017/10/04/atata.webdriverextras-0.13.0-released/
+    <PackageReleaseNotes>0.14.0 - https://atata-framework.github.io/blog/2017/12/07/atata.webdriverextras-0.14.0-released/
+0.13.0 - https://atata-framework.github.io/blog/2017/10/04/atata.webdriverextras-0.13.0-released/
 0.12.0 - https://atata-framework.github.io/blog/2017/09/20/atata.webdriverextras-0.12.0-released/
 0.11.0 - Initial release.</PackageReleaseNotes>
   </PropertyGroup>
