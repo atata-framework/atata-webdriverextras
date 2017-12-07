@@ -1,7 +1,10 @@
 # Atata.WebDriverExtras
 
 [![NuGet](http://img.shields.io/nuget/v/Atata.WebDriverExtras.svg?style=flat)](https://www.nuget.org/packages/Atata.WebDriverExtras/)
-[![Join the chat at https://gitter.im/atata-framework/atata-webdriverextras](https://badges.gitter.im/atata-framework/atata-webdriverextras.svg)](https://gitter.im/atata-framework/atata-webdriverextras)
+[![GitHub release](https://img.shields.io/github/release/atata-framework/atata-webdriverextras.svg)](https://github.com/atata-framework/atata-webdriverextras/releases)
+[![Gitter](https://badges.gitter.im/atata-framework/atata-webdriverextras.svg)](https://gitter.im/atata-framework/atata-webdriverextras)
+[![Atata Framework Documentation](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata-framework.github.io/)
+[![Twitter](https://img.shields.io/badge/follow-@AtataFramework-blue.svg)](https://twitter.com/AtataFramework)
 
 A set of C#/.NET extension methods and other extra classes for Selenium WebDriver. Is a part of [Atata Framework](https://github.com/atata-framework/atata).
 
@@ -33,6 +36,11 @@ bool isElementExists = driver.Exists(By.Name("some-name").Safely().AtOnce());
 
 // Waits until the element will be missing within 15 seconds; else throws NotMissingElementException.
 driver.Missing(By.Name("some-name").Within(TimeSpan.FromSeconds(15)));
+
+// Get the element using the chain of By.
+IWebElement element5 = driver.Get(By.Id("root-container").
+    Then(By.XPath("./div[@class='sub-container']")).
+    Then(By.CssSelector("span.item")));
 ```
 
 Don't forget to add `Atata` namespace:
