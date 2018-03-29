@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ByChainTests.cs" />
     <Compile Include="ByExtensionsTest.cs" />
+    <Compile Include="ExtendedSearchContextTests.cs" />
     <Compile Include="NUnitSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeWaitTests.cs" />

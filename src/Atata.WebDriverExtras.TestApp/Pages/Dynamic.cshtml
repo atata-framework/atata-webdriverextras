@@ -1,0 +1,16 @@
+﻿@page
+@{
+    ViewBag.Title = "Dynamic";
+}
+
+<button id="add-value" class="btn btn-default" onclick="showValue()">Add Value</button>
+(adds after 2 seconds)
+<div id="value-container"></div>
+
+<script>
+    function showValue() {
+        setTimeout(function () {
+            $('#value-container').append('<span id="value-block">New value</span>');
+        }, 2000);
+    }
+</script>
