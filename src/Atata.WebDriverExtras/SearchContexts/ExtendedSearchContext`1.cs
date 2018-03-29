@@ -192,7 +192,7 @@ namespace Atata
         public TResult Until<TResult>(Func<T, TResult> condition, RetryOptions options)
         {
             if (condition == null)
-                throw new ArgumentNullException("condition");
+                throw new ArgumentNullException(nameof(condition));
 
             options = options ?? new RetryOptions();
 
