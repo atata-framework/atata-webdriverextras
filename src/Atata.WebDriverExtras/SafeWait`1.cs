@@ -88,7 +88,8 @@ namespace Atata
         {
             condition.CheckNotNull(nameof(condition));
 
-            var endTime = clock.LaterBy(Timeout);
+            DateTime operationStart = clock.Now;
+            DateTime operationTimeoutEnd = operationStart.Add(Timeout);
 
             while (true)
             {
@@ -107,9 +108,10 @@ namespace Atata
                         throw;
                 }
 
-                // Check the timeout after evaluating the function to ensure conditions
-                // with a zero timeout can succeed.
-                if (!clock.IsNowBefore(endTime))
+                DateTime iterationEnd = clock.Now;
+                TimeSpan timeUntilTimeout = operationTimeoutEnd - iterationEnd;
+
+                if (timeUntilTimeout <= TimeSpan.Zero)
                 {
                     if (typeof(TResult) == typeof(ReadOnlyCollection<IWebElement>))
                         return (TResult)(object)new IWebElement[0].ToReadOnly();
@@ -118,12 +120,16 @@ namespace Atata
                     else
                         return default(TResult);
                 }
+                else
+                {
+                    TimeSpan timeToSleep = PollingInterval - (iterationEnd - iterationStart);
 
-                TimeSpan iterationDuration = clock.Now - iterationStart;
-                TimeSpan timeToSleep = PollingInterval - iterationDuration;
+                    if (timeUntilTimeout < timeToSleep)
+                        timeToSleep = timeUntilTimeout;
 
-                if (timeToSleep > TimeSpan.Zero)
-                    Thread.Sleep(timeToSleep);
+                    if (timeToSleep > TimeSpan.Zero)
+                        Thread.Sleep(timeToSleep);
+                }
             }
         }
 
