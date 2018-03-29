@@ -2,6 +2,9 @@
 
 namespace Atata
 {
+    /// <summary>
+    /// Provides the default settings for operations that can be retried.
+    /// </summary>
     public static class RetrySettings
     {
         /// <summary>
@@ -30,7 +33,8 @@ namespace Atata
         public static bool IsThreadStatic { get; set; } = true;
 
         /// <summary>
-        /// Gets the retry timeout. The default value is 5 seconds.
+        /// Gets the retry timeout.
+        /// The default value is 5 seconds.
         /// </summary>
         public static TimeSpan Timeout
         {
@@ -45,7 +49,8 @@ namespace Atata
         }
 
         /// <summary>
-        /// Gets the retry interval. The default value is 500 milliseconds.
+        /// Gets the retry interval.
+        /// The default value is 500 milliseconds.
         /// </summary>
         public static TimeSpan Interval
         {

@@ -9,6 +9,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Atata
 {
+    /// <summary>
+    /// Represents the retriable operation to wait for condition safely (without throwing exception on timeout).
+    /// </summary>
+    /// <typeparam name="T">The type of object used to detect the condition.</typeparam>
     public class SafeWait<T> : IWait<T>
     {
         private readonly T input;
@@ -38,12 +42,14 @@ namespace Atata
         }
 
         /// <summary>
-        /// Gets or sets how long to wait for the evaluated condition to be true. The default timeout is taken from <see cref="RetrySettings.Timeout"/> property.
+        /// Gets or sets how long to wait for the evaluated condition to be true.
+        /// The default timeout is taken from <see cref="RetrySettings.Timeout"/>.
         /// </summary>
         public TimeSpan Timeout { get; set; } = RetrySettings.Timeout;
 
         /// <summary>
-        /// Gets or sets how often the condition should be evaluated. The default interval is taken from <see cref="RetrySettings.Interval"/> property.
+        /// Gets or sets how often the condition should be evaluated.
+        /// The default interval is taken from <see cref="RetrySettings.Interval"/>.
         /// </summary>
         public TimeSpan PollingInterval { get; set; } = RetrySettings.Interval;
 

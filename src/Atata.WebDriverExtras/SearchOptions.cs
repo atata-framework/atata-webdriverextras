@@ -1,7 +1,11 @@
 ﻿using System;
+using OpenQA.Selenium;
 
 namespace Atata
 {
+    /// <summary>
+    /// Represents the options for the search of element(s).
+    /// </summary>
     public class SearchOptions : ICloneable
     {
         private TimeSpan? timeout;
@@ -12,24 +16,39 @@ namespace Atata
 
         private bool? isSafely;
 
+        /// <summary>
+        /// Gets or sets the timeout.
+        /// The deafult value is taken from <see cref="RetrySettings.Timeout"/>.
+        /// </summary>
         public TimeSpan Timeout
         {
             get => timeout ?? RetrySettings.Timeout;
             set => timeout = value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether <c>Timeout</c> is set.
+        /// </summary>
         public bool IsTimeoutSet => timeout.HasValue;
 
+        /// <summary>
+        /// Gets or sets the retry interval.
+        /// The deafult value is taken from <see cref="RetrySettings.Interval"/>.
+        /// </summary>
         public TimeSpan RetryInterval
         {
             get => retryInterval ?? RetrySettings.Interval;
             set => retryInterval = value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether <c>RetryInterval</c> is set.
+        /// </summary>
         public bool IsRetryIntervalSet => retryInterval.HasValue;
 
         /// <summary>
-        /// Gets or sets the visibility of the search element. The default value is Visible.
+        /// Gets or sets the visibility of the search element.
+        /// The default value is <c>Visible</c>.
         /// </summary>
         public Visibility Visibility
         {
@@ -37,10 +56,16 @@ namespace Atata
             set => visibility = value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether <c>Visibility</c> is set.
+        /// </summary>
         public bool IsVisibilitySet => visibility.HasValue;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the search element is safely searching. If it is true then null is returned after the search, otherwise an exception is thrown. The default value is false.
+        /// Gets or sets a value indicating whether the search element is safely searching.
+        /// If it is <c>true</c> then <c>null</c> is returned after the search,
+        /// otherwise an exception of <see cref="NoSuchElementException"/> or <see cref="NotMissingElementException"/> is thrown.
+        /// The default value is <c>false</c>.
         /// </summary>
         public bool IsSafely
         {
@@ -48,6 +73,9 @@ namespace Atata
             set => isSafely = value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether <c>IsSafely</c> is set.
+        /// </summary>
         public bool IsSafelySet => isSafely.HasValue;
 
         public static SearchOptions Safely(bool isSafely = true)
