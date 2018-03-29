@@ -55,6 +55,8 @@
     <Compile Include="ByExtensionsTest.cs" />
     <Compile Include="NUnitSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafeWaitTests.cs" />
+    <Compile Include="StopwatchAsserter.cs" />
     <Compile Include="UITestFixture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +67,9 @@
       <Project>{a08c24d1-7904-4a0c-bf07-5aef4a520d82}</Project>
       <Name>Atata.WebDriverExtras</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
