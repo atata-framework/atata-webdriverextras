@@ -18,11 +18,15 @@ namespace Atata
             set => timeout = value;
         }
 
+        public bool IsTimeoutSet => timeout.HasValue;
+
         public TimeSpan Interval
         {
             get => interval ?? RetrySettings.Interval;
             set => interval = value;
         }
+
+        public bool IsIntervalSet => interval.HasValue;
 
         public List<Type> IgnoredExceptionTypes { get; private set; } = new List<Type>();
 

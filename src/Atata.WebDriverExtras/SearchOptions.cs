@@ -135,6 +135,19 @@ namespace Atata
             return new SearchOptions { Timeout = TimeSpan.Zero };
         }
 
+        public RetryOptions ToRetryOptions()
+        {
+            RetryOptions options = new RetryOptions();
+
+            if (IsTimeoutSet)
+                options.Timeout = Timeout;
+
+            if (IsRetryIntervalSet)
+                options.Interval = RetryInterval;
+
+            return options;
+        }
+
         object ICloneable.Clone() => Clone();
 
         public SearchOptions Clone()

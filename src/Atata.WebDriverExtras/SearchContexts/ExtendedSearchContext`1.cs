@@ -173,7 +173,7 @@ namespace Atata
                     ToReadOnly();
             }
 
-            return Until(findFunction, options.Timeout, options.RetryInterval);
+            return Until(findFunction, options.ToRetryOptions());
         }
 
         public TResult Until<TResult>(Func<T, TResult> condition, TimeSpan? timeout = null, TimeSpan? retryInterval = null)
@@ -195,6 +195,12 @@ namespace Atata
                 throw new ArgumentNullException(nameof(condition));
 
             options = options ?? new RetryOptions();
+
+            if (!options.IsTimeoutSet)
+                options.Timeout = Timeout;
+
+            if (!options.IsIntervalSet)
+                options.Interval = RetryInterval;
 
             if (options.Timeout > TimeSpan.Zero)
             {
@@ -223,7 +229,7 @@ namespace Atata
             else
                 findFunction = x => !x.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
 
-            bool isMissing = Until(findFunction, options.Timeout, options.RetryInterval);
+            bool isMissing = Until(findFunction, options.ToRetryOptions());
 
             if (!options.IsSafely && !isMissing)
                 throw ExceptionFactory.CreateForNotMissingElement(by: by, searchContext: Context);
@@ -264,10 +270,10 @@ namespace Atata
                 return false;
             };
 
-            TimeSpan maxTimeout = searchOptions.Values.Max(x => x.Timeout);
-            TimeSpan maxRetryInterval = searchOptions.Values.Max(x => x.RetryInterval);
+            TimeSpan? maxTimeout = searchOptions.Values.Where(x => x.IsTimeoutSet).Max(x => x.Timeout as TimeSpan?);
+            TimeSpan? minRetryInterval = searchOptions.Values.Where(x => x.IsRetryIntervalSet).Min(x => x.RetryInterval as TimeSpan?);
 
-            bool isMissing = Until(findFunction, maxTimeout, maxRetryInterval);
+            bool isMissing = Until(findFunction, maxTimeout, minRetryInterval);
 
             if (searchOptions.Values.Any(x => !x.IsSafely) && !isMissing)
                 throw ExceptionFactory.CreateForNotMissingElement(by: leftBys.FirstOrDefault(), searchContext: Context);
