@@ -92,6 +92,8 @@ namespace Atata
 
             while (true)
             {
+                DateTime iterationStart = clock.Now;
+
                 try
                 {
                     var result = condition(input);
@@ -117,7 +119,11 @@ namespace Atata
                         return default(TResult);
                 }
 
-                Thread.Sleep(PollingInterval);
+                TimeSpan iterationDuration = clock.Now - iterationStart;
+                TimeSpan timeToSleep = PollingInterval - iterationDuration;
+
+                if (timeToSleep > TimeSpan.Zero)
+                    Thread.Sleep(timeToSleep);
             }
         }
 
