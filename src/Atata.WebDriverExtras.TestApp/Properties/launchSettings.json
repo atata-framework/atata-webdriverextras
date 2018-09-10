@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:57439/",
+      "applicationUrl": "http://localhost:57440/",
       "sslPort": 0
     }
   },
@@ -15,9 +15,9 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Atata.WebDriverExtras.TestApp": {
+    ".NET Core": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
