@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace Atata.WebDriverExtras.Tests
 {
     [TestFixture]
+    [Parallelizable(ParallelScope.None)]
     public class SafeWaitTests
     {
         private SafeWait<object> wait;
@@ -42,7 +43,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void SafeWait_PollingInterval()
         {
-            using (StopwatchAsserter.Within(.3, .01))
+            using (StopwatchAsserter.Within(.3, .2))
                 wait.Until(_ =>
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(.1));
