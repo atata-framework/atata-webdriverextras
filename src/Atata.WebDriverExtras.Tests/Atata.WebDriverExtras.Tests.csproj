@@ -38,6 +38,9 @@
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="RetryHelper, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RetryHelper.2.1.0\lib\net45\RetryHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -58,6 +61,7 @@
     <Compile Include="NUnitSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeWaitTests.cs" />
+    <Compile Include="SetUpFixture.cs" />
     <Compile Include="StopwatchAsserter.cs" />
     <Compile Include="UITestFixture.cs" />
   </ItemGroup>
