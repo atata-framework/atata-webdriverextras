@@ -26,6 +26,9 @@ namespace Atata.WebDriverExtras.Tests
             }
         }
 
+        private static WebResponse PingTestApp() =>
+            WebRequest.CreateHttp(UITestFixture.BaseUrl).GetResponse();
+
         private void RunTestApp()
         {
             coreRunProcess = new Process
@@ -47,9 +50,6 @@ namespace Atata.WebDriverExtras.Tests
                 WithTimeLimit(40000).
                 UntilNoException();
         }
-
-        private WebResponse PingTestApp() =>
-            WebRequest.CreateHttp(UITestFixture.BaseUrl).GetResponse();
 
         [OneTimeTearDown]
         public void GlobalTearDown()

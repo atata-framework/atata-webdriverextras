@@ -138,7 +138,7 @@ namespace Atata
             return FindAll(By.XPath(xpath));
         }
 
-        private SearchOptions ResolveOptions(By by)
+        private static SearchOptions ResolveOptions(By by)
         {
             return (by as ExtendedBy)?.Options ?? new SearchOptions();
         }
