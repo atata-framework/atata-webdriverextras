@@ -27,6 +27,7 @@ Atata Framework documentation: https://atata-framework.github.io</Description>
 0.11.0 - Initial release.</PackageReleaseNotes>
     <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
