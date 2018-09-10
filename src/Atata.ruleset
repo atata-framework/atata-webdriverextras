@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="Atata Framework Rules" Description="Code analysis rules for Atata Framework" ToolsVersion="15.0">
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+    <Rule Id="CA0052" Action="None" />
+    <Rule Id="CA0055" Action="None" />
     <Rule Id="CA1001" Action="Warning" />
     <Rule Id="CA1008" Action="Warning" />
     <Rule Id="CA1009" Action="Warning" />
