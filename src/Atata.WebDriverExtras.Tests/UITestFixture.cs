@@ -7,7 +7,7 @@ namespace Atata.WebDriverExtras.Tests
     [TestFixture]
     public abstract class UITestFixture
     {
-        private const string BaseUrl = "http://localhost:57439/";
+        public const string BaseUrl = "http://localhost:57440/";
 
         protected RemoteWebDriver Driver { get; private set; }
 
