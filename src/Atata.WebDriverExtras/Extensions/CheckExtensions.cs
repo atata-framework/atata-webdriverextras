@@ -75,9 +75,9 @@ namespace Atata
         {
             if (value < 0)
             {
-#pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one
+#pragma warning disable S3928, CA2208 // Parameter names used into ArgumentException constructors should match an existing one
                 throw new ArgumentOutOfRangeException("index", value, "Index was out of range. Must be non-negative.");
-#pragma warning restore S3928 // Parameter names used into ArgumentException constructors should match an existing one
+#pragma warning restore S3928, CA2208 // Parameter names used into ArgumentException constructors should match an existing one
             }
 
             return value;
