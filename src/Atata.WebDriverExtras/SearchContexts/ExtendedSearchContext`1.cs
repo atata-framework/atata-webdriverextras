@@ -250,7 +250,7 @@ namespace Atata
 
             List<By> leftBys = byContextPairs.Keys.ToList();
 
-            Func<T, bool> findFunction = _ =>
+            bool findFunction(T context)
             {
                 By[] currentByArray = leftBys.ToArray();
 
@@ -268,7 +268,7 @@ namespace Atata
                 }
 
                 return false;
-            };
+            }
 
             TimeSpan? maxTimeout = searchOptions.Values.Where(x => x.IsTimeoutSet).Max(x => x.Timeout as TimeSpan?);
             TimeSpan? minRetryInterval = searchOptions.Values.Where(x => x.IsRetryIntervalSet).Min(x => x.RetryInterval as TimeSpan?);

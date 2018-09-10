@@ -48,9 +48,9 @@ namespace Atata
 
                 if (hasName && hasBy)
                     builder.AppendFormat("{0}. {1}", elementName, by);
-                else if (!string.IsNullOrWhiteSpace(elementName))
+                else if (hasName)
                     builder.Append(elementName);
-                else if (by != null)
+                else
                     builder.Append(by);
             }
 
@@ -63,15 +63,10 @@ namespace Atata
 
         private static string SearchContextToString(ISearchContext context)
         {
-            if (context is IWebElement element)
-            {
-                return $@"Context element:
-{element.ToDetailedString()}";
-            }
-            else
-            {
-                return null;
-            }
+            return context is IWebElement element
+                ? $@"Context element:
+{element.ToDetailedString()}"
+                : null;
         }
     }
 }

@@ -168,7 +168,7 @@ namespace Atata
                 case "CssSelector":
                     return By.CssSelector(selector);
                 default:
-                    throw new ArgumentException(string.Format("Unknown '{0}' method of OpenQA.Selenium.By", method), "method");
+                    throw new ArgumentException($"Unknown {method} method of OpenQA.Selenium.By.", nameof(method));
             }
         }
 
@@ -176,12 +176,9 @@ namespace Atata
         {
             ExtendedBy originalByAsExtended = by as ExtendedBy;
 
-            By newByChain;
-
-            if (TryResolveByChain(by, out ByChain byChain))
-                newByChain = new ByChain(byChain.Items.Concat(new[] { nextBy }));
-            else
-                newByChain = new ByChain(originalByAsExtended?.By ?? by, nextBy);
+            By newByChain = TryResolveByChain(by, out ByChain byChain)
+                ? new ByChain(byChain.Items.Concat(new[] { nextBy }))
+                : new ByChain(originalByAsExtended?.By ?? by, nextBy);
 
             return originalByAsExtended != null
                 ? new ExtendedBy(newByChain).ApplySettingsFrom(originalByAsExtended)
