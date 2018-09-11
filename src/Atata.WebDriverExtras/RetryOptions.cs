@@ -22,7 +22,6 @@ namespace Atata
         public TimeSpan Timeout
         {
             get => timeout ?? RetrySettings.Timeout;
-
             set => timeout = value;
         }
 

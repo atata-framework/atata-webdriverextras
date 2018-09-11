@@ -41,7 +41,7 @@ namespace Atata.WebDriverExtras.Tests
                 }
             };
 
-            coreRunProcess.Start(); ;
+            coreRunProcess.Start();
 
             Thread.Sleep(5000);
 
