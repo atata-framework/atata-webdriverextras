@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 
 namespace Atata.WebDriverExtras.Tests
 {
+    [Parallelizable(ParallelScope.None)]
     public class ExtendedSearchContextTests : UITestFixture
     {
         [Test]
