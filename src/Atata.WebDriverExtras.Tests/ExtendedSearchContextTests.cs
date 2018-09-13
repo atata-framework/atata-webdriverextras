@@ -98,7 +98,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(5, .05))
+            using (StopwatchAsserter.Within(5, .07))
                 result = Driver.Try().Until(x => false);
 
             Assert.That(result, Is.False);
