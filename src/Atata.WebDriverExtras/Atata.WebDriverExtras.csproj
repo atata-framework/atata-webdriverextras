@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <RootNamespace>Atata</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Title>Atata WebDriver Extras</Title>
@@ -20,7 +20,8 @@ Atata Framework documentation: https://atata-framework.github.io</Description>
     <PackageIconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo.png?v2</PackageIconUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
     <PackageTags>atata automation testing test selenium webdriver browser</PackageTags>
-    <PackageReleaseNotes>1.0.0 - https://atata-framework.github.io/blog/2018/03/30/atata.webdriverextras-1.0.0-released/
+    <PackageReleaseNotes>1.1.0 - https://atata-framework.github.io/blog/2018/10/01/atata.webdriverextras-1.1.0-released/
+1.0.0 - https://atata-framework.github.io/blog/2018/03/30/atata.webdriverextras-1.0.0-released/
 0.14.0 - https://atata-framework.github.io/blog/2017/12/07/atata.webdriverextras-0.14.0-released/
 0.13.0 - https://atata-framework.github.io/blog/2017/10/04/atata.webdriverextras-0.13.0-released/
 0.12.0 - https://atata-framework.github.io/blog/2017/09/20/atata.webdriverextras-0.12.0-released/
