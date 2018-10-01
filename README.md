@@ -9,7 +9,17 @@
 
 A set of C#/.NET extension methods and other extra classes for Selenium WebDriver. Is a part of [Atata Framework](https://github.com/atata-framework/atata).
 
+Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
+
 ## Usage
+
+Add `Atata` namespace:
+
+```C#
+using Atata;
+```
+
+Use extension methods for `IWebDriver`, `IWebElement`, `By`, etc.:
 
 ```C#
 RemoteWebDriver driver = GetSomeDriver();
@@ -44,8 +54,7 @@ IWebElement element5 = driver.Get(By.Id("root-container").
     Then(By.CssSelector("span.item")));
 ```
 
-Don't forget to add `Atata` namespace:
+## License
 
-```C#
-using Atata;
-```
+Atata is an open source software, licensed under the Apache License 2.0.
+See [LICENSE](LICENSE) for details.

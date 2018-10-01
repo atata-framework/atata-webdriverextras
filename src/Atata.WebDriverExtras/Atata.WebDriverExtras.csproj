@@ -10,9 +10,9 @@
     <Product>Atata Framework</Product>
     <Description>A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.
 
-Supports .NET Framework 4.0+ and .NET Core/Standard 2.0.
+Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
-Atata.WebDriverExtras GitHub repository: https://github.com/atata-framework/atata-webdriverextras
+Atata.WebDriverExtras on GitHub: https://github.com/atata-framework/atata-webdriverextras
 Atata Framework documentation: https://atata-framework.github.io</Description>
     <Copyright>© Yevgeniy Shunevych 2018</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/atata-framework/atata-webdriverextras/master/LICENSE</PackageLicenseUrl>
