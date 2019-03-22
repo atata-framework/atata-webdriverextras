@@ -1,18 +1,22 @@
-queue:
-  name: Hosted VS2017
-  demands: vstest
-  
 variables:
-  buildConfiguration: 'Debug'
-  
-steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    projects: '**\*.sln'
-    arguments: '-c $(buildConfiguration) /p:RunCodeAnalysis=true /warnaserror'
+  buildConfiguration: 'Release'
 
-- task: VSTest@2
-  inputs:
-    testAssemblyVer2: |
-      **\*.Tests*.dll
-      !**\obj\**
+jobs:
+- job: BuildWithCodeAnalysisAndRunTests
+  displayName: Build with code analysis and run tests
+  pool:
+    vmImage: vs2017-win2016
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: Build solution and run code analysis
+    inputs:
+      command: build
+      projects: '**\*.sln'
+      arguments: -c $(buildConfiguration) /p:RunCodeAnalysis=true /warnaserror
+  - task: VSTest@2
+    displayName: Run tests
+    timeoutInMinutes: 15
+    inputs:
+      testAssemblyVer2: |
+        **\*.Tests*.dll
+        !**\obj\**
