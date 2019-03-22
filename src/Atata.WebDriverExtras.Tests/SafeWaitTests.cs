@@ -33,7 +33,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void SafeWait_Timeout()
         {
-            using (StopwatchAsserter.Within(.3, .01))
+            using (StopwatchAsserter.Within(.3, .015))
                 wait.Until(_ =>
                 {
                     return false;
