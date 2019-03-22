@@ -56,7 +56,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             wait.PollingInterval = TimeSpan.FromSeconds(1);
 
-            using (StopwatchAsserter.Within(.3, .01))
+            using (StopwatchAsserter.Within(.3, .015))
                 wait.Until(_ =>
                 {
                     return false;
