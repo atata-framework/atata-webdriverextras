@@ -44,6 +44,30 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
+        public void ExtendedSearchContext_Get_Hidden()
+        {
+            GoTo("static");
+
+            using (StopwatchAsserter.Within(.2, .2))
+            {
+                IWebElement element = Driver.Get(By.Id("hidden-input").Hidden());
+                Assert.That(element, Is.Not.Null);
+            }
+        }
+
+        [Test]
+        public void ExtendedSearchContext_Get_OfAnyVisibility()
+        {
+            GoTo("static");
+
+            using (StopwatchAsserter.Within(.2, .2))
+            {
+                IWebElement element = Driver.Get(By.Id("hidden-input").OfAnyVisibility());
+                Assert.That(element, Is.Not.Null);
+            }
+        }
+
+        [Test]
         public void ExtendedSearchContext_Get_Timeout()
         {
             GoTo("static");
@@ -51,6 +75,16 @@ namespace Atata.WebDriverExtras.Tests
             using (StopwatchAsserter.Within(3, .2))
                 Assert.Throws<NoSuchElementException>(() =>
                     Driver.Get(By.Id("unknown").Within(TimeSpan.FromSeconds(3))));
+        }
+
+        [Test]
+        public void ExtendedSearchContext_Get_Timeout_ButHidden()
+        {
+            GoTo("static");
+
+            using (StopwatchAsserter.Within(3, .2))
+                Assert.Throws<NoSuchElementException>(() =>
+                    Driver.Get(By.Id("hidden-input").Within(TimeSpan.FromSeconds(3))));
         }
 
         [Test]
