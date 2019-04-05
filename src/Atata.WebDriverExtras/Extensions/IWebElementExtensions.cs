@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using OpenQA.Selenium;
 
 namespace Atata
@@ -55,6 +56,22 @@ Text: {element.Text.Trim()}";
             {
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Gets the element identifier.
+        /// </summary>
+        /// <param name="element">The element.</param>
+        /// <returns>The value of element's <c>Id</c> property or <see langword="null"/> if property is missing.</returns>
+        public static string GetElementId(this IWebElement element)
+        {
+            element.CheckNotNull(nameof(element));
+
+            PropertyInfo property = element.GetType().GetProperty(
+                "Id",
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            return property?.GetValue(element, new object[0]) as string;
         }
     }
 }
