@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using OpenQA.Selenium;
 
 namespace Atata
@@ -47,14 +49,34 @@ namespace Atata
 
             try
             {
-                return $@"Tag: {element.TagName}
-Location: {element.Location}
-Size: {element.Size}
-Text: {element.Text.Trim()}";
+                StringBuilder builder = new StringBuilder();
+
+                builder.AppendFormat("- Tag: {0}", element.TagName);
+
+                Point elementLocation = element.Location;
+                builder.AppendLine().AppendFormat("- Location: {{X={0}, Y={1}}}", elementLocation.X, elementLocation.Y);
+
+                Size elementSize = element.Size;
+                builder.AppendLine().AppendFormat("- Size: {{Width={0}, Height={1}}}", elementSize.Width, elementSize.Height);
+
+                string elementId = element.GetElementId();
+
+                if (!string.IsNullOrEmpty(elementId))
+                    builder.AppendLine().AppendFormat("- Element ID: {0}", elementId);
+
+                string elementText = element.Text?.Trim();
+
+                if (!string.IsNullOrEmpty(elementText))
+                {
+                    string elementTextSplitter = elementText.Contains(Environment.NewLine) ? Environment.NewLine : " ";
+                    builder.AppendLine().AppendFormat("- Text:{0}{1}", elementTextSplitter, elementText);
+                }
+
+                return builder.ToString();
             }
             catch
             {
-                return null;
+                return element.ToString();
             }
         }
 
