@@ -182,5 +182,10 @@ namespace Atata
         {
             return (SearchOptions)MemberwiseClone();
         }
+
+        public override string ToString()
+        {
+            return $"{{{nameof(Visibility)}={Visibility}, {nameof(Timeout)}={Timeout.ToShortIntervalString()}, {nameof(RetryInterval)}={RetryInterval.ToShortIntervalString()}, {nameof(IsSafely)}={IsSafely}}}";
+        }
     }
 }
