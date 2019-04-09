@@ -171,6 +171,19 @@ namespace Atata.WebDriverExtras.Tests
         }
 
         [Test]
+        public void ExtendedSearchContext_Missing()
+        {
+            GoTo("static");
+
+            bool result;
+
+            using (StopwatchAsserter.Within(.2, .2))
+                result = Driver.Try().Missing(missingElementBy.Safely());
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
         public void ExtendedSearchContext_Missing_Timeout_Unsafely()
         {
             GoTo("static");
