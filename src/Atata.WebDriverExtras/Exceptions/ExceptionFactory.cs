@@ -1,24 +1,56 @@
 ﻿using System;
-using System.Text;
 using OpenQA.Selenium;
 
 namespace Atata
 {
+    /// <summary>
+    /// Provides a set of methods for an exception creation.
+    /// </summary>
     public static class ExceptionFactory
     {
         public static NoSuchElementException CreateForNoSuchElement(string elementName = null, By by = null, ISearchContext searchContext = null)
         {
-            elementName = elementName ?? (by as ExtendedBy)?.GetElementNameWithKind();
-
-            string message = BuildElementErrorMessage("Unable to locate element", elementName, by, searchContext);
-            return new NoSuchElementException(message);
+            return CreateForNoSuchElement(
+                new SearchFailureData
+                {
+                    ElementName = elementName,
+                    By = by,
+                    SearchContext = searchContext
+                });
         }
 
         public static NotMissingElementException CreateForNotMissingElement(string elementName = null, By by = null, ISearchContext searchContext = null)
         {
-            elementName = elementName ?? (by as ExtendedBy)?.GetElementNameWithKind();
+            return CreateForNotMissingElement(
+               new SearchFailureData
+               {
+                   ElementName = elementName,
+                   By = by,
+                   SearchContext = searchContext
+               });
+        }
 
-            string message = BuildElementErrorMessage("Able to locate element that should be missing", elementName, by, searchContext);
+        /// <summary>
+        /// Creates an instance of <see cref="NoSuchElementException"/> with message generated using <paramref name="searchFailureData"/>.
+        /// </summary>
+        /// <param name="searchFailureData">The search failure data.</param>
+        /// <returns>An instance of <see cref="NoSuchElementException"/>.</returns>
+        public static NoSuchElementException CreateForNoSuchElement(SearchFailureData searchFailureData)
+        {
+            string message = (searchFailureData ?? new SearchFailureData()).ToStringForNoSuchElement();
+
+            return new NoSuchElementException(message);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="NotMissingElementException"/> with message generated using <paramref name="searchFailureData"/>.
+        /// </summary>
+        /// <param name="searchFailureData">The search failure data.</param>
+        /// <returns>An instance of <see cref="NotMissingElementException"/>.</returns>
+        public static NotMissingElementException CreateForNotMissingElement(SearchFailureData searchFailureData)
+        {
+            string message = (searchFailureData ?? new SearchFailureData()).ToStringForNotMissingElement();
+
             return new NotMissingElementException(message);
         }
 
@@ -33,40 +65,6 @@ namespace Atata
         {
             string message = $"Unsupported {typeof(T).FullName} enum value: {value}.";
             return new ArgumentException(message, paramName);
-        }
-
-        public static string BuildElementErrorMessage(string message, string elementName, By by, ISearchContext searchContext = null)
-        {
-            StringBuilder builder = new StringBuilder(message);
-
-            bool hasName = !string.IsNullOrWhiteSpace(elementName);
-            bool hasBy = by != null;
-
-            if (hasName || hasBy)
-            {
-                builder.Append(": ");
-
-                if (hasName && hasBy)
-                    builder.AppendFormat("{0}. {1}", elementName, by);
-                else if (hasName)
-                    builder.Append(elementName);
-                else
-                    builder.Append(by);
-            }
-
-            string searchContextString = SearchContextToString(searchContext);
-            if (searchContextString != null)
-                builder.AppendLine().Append(searchContextString);
-
-            return builder.ToString();
-        }
-
-        private static string SearchContextToString(ISearchContext context)
-        {
-            return context is IWebElement element
-                ? $@"Context element:
-{element.ToDetailedString()}"
-                : null;
         }
     }
 }
