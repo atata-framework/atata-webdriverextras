@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -147,13 +148,39 @@ namespace Atata
         {
             SearchOptions options = ResolveOptions(by);
 
-            var elements = FindAll(by, options);
-            var element = elements.FirstOrDefault();
+            ReadOnlyCollection<IWebElement> lastFoundElements = null;
+
+            IWebElement FindElement(T context)
+            {
+                lastFoundElements = context.FindElements(by);
+
+                return options.Visibility == Visibility.Any
+                    ? lastFoundElements.FirstOrDefault()
+                    : lastFoundElements.FirstOrDefault(CreateVisibilityPredicate(options.Visibility));
+            }
+
+            Stopwatch searchWatch = Stopwatch.StartNew();
+
+            IWebElement element = Until(FindElement, options.ToRetryOptions());
+
+            searchWatch.Stop();
 
             if (!options.IsSafely && element == null)
-                throw ExceptionFactory.CreateForNoSuchElement(by: by, searchContext: Context);
+            {
+                throw ExceptionFactory.CreateForNoSuchElement(
+                    new SearchFailureData
+                    {
+                        By = by,
+                        SearchTime = searchWatch.Elapsed,
+                        SearchOptions = options,
+                        AlikeElementsWithInverseVisibility = lastFoundElements,
+                        SearchContext = Context
+                    });
+            }
             else
+            {
                 return element;
+            }
         }
 
         private ReadOnlyCollection<IWebElement> FindAll(By by, SearchOptions options = null)
