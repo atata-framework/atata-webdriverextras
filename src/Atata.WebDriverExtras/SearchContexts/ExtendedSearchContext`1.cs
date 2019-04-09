@@ -249,19 +249,34 @@ namespace Atata
         {
             SearchOptions options = ResolveOptions(by);
 
-            Func<T, bool> findFunction;
+            bool FindNoElement(T context)
+            {
+                return options.Visibility == Visibility.Any
+                    ? !context.FindElements(by).Any()
+                    : !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
+            }
 
-            if (options.Visibility == Visibility.Any)
-                findFunction = x => !x.FindElements(by).Any();
-            else
-                findFunction = x => !x.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
+            Stopwatch searchWatch = Stopwatch.StartNew();
 
-            bool isMissing = Until(findFunction, options.ToRetryOptions());
+            bool isMissing = Until(FindNoElement, options.ToRetryOptions());
+
+            searchWatch.Stop();
 
             if (!options.IsSafely && !isMissing)
-                throw ExceptionFactory.CreateForNotMissingElement(by: by, searchContext: Context);
+            {
+                throw ExceptionFactory.CreateForNotMissingElement(
+                    new SearchFailureData
+                    {
+                        By = by,
+                        SearchTime = searchWatch.Elapsed,
+                        SearchOptions = options,
+                        SearchContext = Context
+                    });
+            }
             else
+            {
                 return isMissing;
+            }
         }
 
         public bool MissingAll(params By[] byArray)

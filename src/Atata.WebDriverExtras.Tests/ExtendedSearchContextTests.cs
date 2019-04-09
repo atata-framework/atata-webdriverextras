@@ -7,6 +7,12 @@ namespace Atata.WebDriverExtras.Tests
     [Parallelizable(ParallelScope.None)]
     public class ExtendedSearchContextTests : UITestFixture
     {
+        private readonly By existingElementBy = By.Id("first-name");
+
+        private readonly By missingElementBy = By.Id("unknown");
+
+        private readonly By hiddenElementBy = By.Id("hidden-input");
+
         [Test]
         public void ExtendedSearchContext_Get_Immediate()
         {
@@ -15,7 +21,7 @@ namespace Atata.WebDriverExtras.Tests
             IWebElement element;
 
             using (StopwatchAsserter.Within(.2, .2))
-                element = Driver.Get(By.Id("first-name"));
+                element = Driver.Get(existingElementBy);
 
             Assert.That(element, Is.Not.Null);
         }
@@ -28,7 +34,7 @@ namespace Atata.WebDriverExtras.Tests
             IWebElement element;
 
             using (StopwatchAsserter.Within(5, .2))
-                element = Driver.Get(By.Id("unknown").Safely());
+                element = Driver.Get(missingElementBy.Safely());
 
             Assert.That(element, Is.Null);
         }
@@ -40,7 +46,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(5, .2))
                 Assert.Throws<NoSuchElementException>(() =>
-                    Driver.Get(By.Id("unknown").Unsafely()));
+                    Driver.Get(missingElementBy.Unsafely()));
         }
 
         [Test]
@@ -50,7 +56,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(.2, .2))
             {
-                IWebElement element = Driver.Get(By.Id("hidden-input").Hidden());
+                IWebElement element = Driver.Get(hiddenElementBy.Hidden());
                 Assert.That(element, Is.Not.Null);
             }
         }
@@ -62,7 +68,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(.2, .2))
             {
-                IWebElement element = Driver.Get(By.Id("hidden-input").OfAnyVisibility());
+                IWebElement element = Driver.Get(hiddenElementBy.OfAnyVisibility());
                 Assert.That(element, Is.Not.Null);
             }
         }
@@ -74,7 +80,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(3, .2))
                 Assert.Throws<NoSuchElementException>(() =>
-                    Driver.Get(By.Id("unknown").Within(TimeSpan.FromSeconds(3))));
+                    Driver.Get(missingElementBy.Within(TimeSpan.FromSeconds(3))));
         }
 
         [Test]
@@ -84,7 +90,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(3, .2))
                 Assert.Throws<NoSuchElementException>(() =>
-                    Driver.Get(By.Id("hidden-input").Within(TimeSpan.FromSeconds(3))));
+                    Driver.Get(hiddenElementBy.Within(TimeSpan.FromSeconds(3))));
         }
 
         [Test]
@@ -109,7 +115,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(3, .2))
                 Assert.Throws<NoSuchElementException>(() =>
-                    Driver.Try(TimeSpan.FromSeconds(3)).Get(By.Id("unknown")));
+                    Driver.Try(TimeSpan.FromSeconds(3)).Get(missingElementBy));
         }
 
         [Test]
@@ -160,6 +166,29 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(2, .05))
                 result = Driver.Try().Until(x => false, TimeSpan.FromSeconds(2));
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void ExtendedSearchContext_Missing_Timeout_Unsafely()
+        {
+            GoTo("static");
+
+            using (StopwatchAsserter.Within(5, .2))
+                Assert.Throws<NotMissingElementException>(() =>
+                    Driver.Try().Missing(existingElementBy.Unsafely()));
+        }
+
+        [Test]
+        public void ExtendedSearchContext_Missing_Timeout_Safely()
+        {
+            GoTo("static");
+
+            bool result;
+
+            using (StopwatchAsserter.Within(5, .2))
+                result = Driver.Try().Missing(existingElementBy.Safely());
 
             Assert.That(result, Is.False);
         }
