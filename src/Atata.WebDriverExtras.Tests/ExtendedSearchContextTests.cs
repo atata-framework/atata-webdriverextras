@@ -215,7 +215,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(.2, .2))
+            using (StopwatchAsserter.Within(.4, .4))
                 result = Driver.Try().MissingAll(missingElementBy, anotherMissingElementBy);
 
             Assert.That(result, Is.True);
