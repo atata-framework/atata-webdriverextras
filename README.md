@@ -8,7 +8,8 @@
 [![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)
 [![Twitter](https://img.shields.io/badge/follow-@AtataFramework-blue.svg)](https://twitter.com/AtataFramework)
 
-A set of C#/.NET extension methods and other extra classes for Selenium WebDriver. Is a part of [Atata Framework](https://github.com/atata-framework/atata).
+A set of C#/.NET extension methods and other extra classes for Selenium WebDriver.
+Is a part of [Atata Framework](https://atata.io).
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
