@@ -74,7 +74,7 @@ namespace Atata
 
                 return builder.ToString();
             }
-            catch
+            catch (WebDriverException)
             {
                 return element.ToString();
             }

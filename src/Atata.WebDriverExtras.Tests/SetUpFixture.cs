@@ -20,7 +20,7 @@ namespace Atata.WebDriverExtras.Tests
             {
                 PingTestApp();
             }
-            catch
+            catch (WebException)
             {
                 RunTestApp();
             }
