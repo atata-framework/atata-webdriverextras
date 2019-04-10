@@ -54,10 +54,10 @@ namespace Atata
             return new NotMissingElementException(message);
         }
 
-        public static WebDriverTimeoutException CreateForTimeout(TimeSpan spentTime, Exception innerException = null)
+        public static TimeoutException CreateForTimeout(TimeSpan spentTime, Exception innerException = null)
         {
             string message = $"Timed out after {spentTime.TotalSeconds} seconds.";
-            return new WebDriverTimeoutException(message, innerException);
+            return new TimeoutException(message, innerException);
         }
 
         public static ArgumentException CreateForUnsupportedEnumValue<T>(T value, string paramName)
