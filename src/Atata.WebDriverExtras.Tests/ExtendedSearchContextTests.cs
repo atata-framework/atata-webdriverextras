@@ -11,6 +11,8 @@ namespace Atata.WebDriverExtras.Tests
 
         private readonly By missingElementBy = By.Id("unknown");
 
+        private readonly By anotherMissingElementBy = By.XPath("//a[@id='noid']");
+
         private readonly By hiddenElementBy = By.Id("hidden-input");
 
         [Test]
@@ -202,6 +204,42 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.Within(5, .2))
                 result = Driver.Try().Missing(existingElementBy.Safely());
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void ExtendedSearchContext_MissingAll()
+        {
+            GoTo("static");
+
+            bool result;
+
+            using (StopwatchAsserter.Within(.2, .2))
+                result = Driver.Try().MissingAll(missingElementBy, anotherMissingElementBy);
+
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void ExtendedSearchContext_MissingAll_Timeout_Unsafely()
+        {
+            GoTo("static");
+
+            using (StopwatchAsserter.Within(5, .2))
+                Assert.Throws<NotMissingElementException>(() =>
+                    Driver.Try().MissingAll(existingElementBy.Unsafely(), anotherMissingElementBy.Unsafely()));
+        }
+
+        [Test]
+        public void ExtendedSearchContext_MissingAll_Timeout_Safely()
+        {
+            GoTo("static");
+
+            bool result;
+
+            using (StopwatchAsserter.Within(5, .2))
+                result = Driver.Try().MissingAll(existingElementBy.Safely(), anotherMissingElementBy.Safely());
 
             Assert.That(result, Is.False);
         }

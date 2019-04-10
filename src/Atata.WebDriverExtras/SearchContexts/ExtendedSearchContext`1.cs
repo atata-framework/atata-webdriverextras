@@ -292,7 +292,7 @@ namespace Atata
 
             List<By> leftBys = byContextPairs.Keys.ToList();
 
-            bool findFunction(T context)
+            bool FindNoElement(T context)
             {
                 By[] currentByArray = leftBys.ToArray();
 
@@ -315,12 +315,29 @@ namespace Atata
             TimeSpan? maxTimeout = searchOptions.Values.Where(x => x.IsTimeoutSet).Max(x => x.Timeout as TimeSpan?);
             TimeSpan? minRetryInterval = searchOptions.Values.Where(x => x.IsRetryIntervalSet).Min(x => x.RetryInterval as TimeSpan?);
 
-            bool isMissing = Until(findFunction, maxTimeout, minRetryInterval);
+            Stopwatch searchWatch = Stopwatch.StartNew();
+
+            bool isMissing = Until(FindNoElement, maxTimeout, minRetryInterval);
+
+            searchWatch.Stop();
 
             if (searchOptions.Values.Any(x => !x.IsSafely) && !isMissing)
-                throw ExceptionFactory.CreateForNotMissingElement(by: leftBys.FirstOrDefault(), searchContext: Context);
+            {
+                By firstLeftBy = leftBys.FirstOrDefault();
+
+                throw ExceptionFactory.CreateForNotMissingElement(
+                    new SearchFailureData
+                    {
+                        By = firstLeftBy,
+                        SearchTime = searchWatch.Elapsed,
+                        SearchOptions = firstLeftBy != null ? searchOptions[firstLeftBy] : null,
+                        SearchContext = firstLeftBy != null ? byContextPairs[firstLeftBy] : null
+                    });
+            }
             else
+            {
                 return isMissing;
+            }
         }
 
         private static bool IsMissing(ISearchContext context, By by, SearchOptions options)
