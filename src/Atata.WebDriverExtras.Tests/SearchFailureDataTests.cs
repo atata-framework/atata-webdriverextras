@@ -178,7 +178,7 @@ $@"Unable to locate element:
 $@"Unable to locate visible element:
 - By.XPath: .//a
 - Search options: {data.SearchOptions}
-- Note: Found 1 element matching specified selector but hidden";
+- Notice: Found 1 element matching specified selector but hidden";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
         }
@@ -197,7 +197,7 @@ $@"Unable to locate visible element:
 $@"Unable to locate visible element:
 - By.XPath: .//a
 - Search options: {data.SearchOptions}
-- Note: Found 2 elements matching specified selector but hidden";
+- Notice: Found 2 elements matching specified selector but hidden";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
         }

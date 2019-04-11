@@ -126,7 +126,7 @@ namespace Atata
                     : Visibility.Visible;
 
                 builder.AppendLine().AppendFormat(
-                    "- Note: Found {0} element{1} matching specified selector but {2}",
+                    "- Notice: Found {0} element{1} matching specified selector but {2}",
                     alikeElementsWithInverseVisibilityCount,
                     alikeElementsWithInverseVisibilityCount > 1 ? "s" : null,
                     inverseVisibility.ToString().ToLowerInvariant());
