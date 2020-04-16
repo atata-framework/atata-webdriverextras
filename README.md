@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/atata-framework/atata-webdriverextras.svg)](https://github.com/atata-framework/atata-webdriverextras/releases)
 [![Build status](https://dev.azure.com/atata-framework/atata-webdriverextras/_apis/build/status/atata-webdriverextras-ci)](https://dev.azure.com/atata-framework/atata-webdriverextras/_build/latest?definitionId=11)
 [![Gitter](https://badges.gitter.im/atata-framework/atata-webdriverextras.svg)](https://gitter.im/atata-framework/atata-webdriverextras)
-[![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/enQtNDMzMzk3OTY5NjgzLTJlNzAyN2E3MzY3MDE4ZGE1ZDQzOGY2NThiYWExZTNkNDc5YjdlNzFjYmUwYjZmNDI2MDJlMGQ3ODNlMDljMzU)
+[![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/zt-5j3lyln7-WD1ZtMDzXBhPm0yXLDBzbA)
 [![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)
 [![Twitter](https://img.shields.io/badge/follow-@AtataFramework-blue.svg)](https://twitter.com/AtataFramework)
 
