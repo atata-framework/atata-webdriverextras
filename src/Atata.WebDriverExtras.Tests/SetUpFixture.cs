@@ -16,6 +16,8 @@ namespace Atata.WebDriverExtras.Tests
         [OneTimeSetUp]
         public void GlobalSetUp()
         {
+            RetrySettings.ThreadBoundary = RetrySettingsThreadBoundary.AsyncLocal;
+
             try
             {
                 PingTestApp();
