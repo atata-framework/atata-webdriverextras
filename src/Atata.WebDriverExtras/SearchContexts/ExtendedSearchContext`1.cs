@@ -229,15 +229,8 @@ namespace Atata
             if (!options.IsIntervalSet)
                 options.Interval = RetryInterval;
 
-            if (options.Timeout > TimeSpan.Zero)
-            {
-                var wait = CreateWait(options);
-                return wait.Until(condition);
-            }
-            else
-            {
-                return condition(Context);
-            }
+            var wait = CreateWait(options);
+            return wait.Until(condition);
         }
 
         public bool Exists(By by)
