@@ -17,14 +17,14 @@ namespace Atata
         /// </summary>
         public static readonly TimeSpan DefaultInterval = TimeSpan.FromSeconds(0.5);
 
+#if NET46 || NETSTANDARD2_0
+        private static readonly System.Threading.AsyncLocal<TimeoutIntervalPair> AsyncLocalSettings = new System.Threading.AsyncLocal<TimeoutIntervalPair>();
+#endif
+
         private static TimeoutIntervalPair staticSettings;
 
         [ThreadStatic]
         private static TimeoutIntervalPair threadStaticSettings;
-
-#if NET46 || NETSTANDARD2_0
-        private static System.Threading.AsyncLocal<TimeoutIntervalPair> asyncLocalSettings = new System.Threading.AsyncLocal<TimeoutIntervalPair>();
-#endif
 
         /// <summary>
         /// Gets or sets a value indicating whether the <see cref="Timeout"/> and <see cref="Interval"/> properties use thread-static approach (value unique for each thread).
@@ -71,7 +71,7 @@ namespace Atata
                     return staticSettings ?? (staticSettings = new TimeoutIntervalPair());
 #if NET46 || NETSTANDARD2_0
                 case RetrySettingsThreadBoundary.AsyncLocal:
-                    return asyncLocalSettings.Value ?? (asyncLocalSettings.Value = new TimeoutIntervalPair());
+                    return AsyncLocalSettings.Value ?? (AsyncLocalSettings.Value = new TimeoutIntervalPair());
 #endif
                 default:
                     throw new InvalidOperationException($"Unknown {nameof(ThreadBoundary)}={ThreadBoundary} value.");
