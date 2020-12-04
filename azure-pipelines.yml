@@ -5,14 +5,14 @@ jobs:
 - job: BuildWithCodeAnalysisAndRunTests
   displayName: Build with code analysis and run tests
   pool:
-    vmImage: vs2017-win2016
+    vmImage: windows-latest
   steps:
   - task: DotNetCoreCLI@2
     displayName: Build solution and run code analysis
     inputs:
       command: build
       projects: '**\*.sln'
-      arguments: -c $(buildConfiguration) /p:RunCodeAnalysis=true /warnaserror
+      arguments: -c $(buildConfiguration) -warnaserror
   - task: VSTest@2
     displayName: Run tests
     timeoutInMinutes: 15
