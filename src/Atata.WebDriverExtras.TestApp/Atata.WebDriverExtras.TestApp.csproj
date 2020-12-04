@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <Authors>Yevgeniy Shunevych</Authors>
     <Company>Yevgeniy Shunevych</Company>
     <Product>Atata Framework</Product>
@@ -10,14 +10,5 @@
     <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
-    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.96" />
-  </ItemGroup>
 
 </Project>
