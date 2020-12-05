@@ -23,7 +23,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void SafeWait_Success_Immediate()
         {
-            using (StopwatchAsserter.Within(0, .01))
+            using (StopwatchAsserter.WithinSeconds(0, .01))
                 wait.Until(_ =>
                 {
                     return true;
@@ -33,7 +33,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void SafeWait_Timeout()
         {
-            using (StopwatchAsserter.Within(.3, .015))
+            using (StopwatchAsserter.WithinSeconds(.3, .015))
                 wait.Until(_ =>
                 {
                     return false;
@@ -43,7 +43,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void SafeWait_PollingInterval()
         {
-            using (StopwatchAsserter.Within(.3, .2))
+            using (StopwatchAsserter.WithinSeconds(.3, .2))
                 wait.Until(_ =>
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(.1));
@@ -56,7 +56,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             wait.PollingInterval = TimeSpan.FromSeconds(1);
 
-            using (StopwatchAsserter.Within(.3, .02))
+            using (StopwatchAsserter.WithinSeconds(.3, .02))
                 wait.Until(_ =>
                 {
                     return false;

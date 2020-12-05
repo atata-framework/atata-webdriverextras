@@ -22,7 +22,7 @@ namespace Atata.WebDriverExtras.Tests
 
             IWebElement element;
 
-            using (StopwatchAsserter.Within(.2, .2))
+            using (StopwatchAsserter.WithinSeconds(0, .3))
                 element = Driver.Get(existingElementBy);
 
             Assert.That(element, Is.Not.Null);
@@ -35,7 +35,7 @@ namespace Atata.WebDriverExtras.Tests
 
             IWebElement element;
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 element = Driver.Get(missingElementBy.Safely());
 
             Assert.That(element, Is.Null);
@@ -46,7 +46,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 Assert.Throws<NoSuchElementException>(() =>
                     Driver.Get(missingElementBy.Unsafely()));
         }
@@ -56,7 +56,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(.2, .2))
+            using (StopwatchAsserter.WithinSeconds(0, .3))
             {
                 IWebElement element = Driver.Get(hiddenElementBy.Hidden());
                 Assert.That(element, Is.Not.Null);
@@ -68,7 +68,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(.2, .2))
+            using (StopwatchAsserter.WithinSeconds(0, .3))
             {
                 IWebElement element = Driver.Get(hiddenElementBy.OfAnyVisibility());
                 Assert.That(element, Is.Not.Null);
@@ -80,7 +80,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(3, .2))
+            using (StopwatchAsserter.WithinSeconds(3, .3))
                 Assert.Throws<NoSuchElementException>(() =>
                     Driver.Get(missingElementBy.Within(TimeSpan.FromSeconds(3))));
         }
@@ -90,7 +90,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(3, .2))
+            using (StopwatchAsserter.WithinSeconds(3, .3))
                 Assert.Throws<NoSuchElementException>(() =>
                     Driver.Get(hiddenElementBy.Within(TimeSpan.FromSeconds(3))));
         }
@@ -104,7 +104,7 @@ namespace Atata.WebDriverExtras.Tests
 
             IWebElement element;
 
-            using (StopwatchAsserter.Within(2, .2))
+            using (StopwatchAsserter.WithinSeconds(2, 1.5))
                 element = Driver.Get(By.Id("value-block"));
 
             Assert.That(element, Is.Not.Null);
@@ -115,7 +115,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(3, .2))
+            using (StopwatchAsserter.WithinSeconds(3, .3))
                 Assert.Throws<NoSuchElementException>(() =>
                     Driver.Try(TimeSpan.FromSeconds(3)).Get(missingElementBy));
         }
@@ -127,7 +127,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(.05, .05))
+            using (StopwatchAsserter.WithinSeconds(0, .05))
                 result = Driver.Try(TimeSpan.FromSeconds(2)).Until(x => true);
 
             Assert.That(result, Is.True);
@@ -140,7 +140,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 result = Driver.Try().Until(x => false);
 
             Assert.That(result, Is.False);
@@ -153,7 +153,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(2, .05))
+            using (StopwatchAsserter.WithinSeconds(2, .05))
                 result = Driver.Try(TimeSpan.FromSeconds(2)).Until(x => false);
 
             Assert.That(result, Is.False);
@@ -166,7 +166,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(2, .05))
+            using (StopwatchAsserter.WithinSeconds(2, .05))
                 result = Driver.Try().Until(x => false, TimeSpan.FromSeconds(2));
 
             Assert.That(result, Is.False);
@@ -179,7 +179,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(.2, .2))
+            using (StopwatchAsserter.WithinSeconds(0, .3))
                 result = Driver.Try().Missing(missingElementBy.Safely());
 
             Assert.That(result, Is.True);
@@ -190,7 +190,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 Assert.Throws<NotMissingElementException>(() =>
                     Driver.Try().Missing(existingElementBy.Unsafely()));
         }
@@ -202,7 +202,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 result = Driver.Try().Missing(existingElementBy.Safely());
 
             Assert.That(result, Is.False);
@@ -215,7 +215,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(.4, .4))
+            using (StopwatchAsserter.WithinSeconds(0, .6))
                 result = Driver.Try().MissingAll(missingElementBy, anotherMissingElementBy);
 
             Assert.That(result, Is.True);
@@ -226,7 +226,7 @@ namespace Atata.WebDriverExtras.Tests
         {
             GoTo("static");
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 Assert.Throws<NotMissingElementException>(() =>
                     Driver.Try().MissingAll(existingElementBy.Unsafely(), anotherMissingElementBy.Unsafely()));
         }
@@ -238,7 +238,7 @@ namespace Atata.WebDriverExtras.Tests
 
             bool result;
 
-            using (StopwatchAsserter.Within(5, .2))
+            using (StopwatchAsserter.WithinSeconds(5, .3))
                 result = Driver.Try().MissingAll(existingElementBy.Safely(), anotherMissingElementBy.Safely());
 
             Assert.That(result, Is.False);
