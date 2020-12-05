@@ -102,10 +102,8 @@ namespace Atata.WebDriverExtras.Tests
 
             Driver.Get(By.Id("add-value")).Click();
 
-            IWebElement element;
-
-            using (StopwatchAsserter.WithinSeconds(2, 1.5))
-                element = Driver.Get(By.Id("value-block"));
+            IWebElement element = StopwatchAsserter.WithinSeconds(2, 1.5).Execute(
+                () => Driver.Get(By.Id("value-block1")));
 
             Assert.That(element, Is.Not.Null);
         }

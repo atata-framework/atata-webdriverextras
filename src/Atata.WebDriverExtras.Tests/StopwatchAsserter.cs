@@ -12,6 +12,8 @@ namespace Atata.WebDriverExtras.Tests
 
         private readonly Stopwatch watch;
 
+        private bool doAssertOnDispose = true;
+
         public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime)
         {
             this.expectedTime = expectedTime;
@@ -25,10 +27,29 @@ namespace Atata.WebDriverExtras.Tests
             return new StopwatchAsserter(TimeSpan.FromSeconds(seconds), TimeSpan.FromSeconds(upperToleranceSeconds));
         }
 
+        public TResult Execute<TResult>(Func<TResult> function)
+        {
+            try
+            {
+                return function.Invoke();
+            }
+            catch (Exception)
+            {
+                doAssertOnDispose = false;
+                throw;
+            }
+            finally
+            {
+                Dispose();
+            }
+        }
+
         public void Dispose()
         {
             watch.Stop();
-            Assert.That(watch.Elapsed, Is.InRange(expectedTime, expectedTime + upperToleranceTime));
+
+            if (doAssertOnDispose)
+                Assert.That(watch.Elapsed, Is.InRange(expectedTime, expectedTime + upperToleranceTime));
         }
     }
 }
