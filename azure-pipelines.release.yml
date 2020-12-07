@@ -19,5 +19,3 @@ jobs:
     inputs:
       command: push
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-      feedsToUse: 'config'
-      includeNugetOrg: 'true'
