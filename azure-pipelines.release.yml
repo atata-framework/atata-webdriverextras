@@ -1,0 +1,25 @@
+variables:
+  buildConfiguration: 'Release'
+trigger: none
+
+jobs:
+- job: PublishPackage
+  displayName: Publish package to NuGet
+  pool:
+    vmImage: windows-latest
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: Pack
+    inputs:
+      command: pack
+      projects: '**\Atata.WebDriverExtras.csproj'
+      arguments: -c $(buildConfiguration)
+  - task: NuGetAuthenticate@0
+    displayName: NuGet Authenticate
+    nuGetServiceConnections: NuGet
+  - task: NuGetCommand@2
+    displayName: NuGet push
+    inputs:
+      command: push
+      packagesToPush: '**\*.nupkg'
+      includeNugetOrg: 'true'

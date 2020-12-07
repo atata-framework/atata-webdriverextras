@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras", "Atata.WebDriverExtras\Atata.WebDriverExtras.csproj", "{A08C24D1-7904-4A0C-BF07-5AEF4A520D82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1EE9AF4-F99C-4477-8690-4E6B1AEAFA87}"
 	ProjectSection(SolutionItems) = preProject
 		Atata.ruleset = Atata.ruleset
+		..\azure-pipelines.release.yml = ..\azure-pipelines.release.yml
 		..\azure-pipelines.yml = ..\azure-pipelines.yml
 		..\README.md = ..\README.md
 	EndProjectSection
