@@ -10,21 +10,32 @@ namespace Atata.WebDriverExtras.Tests
 
         private readonly TimeSpan upperToleranceTime;
 
+        private readonly TimeSpan lowerToleranceTime;
+
         private readonly Stopwatch watch;
 
         private bool doAssertOnDispose = true;
 
         public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime)
+            : this(expectedTime, upperToleranceTime, TimeSpan.Zero)
+        {
+        }
+
+        public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime, TimeSpan lowerToleranceTime)
         {
             this.expectedTime = expectedTime;
             this.upperToleranceTime = upperToleranceTime;
+            this.lowerToleranceTime = lowerToleranceTime;
 
             watch = Stopwatch.StartNew();
         }
 
-        public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1)
+        public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1, double lowerToleranceSeconds = 0.001)
         {
-            return new StopwatchAsserter(TimeSpan.FromSeconds(seconds), TimeSpan.FromSeconds(upperToleranceSeconds));
+            return new StopwatchAsserter(
+                TimeSpan.FromSeconds(seconds),
+                TimeSpan.FromSeconds(upperToleranceSeconds),
+                TimeSpan.FromSeconds(lowerToleranceSeconds));
         }
 
         public TResult Execute<TResult>(Func<TResult> function)
@@ -49,7 +60,7 @@ namespace Atata.WebDriverExtras.Tests
             watch.Stop();
 
             if (doAssertOnDispose)
-                Assert.That(watch.Elapsed, Is.InRange(expectedTime, expectedTime + upperToleranceTime));
+                Assert.That(watch.Elapsed, Is.InRange(expectedTime - lowerToleranceTime, expectedTime + upperToleranceTime));
         }
     }
 }
