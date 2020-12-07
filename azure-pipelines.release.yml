@@ -16,7 +16,8 @@ jobs:
       arguments: -c $(buildConfiguration)
   - task: NuGetAuthenticate@0
     displayName: NuGet Authenticate
-    nuGetServiceConnections: 'NuGet'
+    inputs:
+      nuGetServiceConnections: 'NuGet'
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
