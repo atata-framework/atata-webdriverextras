@@ -184,5 +184,15 @@ namespace Atata
                 ? new ExtendedBy(newByChain).ApplySettingsFrom(originalByAsExtended)
                 : newByChain;
         }
+
+        /// <summary>
+        /// Gets the search options associated with <paramref name="by"/> or default search options.
+        /// </summary>
+        /// <param name="by">The by.</param>
+        /// <returns>The search options.</returns>
+        public static SearchOptions GetSearchOptionsOrDefault(this By by)
+        {
+            return (by as ExtendedBy)?.Options ?? new SearchOptions();
+        }
     }
 }

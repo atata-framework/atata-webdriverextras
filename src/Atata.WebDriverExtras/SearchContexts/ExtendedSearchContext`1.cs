@@ -139,14 +139,9 @@ namespace Atata
             return FindAll(By.XPath(xpath));
         }
 
-        private static SearchOptions ResolveOptions(By by)
-        {
-            return (by as ExtendedBy)?.Options ?? new SearchOptions();
-        }
-
         private IWebElement Find(By by)
         {
-            SearchOptions options = ResolveOptions(by);
+            SearchOptions options = by.GetSearchOptionsOrDefault();
 
             ReadOnlyCollection<IWebElement> lastFoundElements = null;
 
@@ -185,7 +180,7 @@ namespace Atata
 
         private ReadOnlyCollection<IWebElement> FindAll(By by, SearchOptions options = null)
         {
-            options = options ?? ResolveOptions(by);
+            options = options ?? by.GetSearchOptionsOrDefault();
 
             Func<T, ReadOnlyCollection<IWebElement>> findFunction;
 
@@ -240,7 +235,7 @@ namespace Atata
 
         public bool Missing(By by)
         {
-            SearchOptions options = ResolveOptions(by);
+            SearchOptions options = by.GetSearchOptionsOrDefault();
 
             bool FindNoElement(T context)
             {
@@ -281,7 +276,7 @@ namespace Atata
         {
             byContextPairs.CheckNotNullOrEmpty(nameof(byContextPairs));
 
-            Dictionary<By, SearchOptions> searchOptions = byContextPairs.Keys.ToDictionary(x => x, x => ResolveOptions(x));
+            Dictionary<By, SearchOptions> searchOptions = byContextPairs.Keys.ToDictionary(x => x, x => x.GetSearchOptionsOrDefault());
 
             List<By> leftBys = byContextPairs.Keys.ToList();
 
