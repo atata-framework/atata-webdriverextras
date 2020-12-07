@@ -14,13 +14,10 @@ jobs:
       command: pack
       projects: '**\Atata.WebDriverExtras.csproj'
       arguments: -c $(buildConfiguration)
-  - task: NuGetAuthenticate@0
-    displayName: NuGet Authenticate
-    inputs:
-      nuGetServiceConnections: 'NuGet'
   - task: NuGetCommand@2
     displayName: NuGet push
     inputs:
       command: push
-      packagesToPush: '**\*.nupkg'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      feedsToUse: 'config'
       includeNugetOrg: 'true'
