@@ -18,7 +18,7 @@ Atata Framework documentation: https://atata.io</Description>
     <PackageId>Atata.WebDriverExtras</PackageId>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/atata-framework/atata/master/logo_68.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
     <PackageTags>atata automation testing test selenium webdriver browser</PackageTags>
     <PackageReleaseNotes>1.3.0 - https://atata.io/blog/2020/04/22/atata.webdriverextras-1.3.0-released/
@@ -47,6 +47,10 @@ Atata Framework documentation: https://atata.io</Description>
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
