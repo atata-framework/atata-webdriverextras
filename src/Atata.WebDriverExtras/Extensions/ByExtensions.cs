@@ -194,5 +194,56 @@ namespace Atata
         {
             return (by as ExtendedBy)?.Options ?? new SearchOptions();
         }
+
+        /// <summary>
+        /// Converts to descriptive string.
+        /// Example: <c>XPath "//div"</c>
+        /// </summary>
+        /// <param name="by">The by.</param>
+        /// <returns>The string.</returns>
+        public static string ToDescriptiveString(this By by)
+        {
+            By actualBy = (by as ExtendedBy)?.By ?? by;
+
+            if (actualBy is ByChain byChain)
+            {
+                return $"chain [{string.Join($", ", byChain.Items.Select(ToDescriptiveString))}]";
+            }
+            else
+            {
+                string byAsString = actualBy.ToString();
+                int indexOfColon = byAsString.IndexOf(':');
+
+                string method = byAsString.Substring(0, indexOfColon);
+                string selector = byAsString.Substring(byAsString.IndexOf(':') + 2);
+
+                return $"{StringifyByMethod(method)} \"{selector}\"";
+            }
+        }
+
+        private static string StringifyByMethod(string method)
+        {
+            switch (method)
+            {
+                case "By.Id":
+                    return "id";
+                case "By.LinkText":
+                    return "link text";
+                case "By.Name":
+                    return "name";
+                case "By.XPath":
+                    return "XPath";
+                case "By.ClassName[Contains]":
+                    return "class";
+                case "By.PartialLinkText":
+                    return "partial link text";
+                case "By.TagName":
+                    return "tag name";
+                case "By.CssSelector":
+                    return "CSS selector";
+                default:
+                    return method;
+            }
+        }
     }
 }

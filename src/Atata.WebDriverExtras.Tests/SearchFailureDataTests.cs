@@ -38,7 +38,7 @@ namespace Atata.WebDriverExtras.Tests
 
             string expected =
 @"Unable to locate element:
-- By.XPath: .//a";
+- By: XPath "".//a""";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
         }
@@ -54,7 +54,7 @@ namespace Atata.WebDriverExtras.Tests
 
             string expected =
 @"Unable to locate ""anchor"" element:
-- By.XPath: .//a";
+- By: XPath "".//a""";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
         }
@@ -70,7 +70,7 @@ namespace Atata.WebDriverExtras.Tests
 
             string expected =
 @"Able to locate ""anchor"" element that should be missing:
-- By.XPath: .//a";
+- By: XPath "".//a""";
 
             Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
         }
@@ -85,7 +85,7 @@ namespace Atata.WebDriverExtras.Tests
 
             string expected =
 @"Unable to locate ""Any"" anchor element:
-- By.XPath: .//a";
+- By: XPath "".//a""";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
         }
@@ -102,7 +102,7 @@ namespace Atata.WebDriverExtras.Tests
 
             string expected =
 $@"Unable to locate visible ""anchor"" element:
-- By.XPath: .//a
+- By: XPath "".//a""
 - Search options: {data.SearchOptions}";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
@@ -121,7 +121,7 @@ $@"Unable to locate visible ""anchor"" element:
 
             string expected =
 $@"Unable to locate hidden ""anchor"" element:
-- By.XPath: .//a
+- By: XPath "".//a""
 - Search time: {data.SearchTime.Value.ToShortIntervalString()}
 - Search options: {data.SearchOptions}";
 
@@ -141,7 +141,7 @@ $@"Unable to locate hidden ""anchor"" element:
 
             string expected =
 $@"Able to locate hidden ""anchor"" element that should be missing:
-- By.XPath: .//a
+- By: XPath "".//a""
 - Search time: {data.SearchTime.Value.ToShortIntervalString()}
 - Search options: {data.SearchOptions}";
 
@@ -159,7 +159,7 @@ $@"Able to locate hidden ""anchor"" element that should be missing:
 
             string expected =
 $@"Unable to locate element:
-- By.XPath: .//a";
+- By: XPath "".//a""";
 
             Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
         }
@@ -176,7 +176,7 @@ $@"Unable to locate element:
 
             string expected =
 $@"Unable to locate visible element:
-- By.XPath: .//a
+- By: XPath "".//a""
 - Search options: {data.SearchOptions}
 - Notice: Found 1 element matching specified selector but hidden";
 
@@ -195,7 +195,7 @@ $@"Unable to locate visible element:
 
             string expected =
 $@"Unable to locate visible element:
-- By.XPath: .//a
+- By: XPath "".//a""
 - Search options: {data.SearchOptions}
 - Notice: Found 2 elements matching specified selector but hidden";
 
@@ -214,8 +214,8 @@ $@"Unable to locate visible element:
 
             string expected =
 $@"Able to locate visible element that should be missing:
-- By.XPath: .//a
-- Search options: {data.SearchOptions}";
+- By: XPath "".//a""
+- Search options: { data.SearchOptions}";
 
             Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
         }
@@ -233,7 +233,7 @@ $@"Able to locate visible element that should be missing:
 
             string expected =
 $@"Unable to locate element:
-- By.XPath: .//a
+- By: XPath "".//a""
 
 Context element:
 {contextElement.ToDetailedString()}";
@@ -254,7 +254,7 @@ Context element:
 
             string expected =
 $@"Able to locate element that should be missing:
-- By.XPath: .//a
+- By: XPath "".//a""
 
 Context element:
 {contextElement.ToDetailedString()}";

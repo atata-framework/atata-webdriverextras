@@ -101,7 +101,7 @@ namespace Atata
         private void Populate(StringBuilder builder, bool appendAlikeElementsWithInverseVisibility)
         {
             if (By != null)
-                builder.AppendLine().AppendFormat("- {0}", By);
+                builder.AppendLine().AppendFormat("- By: {0}", By.ToDescriptiveString());
 
             if (SearchTime != null)
                 builder.AppendLine().AppendFormat("- Search time: {0}", SearchTime.Value.ToShortIntervalString());
