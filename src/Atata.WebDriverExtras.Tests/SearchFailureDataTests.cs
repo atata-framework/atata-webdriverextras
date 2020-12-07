@@ -215,7 +215,7 @@ $@"Unable to locate visible element:
             string expected =
 $@"Able to locate visible element that should be missing:
 - By: XPath "".//a""
-- Search options: { data.SearchOptions}";
+- Search options: {data.SearchOptions}";
 
             Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
         }
