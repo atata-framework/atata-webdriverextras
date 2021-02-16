@@ -124,7 +124,7 @@ namespace Atata
                     else if (typeof(TResult) == typeof(IWebElement[]))
                         return (TResult)(object)new IWebElement[0];
                     else
-                        return default(TResult);
+                        return default;
                 }
                 else
                 {
