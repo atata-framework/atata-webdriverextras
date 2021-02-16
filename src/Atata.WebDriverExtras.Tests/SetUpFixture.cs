@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
+using Atata.WebDriverSetup;
 using NUnit.Framework;
 
 namespace Atata.WebDriverExtras.Tests
@@ -25,6 +26,8 @@ namespace Atata.WebDriverExtras.Tests
             {
                 RunTestApp();
             }
+
+            DriverSetup.AutoSetUp(BrowserNames.Chrome);
         }
 
         private static WebResponse PingTestApp() =>
