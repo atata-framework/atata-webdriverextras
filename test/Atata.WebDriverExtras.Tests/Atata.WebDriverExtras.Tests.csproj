@@ -9,7 +9,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
-    <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Atata.WebDriverExtras\Atata.WebDriverExtras.csproj" />
+    <ProjectReference Include="..\..\src\Atata.WebDriverExtras\Atata.WebDriverExtras.csproj" />
   </ItemGroup>
 
 </Project>

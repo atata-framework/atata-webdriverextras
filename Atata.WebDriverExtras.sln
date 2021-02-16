@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras", "Atata.WebDriverExtras\Atata.WebDriverExtras.csproj", "{A08C24D1-7904-4A0C-BF07-5AEF4A520D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras", "src\Atata.WebDriverExtras\Atata.WebDriverExtras.csproj", "{A08C24D1-7904-4A0C-BF07-5AEF4A520D82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1EE9AF4-F99C-4477-8690-4E6B1AEAFA87}"
 	ProjectSection(SolutionItems) = preProject
-		Atata.ruleset = Atata.ruleset
-		..\azure-pipelines.release.yml = ..\azure-pipelines.release.yml
-		..\azure-pipelines.yml = ..\azure-pipelines.yml
-		..\README.md = ..\README.md
+		General.ruleset = General.ruleset
+		azure-pipelines.release.yml = azure-pipelines.release.yml
+		azure-pipelines.yml = azure-pipelines.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras.TestApp", "Atata.WebDriverExtras.TestApp\Atata.WebDriverExtras.TestApp.csproj", "{05E35F53-ECBE-431D-A42C-D23AE26CD754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras.TestApp", "test\Atata.WebDriverExtras.TestApp\Atata.WebDriverExtras.TestApp.csproj", "{05E35F53-ECBE-431D-A42C-D23AE26CD754}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras.Tests", "Atata.WebDriverExtras.Tests\Atata.WebDriverExtras.Tests.csproj", "{0B7D6E11-1BD1-4771-A704-082467EE35B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atata.WebDriverExtras.Tests", "test\Atata.WebDriverExtras.Tests\Atata.WebDriverExtras.Tests.csproj", "{0B7D6E11-1BD1-4771-A704-082467EE35B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

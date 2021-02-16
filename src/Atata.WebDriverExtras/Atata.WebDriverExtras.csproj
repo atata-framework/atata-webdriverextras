@@ -24,7 +24,7 @@ Atata Framework documentation: https://atata.io</Description>
     <PackageReleaseNotes>1.4.0 - https://atata.io/blog/2020/12/07/atata.webdriverextras-1.4.0-released/
 1.3.0 - https://atata.io/blog/2020/04/22/atata.webdriverextras-1.3.0-released/
 1.2.0 - https://atata.io/blog/2019/04/11/atata.webdriverextras-1.2.0-released/</PackageReleaseNotes>
-    <CodeAnalysisRuleSet>..\Atata.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryType>git</RepositoryType>
     <IncludeSymbols>true</IncludeSymbols>
