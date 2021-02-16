@@ -8,19 +8,38 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Atata
 {
+    /// <summary>
+    /// Represents an extended context that wraps <see cref="ISearchContext"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of search context.</typeparam>
     public class ExtendedSearchContext<T> : IExtendedSearchContext
         where T : ISearchContext
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtendedSearchContext{T}"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public ExtendedSearchContext(T context)
             : this(context, RetrySettings.Timeout)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtendedSearchContext{T}"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="timeout">The timeout.</param>
         public ExtendedSearchContext(T context, TimeSpan timeout)
             : this(context, timeout, RetrySettings.Interval)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtendedSearchContext{T}"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <param name="retryInterval">The retry interval.</param>
         public ExtendedSearchContext(T context, TimeSpan timeout, TimeSpan retryInterval)
         {
             Context = context;
@@ -28,10 +47,19 @@ namespace Atata
             RetryInterval = retryInterval;
         }
 
+        /// <summary>
+        /// Gets the actual search context.
+        /// </summary>
         public T Context { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the timeout.
+        /// </summary>
         public TimeSpan Timeout { get; set; }
 
+        /// <summary>
+        /// Gets or sets the retry interval.
+        /// </summary>
         public TimeSpan RetryInterval { get; set; }
 
         private static Func<IWebElement, bool> CreateVisibilityPredicate(Visibility visibility)
@@ -49,91 +77,109 @@ namespace Atata
             }
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElement(By by)
         {
             return Find(by);
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
             return FindAll(by);
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementById(string id)
         {
             return Find(By.Id(id));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsById(string id)
         {
             return FindAll(By.Id(id));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByName(string name)
         {
             return Find(By.Name(name));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByName(string name)
         {
             return FindAll(By.Name(name));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByTagName(string tagName)
         {
             return Find(By.TagName(tagName));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByTagName(string tagName)
         {
             return FindAll(By.TagName(tagName));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByClassName(string className)
         {
             return Find(By.ClassName(className));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByClassName(string className)
         {
             return FindAll(By.ClassName(className));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByLinkText(string linkText)
         {
             return Find(By.LinkText(linkText));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByLinkText(string linkText)
         {
             return FindAll(By.LinkText(linkText));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByPartialLinkText(string partialLinkText)
         {
             return Find(By.PartialLinkText(partialLinkText));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByPartialLinkText(string partialLinkText)
         {
             return FindAll(By.PartialLinkText(partialLinkText));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByCssSelector(string cssSelector)
         {
             return Find(By.CssSelector(cssSelector));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByCssSelector(string cssSelector)
         {
             return FindAll(By.CssSelector(cssSelector));
         }
 
+        /// <inheritdoc/>
         public IWebElement FindElementByXPath(string xpath)
         {
             return Find(By.XPath(xpath));
         }
 
+        /// <inheritdoc/>
         public ReadOnlyCollection<IWebElement> FindElementsByXPath(string xpath)
         {
             return FindAll(By.XPath(xpath));

@@ -17,7 +17,7 @@ namespace Atata
 
         /// <summary>
         /// Gets or sets the timeout.
-        /// The deafult value is taken from <see cref="RetrySettings.Timeout"/>.
+        /// The default value is taken from <see cref="RetrySettings.Timeout"/>.
         /// </summary>
         public TimeSpan Timeout
         {
@@ -32,7 +32,7 @@ namespace Atata
 
         /// <summary>
         /// Gets or sets the interval.
-        /// The deafult value is taken from <see cref="RetrySettings.Interval"/>.
+        /// The default value is taken from <see cref="RetrySettings.Interval"/>.
         /// </summary>
         public TimeSpan Interval
         {
@@ -50,24 +50,43 @@ namespace Atata
         /// </summary>
         public List<Type> IgnoredExceptionTypes { get; private set; } = new List<Type>();
 
+        /// <summary>
+        /// Sets the timeout.
+        /// </summary>
+        /// <param name="timeout">The timeout.</param>
+        /// <returns>The same <see cref="RetryOptions"/> instance.</returns>
         public RetryOptions WithTimeout(TimeSpan timeout)
         {
             Timeout = timeout;
             return this;
         }
 
+        /// <summary>
+        /// Sets the interval.
+        /// </summary>
+        /// <param name="interval">The interval.</param>
+        /// <returns>The same <see cref="RetryOptions"/> instance.</returns>
         public RetryOptions WithInterval(TimeSpan interval)
         {
             Interval = interval;
             return this;
         }
 
+        /// <summary>
+        /// Adds the type of the exception to the list of ignored exception types.
+        /// </summary>
+        /// <param name="exceptionType">Type of the exception.</param>
+        /// <returns>The same <see cref="RetryOptions"/> instance.</returns>
         public RetryOptions IgnoringExceptionType(Type exceptionType)
         {
             IgnoredExceptionTypes.Add(exceptionType);
             return this;
         }
 
+        /// <summary>
+        /// Adds <see cref="StaleElementReferenceException"/> type to the list of ignored exception types.
+        /// </summary>
+        /// <returns>The same <see cref="RetryOptions"/> instance.</returns>
         public RetryOptions IgnoringStaleElementReferenceException()
         {
             IgnoredExceptionTypes.Add(StaleElementReferenceExceptionType);

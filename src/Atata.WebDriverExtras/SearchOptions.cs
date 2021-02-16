@@ -18,7 +18,7 @@ namespace Atata
 
         /// <summary>
         /// Gets or sets the timeout.
-        /// The deafult value is taken from <see cref="RetrySettings.Timeout"/>.
+        /// The default value is taken from <see cref="RetrySettings.Timeout"/>.
         /// </summary>
         public TimeSpan Timeout
         {
@@ -33,7 +33,7 @@ namespace Atata
 
         /// <summary>
         /// Gets or sets the retry interval.
-        /// The deafult value is taken from <see cref="RetrySettings.Interval"/>.
+        /// The default value is taken from <see cref="RetrySettings.Interval"/>.
         /// </summary>
         public TimeSpan RetryInterval
         {
@@ -178,11 +178,16 @@ namespace Atata
 
         object ICloneable.Clone() => Clone();
 
+        /// <summary>
+        /// Create a clone of the instance.
+        /// </summary>
+        /// <returns>The clone instance.</returns>
         public SearchOptions Clone()
         {
             return (SearchOptions)MemberwiseClone();
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return $"{{{nameof(Visibility)}={Visibility}, {nameof(Timeout)}={Timeout.ToShortIntervalString()}, {nameof(RetryInterval)}={RetryInterval.ToShortIntervalString()}, {nameof(IsSafely)}={IsSafely}}}";

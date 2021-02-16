@@ -9,5 +9,6 @@
 [assembly: SuppressMessage("Style", "IDE0038:Use pattern matching", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.SafeWait`1.DoesConditionResultSatisfy``1(``0)~System.Boolean")]
 [assembly: SuppressMessage("Major Code Smell", "S103:Lines should not be too long", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.SearchOptions.ToString~System.String")]
 [assembly: SuppressMessage("Critical Code Smell", "S2302:\"nameof\" should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.ByExtensions.CreateBy(System.String,System.String)~OpenQA.Selenium.By")]
+[assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1204:Static elements should appear before instance elements", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.SearchFailureData.WrapWithDoubleQuotes(System.String)~System.String")]
 
 #pragma warning restore S103 // Lines should not be too long

@@ -3,6 +3,9 @@ using OpenQA.Selenium.Internal;
 
 namespace Atata
 {
+    /// <summary>
+    /// Defines the interface that extends <see cref="ISearchContext"/>.
+    /// </summary>
     public interface IExtendedSearchContext :
         ISearchContext,
         IFindsById,

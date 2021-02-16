@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Atata
 {
+    /// <summary>
+    /// Provides a set of extensions methods for <see cref="Type"/>.
+    /// </summary>
     public static class TypeExtensions
     {
         public static bool IsSubclassOfRawGeneric(this Type type, Type genericType)
