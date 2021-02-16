@@ -19,17 +19,6 @@ namespace Atata
                 });
         }
 
-        public static NotMissingElementException CreateForNotMissingElement(string elementName = null, By by = null, ISearchContext searchContext = null)
-        {
-            return CreateForNotMissingElement(
-               new SearchFailureData
-               {
-                   ElementName = elementName,
-                   By = by,
-                   SearchContext = searchContext
-               });
-        }
-
         /// <summary>
         /// Creates an instance of <see cref="NoSuchElementException"/> with message generated using <paramref name="searchFailureData"/>.
         /// </summary>
@@ -40,6 +29,17 @@ namespace Atata
             string message = (searchFailureData ?? new SearchFailureData()).ToStringForNoSuchElement();
 
             return new NoSuchElementException(message);
+        }
+
+        public static NotMissingElementException CreateForNotMissingElement(string elementName = null, By by = null, ISearchContext searchContext = null)
+        {
+            return CreateForNotMissingElement(
+               new SearchFailureData
+               {
+                   ElementName = elementName,
+                   By = by,
+                   SearchContext = searchContext
+               });
         }
 
         /// <summary>

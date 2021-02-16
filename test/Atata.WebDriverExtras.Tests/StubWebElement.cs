@@ -34,49 +34,31 @@ namespace Atata.WebDriverExtras.Tests
 
         public bool Displayed { get; set; }
 
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
+        public void Clear() =>
+            throw new NotSupportedException();
 
-        public void Click()
-        {
-            throw new NotImplementedException();
-        }
+        public void Click() =>
+            throw new NotSupportedException();
 
-        public IWebElement FindElement(By by)
-        {
-            throw new NotImplementedException();
-        }
+        public IWebElement FindElement(By by) =>
+            throw new NotSupportedException();
 
-        public ReadOnlyCollection<IWebElement> FindElements(By by)
-        {
-            throw new NotImplementedException();
-        }
+        public ReadOnlyCollection<IWebElement> FindElements(By by) =>
+            throw new NotSupportedException();
 
-        public string GetAttribute(string attributeName)
-        {
-            throw new NotImplementedException();
-        }
+        public string GetAttribute(string attributeName) =>
+            throw new NotSupportedException();
 
-        public string GetCssValue(string propertyName)
-        {
-            throw new NotImplementedException();
-        }
+        public string GetCssValue(string propertyName) =>
+            throw new NotSupportedException();
 
-        public string GetProperty(string propertyName)
-        {
-            throw new NotImplementedException();
-        }
+        public string GetProperty(string propertyName) =>
+            throw new NotSupportedException();
 
-        public void SendKeys(string text)
-        {
-            throw new NotImplementedException();
-        }
+        public void SendKeys(string text) =>
+            throw new NotSupportedException();
 
-        public void Submit()
-        {
-            throw new NotImplementedException();
-        }
+        public void Submit() =>
+            throw new NotSupportedException();
     }
 }

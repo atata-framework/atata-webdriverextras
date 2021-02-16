@@ -8,6 +8,10 @@ namespace Atata
     /// </summary>
     public class XPathString
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="XPathString"/> class.
+        /// </summary>
+        /// <param name="value">The value.</param>
         public XPathString(string value)
         {
             Value = ConvertTo(value);
@@ -18,11 +22,25 @@ namespace Atata
         /// </summary>
         public string Value { get; }
 
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="XPathString"/> to <see cref="string"/>.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static implicit operator string(XPathString value)
         {
             return value.Value;
         }
 
+        /// <summary>
+        /// Performs an explicit conversion from <see cref="string"/> to <see cref="XPathString"/>.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        /// The result of the conversion.
+        /// </returns>
         public static explicit operator XPathString(string value)
         {
             return new XPathString(value);
@@ -33,7 +51,7 @@ namespace Atata
         /// For string containing both <c>'</c> and <c>"</c> characters applies XPath <c>concat</c> function.
         /// </summary>
         /// <param name="value">The string value.</param>
-        /// <returns>The valid XPath string </returns>
+        /// <returns>The valid XPath string.</returns>
         public static string ConvertTo(string value)
         {
             return value != null && value.Contains("'")
@@ -92,9 +110,10 @@ namespace Atata
                 }
             }
 
-            return builder.Append(")").ToString();
+            return builder.Append(')').ToString();
         }
 
+        /// <inheritdoc/>
         public override string ToString()
         {
             return Value;

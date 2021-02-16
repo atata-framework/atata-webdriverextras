@@ -53,13 +53,6 @@ namespace Atata
             return by.With(Visibility.Any);
         }
 
-        public static By With(this By by, Visibility visibility)
-        {
-            ExtendedBy extendedBy = new ExtendedBy(by);
-            extendedBy.Options.Visibility = visibility;
-            return extendedBy;
-        }
-
         public static By Within(this By by, TimeSpan timeout)
         {
             ExtendedBy extendedBy = new ExtendedBy(by);
@@ -87,6 +80,13 @@ namespace Atata
             ExtendedBy extendedBy = new ExtendedBy(by);
             extendedBy.Options.IsSafely = isSafely;
             extendedBy.Options.Timeout = TimeSpan.Zero;
+            return extendedBy;
+        }
+
+        public static By With(this By by, Visibility visibility)
+        {
+            ExtendedBy extendedBy = new ExtendedBy(by);
+            extendedBy.Options.Visibility = visibility;
             return extendedBy;
         }
 
@@ -168,7 +168,7 @@ namespace Atata
                 case "CssSelector":
                     return By.CssSelector(selector);
                 default:
-                    throw new ArgumentException($"Unknown {method} method of OpenQA.Selenium.By.", nameof(method));
+                    throw new ArgumentException($@"Unknown ""{method}"" method of OpenQA.Selenium.By.", nameof(method));
             }
         }
 
@@ -197,7 +197,7 @@ namespace Atata
 
         /// <summary>
         /// Converts to descriptive string.
-        /// Example: <c>XPath "//div"</c>
+        /// Example: <c>XPath "//div"</c>.
         /// </summary>
         /// <param name="by">The by.</param>
         /// <returns>The string.</returns>

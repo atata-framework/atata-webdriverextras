@@ -33,16 +33,6 @@ namespace Atata
             return value;
         }
 
-        internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string errorMessage = null)
-        {
-            if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
-            if (value == string.Empty)
-                throw new ArgumentException(ConcatMessage("Should not be empty string or whitespace.", errorMessage), argumentName);
-
-            return value;
-        }
-
         internal static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T> collection, string argumentName, string errorMessage = null)
         {
             if (collection == null)
@@ -51,6 +41,16 @@ namespace Atata
                 throw new ArgumentException(ConcatMessage("Collection should contain at least one element.", errorMessage), argumentName);
 
             return collection;
+        }
+
+        internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string errorMessage = null)
+        {
+            if (value == null)
+                throw new ArgumentNullException(argumentName, errorMessage);
+            if (value == string.Empty)
+                throw new ArgumentException(ConcatMessage("Should not be empty string or whitespace.", errorMessage), argumentName);
+
+            return value;
         }
 
         internal static T CheckNotEquals<T>(this T value, string argumentName, T invalidValue, string errorMessage = null)
