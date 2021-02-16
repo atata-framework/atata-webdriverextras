@@ -4,50 +4,24 @@
     <TargetFrameworks>net40;net45;net46;netstandard2.0</TargetFrameworks>
     <RootNamespace>Atata</RootNamespace>
     <Version>1.4.0</Version>
-    <Authors>Yevgeniy Shunevych</Authors>
-    <Company>Yevgeniy Shunevych</Company>
     <Title>Atata WebDriver Extras</Title>
-    <Product>Atata Framework</Product>
     <Description>A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.
 
 Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
 
 Atata.WebDriverExtras on GitHub: https://github.com/atata-framework/atata-webdriverextras
 Atata Framework documentation: https://atata.io</Description>
-    <Copyright>© Yevgeniy Shunevych 2020</Copyright>
-    <PackageId>Atata.WebDriverExtras</PackageId>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
+    <PackageId>Atata.WebDriverExtras</PackageId>
     <PackageTags>atata automation testing test selenium webdriver browser</PackageTags>
     <PackageReleaseNotes>1.4.0 - https://atata.io/blog/2020/12/07/atata.webdriverextras-1.4.0-released/
 1.3.0 - https://atata.io/blog/2020/04/22/atata.webdriverextras-1.3.0-released/
 1.2.0 - https://atata.io/blog/2019/04/11/atata.webdriverextras-1.2.0-released/</PackageReleaseNotes>
-    <CodeAnalysisRuleSet>..\..\General.ruleset</CodeAnalysisRuleSet>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryType>git</RepositoryType>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="7.12.0.8217">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
