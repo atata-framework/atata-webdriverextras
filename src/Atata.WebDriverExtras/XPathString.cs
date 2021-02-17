@@ -113,7 +113,10 @@ namespace Atata
             return builder.Append(')').ToString();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A <see cref="string"/> that represents this instance.</returns>
         public override string ToString()
         {
             return Value;

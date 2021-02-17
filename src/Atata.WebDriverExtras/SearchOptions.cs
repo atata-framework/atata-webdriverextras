@@ -176,18 +176,22 @@ namespace Atata
             return options;
         }
 
+        /// <inheritdoc cref="Clone"/>
         object ICloneable.Clone() => Clone();
 
         /// <summary>
-        /// Create a clone of the instance.
+        /// Creates a new object that is a copy of the current instance.
         /// </summary>
-        /// <returns>The clone instance.</returns>
+        /// <returns>A new object that is a copy of this instance.</returns>
         public SearchOptions Clone()
         {
             return (SearchOptions)MemberwiseClone();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A <see cref="string"/> that represents this instance.</returns>
         public override string ToString()
         {
             return $"{{{nameof(Visibility)}={Visibility}, {nameof(Timeout)}={Timeout.ToShortIntervalString()}, {nameof(RetryInterval)}={RetryInterval.ToShortIntervalString()}, {nameof(IsSafely)}={IsSafely}}}";
