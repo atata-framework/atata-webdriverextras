@@ -3,8 +3,18 @@ using OpenQA.Selenium;
 
 namespace Atata
 {
+    /// <summary>
+    /// Provides a set of extension methods for <see cref="ISearchContext"/>.
+    /// </summary>
     public static class ISearchContextExtensions
     {
+        /// <summary>
+        /// Gets the first element matching the specified <see cref="By"/> object.
+        /// </summary>
+        /// <typeparam name="T">The type of the search context.</typeparam>
+        /// <param name="searchContext">The search context.</param>
+        /// <param name="by">The <see cref="By"/> instance.</param>
+        /// <returns>The found element or <see langword="null"/> (if executes safely).</returns>
         public static IWebElement Get<T>(this T searchContext, By by)
             where T : ISearchContext
         {
@@ -12,6 +22,13 @@ namespace Atata
             return contextToSearchIn.FindElement(by);
         }
 
+        /// <summary>
+        /// Gets all the elements matching the specified <see cref="By"/> object.
+        /// </summary>
+        /// <typeparam name="T">The type of the search context.</typeparam>
+        /// <param name="searchContext">The search context.</param>
+        /// <param name="by">The <see cref="By"/> instance.</param>
+        /// <returns>The collection of found elements.</returns>
         public static ReadOnlyCollection<IWebElement> GetAll<T>(this T searchContext, By by)
             where T : ISearchContext
         {
