@@ -11,7 +11,7 @@
 A set of C#/.NET extension methods and other extra classes for Selenium WebDriver.
 Is a part of [Atata Framework](https://atata.io).
 
-Supports .NET Framework 4.0+ and .NET Core/Standard 2.0+.
+*The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
 ## Usage
 
