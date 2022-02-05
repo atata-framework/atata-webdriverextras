@@ -3,9 +3,12 @@ using OpenQA.Selenium;
 
 namespace Atata
 {
+    /// <summary>
+    /// Provide a set of static methods to execute an action with retry on <see cref="StaleElementReferenceException"/>.
+    /// </summary>
     public static class StaleSafely
     {
-        public static TResult Execute<TResult>(Func<TimeSpan, TResult> action, TimeSpan timeout)
+        public static TResult Execute<TResult>(Func<TimeSpan, TResult> action, TimeSpan timeout, Action onExceptionCallback = null)
         {
             action.CheckNotNull(nameof(action));
 
@@ -20,6 +23,8 @@ namespace Atata
                 }
                 catch (StaleElementReferenceException exception)
                 {
+                    onExceptionCallback?.Invoke();
+
                     TimeSpan spentTime = DateTime.Now - startTime;
 
                     if (spentTime > timeout)
@@ -30,7 +35,7 @@ namespace Atata
             }
         }
 
-        public static TResult Execute<TResult>(Func<SearchOptions, TResult> action, SearchOptions options)
+        public static TResult Execute<TResult>(Func<SearchOptions, TResult> action, SearchOptions options, Action onExceptionCallback = null)
         {
             action.CheckNotNull(nameof(action));
 
@@ -47,6 +52,8 @@ namespace Atata
                 }
                 catch (StaleElementReferenceException exception)
                 {
+                    onExceptionCallback?.Invoke();
+
                     TimeSpan spentTime = DateTime.Now - startTime;
 
                     if (spentTime > options.Timeout)
@@ -57,7 +64,7 @@ namespace Atata
             }
         }
 
-        public static void Execute(Action<TimeSpan> action, TimeSpan timeout)
+        public static void Execute(Action<TimeSpan> action, TimeSpan timeout, Action onExceptionCallback = null)
         {
             action.CheckNotNull(nameof(action));
 
@@ -73,6 +80,8 @@ namespace Atata
                 }
                 catch (StaleElementReferenceException exception)
                 {
+                    onExceptionCallback?.Invoke();
+
                     TimeSpan spentTime = DateTime.Now - startTime;
 
                     if (spentTime > timeout)
@@ -83,7 +92,7 @@ namespace Atata
             }
         }
 
-        public static void Execute(Action<SearchOptions> action, SearchOptions options)
+        public static void Execute(Action<SearchOptions> action, SearchOptions options, Action onExceptionCallback = null)
         {
             action.CheckNotNull(nameof(action));
 
@@ -101,6 +110,8 @@ namespace Atata
                 }
                 catch (StaleElementReferenceException exception)
                 {
+                    onExceptionCallback?.Invoke();
+
                     TimeSpan spentTime = DateTime.Now - startTime;
 
                     if (spentTime > options.Timeout)
