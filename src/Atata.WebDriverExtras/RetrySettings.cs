@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Atata
 {
@@ -17,9 +18,7 @@ namespace Atata
         /// </summary>
         public static readonly TimeSpan DefaultInterval = TimeSpan.FromSeconds(0.5);
 
-#if NET46 || NETSTANDARD2_0
-        private static readonly System.Threading.AsyncLocal<TimeoutIntervalPair> s_asyncLocalSettings = new System.Threading.AsyncLocal<TimeoutIntervalPair>();
-#endif
+        private static readonly AsyncLocal<TimeoutIntervalPair> s_asyncLocalSettings = new AsyncLocal<TimeoutIntervalPair>();
 
         private static TimeoutIntervalPair s_staticSettings;
 
@@ -69,10 +68,8 @@ namespace Atata
                     return s_threadStaticSettings ?? (s_threadStaticSettings = new TimeoutIntervalPair());
                 case RetrySettingsThreadBoundary.Static:
                     return s_staticSettings ?? (s_staticSettings = new TimeoutIntervalPair());
-#if NET46 || NETSTANDARD2_0
                 case RetrySettingsThreadBoundary.AsyncLocal:
                     return s_asyncLocalSettings.Value ?? (s_asyncLocalSettings.Value = new TimeoutIntervalPair());
-#endif
                 default:
                     throw new InvalidOperationException($"Unknown {nameof(ThreadBoundary)}={ThreadBoundary} value.");
             }

@@ -14,12 +14,10 @@
         /// The <see cref="RetrySettings"/> values are static (same for all threads).
         /// </summary>
         Static,
-#if NET46 || NETSTANDARD2_0
 
         /// <summary>
         /// The <see cref="RetrySettings"/> values are unique for each given asynchronous control flow.
         /// </summary>
         AsyncLocal
-#endif
     }
 }
