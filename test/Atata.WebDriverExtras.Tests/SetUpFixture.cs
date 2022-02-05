@@ -11,7 +11,7 @@ namespace Atata.WebDriverExtras.Tests
     [SetUpFixture]
     public class SetUpFixture
     {
-        private Process coreRunProcess;
+        private Process _coreRunProcess;
 
         [OneTimeSetUp]
         public void GlobalSetUp()
@@ -35,7 +35,7 @@ namespace Atata.WebDriverExtras.Tests
 
         private void RunTestApp()
         {
-            coreRunProcess = new Process
+            _coreRunProcess = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -45,7 +45,7 @@ namespace Atata.WebDriverExtras.Tests
                 }
             };
 
-            coreRunProcess.Start();
+            _coreRunProcess.Start();
 
             Thread.Sleep(5000);
 
@@ -63,10 +63,10 @@ namespace Atata.WebDriverExtras.Tests
         [OneTimeTearDown]
         public void GlobalTearDown()
         {
-            if (coreRunProcess != null)
+            if (_coreRunProcess != null)
             {
-                coreRunProcess.Kill(true);
-                coreRunProcess.Dispose();
+                _coreRunProcess.Kill(true);
+                _coreRunProcess.Dispose();
             }
         }
     }

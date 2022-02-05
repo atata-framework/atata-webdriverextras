@@ -15,11 +15,11 @@ namespace Atata
     /// <typeparam name="T">The type of object used to detect the condition.</typeparam>
     public class SafeWait<T> : IWait<T>
     {
-        private readonly T input;
+        private readonly T _input;
 
-        private readonly IClock clock;
+        private readonly IClock _clock;
 
-        private readonly List<Type> ignoredExceptions = new List<Type>();
+        private readonly List<Type> _ignoredExceptions = new List<Type>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SafeWait{T}"/> class.
@@ -37,8 +37,8 @@ namespace Atata
         /// <param name="clock">The clock to use when measuring the timeout.</param>
         public SafeWait(T input, IClock clock)
         {
-            this.input = input.CheckNotNull(nameof(input));
-            this.clock = clock.CheckNotNull(nameof(clock));
+            _input = input.CheckNotNull(nameof(input));
+            _clock = clock.CheckNotNull(nameof(clock));
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Atata
             ////    }
             ////}
 
-            ignoredExceptions.AddRange(exceptionTypes);
+            _ignoredExceptions.AddRange(exceptionTypes);
         }
 
         /// <summary>
@@ -94,16 +94,16 @@ namespace Atata
         {
             condition.CheckNotNull(nameof(condition));
 
-            DateTime operationStart = clock.Now;
+            DateTime operationStart = _clock.Now;
             DateTime operationTimeoutEnd = operationStart.Add(Timeout);
 
             while (true)
             {
-                DateTime iterationStart = clock.Now;
+                DateTime iterationStart = _clock.Now;
 
                 try
                 {
-                    var result = condition(input);
+                    var result = condition(_input);
 
                     if (DoesConditionResultSatisfy(result))
                         return result;
@@ -114,7 +114,7 @@ namespace Atata
                         throw;
                 }
 
-                DateTime iterationEnd = clock.Now;
+                DateTime iterationEnd = _clock.Now;
                 TimeSpan timeUntilTimeout = operationTimeoutEnd - iterationEnd;
 
                 if (timeUntilTimeout <= TimeSpan.Zero)
@@ -158,7 +158,7 @@ namespace Atata
 
         private bool IsIgnoredException(Exception exception)
         {
-            return ignoredExceptions.Any(type => type.IsAssignableFrom(exception.GetType()));
+            return _ignoredExceptions.Any(type => type.IsAssignableFrom(exception.GetType()));
         }
     }
 }

@@ -18,13 +18,13 @@ namespace Atata
         public static readonly TimeSpan DefaultInterval = TimeSpan.FromSeconds(0.5);
 
 #if NET46 || NETSTANDARD2_0
-        private static readonly System.Threading.AsyncLocal<TimeoutIntervalPair> AsyncLocalSettings = new System.Threading.AsyncLocal<TimeoutIntervalPair>();
+        private static readonly System.Threading.AsyncLocal<TimeoutIntervalPair> s_asyncLocalSettings = new System.Threading.AsyncLocal<TimeoutIntervalPair>();
 #endif
 
-        private static TimeoutIntervalPair staticSettings;
+        private static TimeoutIntervalPair s_staticSettings;
 
         [ThreadStatic]
-        private static TimeoutIntervalPair threadStaticSettings;
+        private static TimeoutIntervalPair s_threadStaticSettings;
 
         /// <summary>
         /// Gets or sets a value indicating whether the <see cref="Timeout"/> and <see cref="Interval"/> properties use thread-static approach (value unique for each thread).
@@ -66,19 +66,19 @@ namespace Atata
             switch (ThreadBoundary)
             {
                 case RetrySettingsThreadBoundary.ThreadStatic:
-                    return threadStaticSettings ?? (threadStaticSettings = new TimeoutIntervalPair());
+                    return s_threadStaticSettings ?? (s_threadStaticSettings = new TimeoutIntervalPair());
                 case RetrySettingsThreadBoundary.Static:
-                    return staticSettings ?? (staticSettings = new TimeoutIntervalPair());
+                    return s_staticSettings ?? (s_staticSettings = new TimeoutIntervalPair());
 #if NET46 || NETSTANDARD2_0
                 case RetrySettingsThreadBoundary.AsyncLocal:
-                    return AsyncLocalSettings.Value ?? (AsyncLocalSettings.Value = new TimeoutIntervalPair());
+                    return s_asyncLocalSettings.Value ?? (s_asyncLocalSettings.Value = new TimeoutIntervalPair());
 #endif
                 default:
                     throw new InvalidOperationException($"Unknown {nameof(ThreadBoundary)}={ThreadBoundary} value.");
             }
         }
 
-        private class TimeoutIntervalPair
+        private sealed class TimeoutIntervalPair
         {
             public TimeSpan? TimeoutValue { get; set; }
 

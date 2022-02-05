@@ -9,11 +9,11 @@ namespace Atata
     /// </summary>
     public class RetryOptions
     {
-        private static readonly Type StaleElementReferenceExceptionType = typeof(StaleElementReferenceException);
+        private static readonly Type s_staleElementReferenceExceptionType = typeof(StaleElementReferenceException);
 
-        private TimeSpan? timeout;
+        private TimeSpan? _timeout;
 
-        private TimeSpan? interval;
+        private TimeSpan? _interval;
 
         /// <summary>
         /// Gets or sets the timeout.
@@ -21,14 +21,14 @@ namespace Atata
         /// </summary>
         public TimeSpan Timeout
         {
-            get => timeout ?? RetrySettings.Timeout;
-            set => timeout = value;
+            get => _timeout ?? RetrySettings.Timeout;
+            set => _timeout = value;
         }
 
         /// <summary>
         /// Gets a value indicating whether <c>Timeout</c> is set.
         /// </summary>
-        public bool IsTimeoutSet => timeout.HasValue;
+        public bool IsTimeoutSet => _timeout.HasValue;
 
         /// <summary>
         /// Gets or sets the interval.
@@ -36,14 +36,14 @@ namespace Atata
         /// </summary>
         public TimeSpan Interval
         {
-            get => interval ?? RetrySettings.Interval;
-            set => interval = value;
+            get => _interval ?? RetrySettings.Interval;
+            set => _interval = value;
         }
 
         /// <summary>
         /// Gets a value indicating whether <c>Interval</c> is set.
         /// </summary>
-        public bool IsIntervalSet => interval.HasValue;
+        public bool IsIntervalSet => _interval.HasValue;
 
         /// <summary>
         /// Gets the list of ignored exception types.
@@ -89,7 +89,7 @@ namespace Atata
         /// <returns>The same <see cref="RetryOptions"/> instance.</returns>
         public RetryOptions IgnoringStaleElementReferenceException()
         {
-            IgnoredExceptionTypes.Add(StaleElementReferenceExceptionType);
+            IgnoredExceptionTypes.Add(s_staleElementReferenceExceptionType);
             return this;
         }
     }

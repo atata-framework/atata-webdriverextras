@@ -6,7 +6,7 @@ namespace Atata.WebDriverExtras.Tests
     [TestFixture]
     public class ByExtensionsToDescriptiveStringTests
     {
-        private static readonly TestCaseData[] Data = new[]
+        private static readonly TestCaseData[] s_data = new[]
         {
             new TestCaseData(By.Id("some")).Returns(@"id ""some"""),
             new TestCaseData(By.Name("some")).Returns(@"name ""some"""),
@@ -23,7 +23,7 @@ namespace Atata.WebDriverExtras.Tests
                 .Returns(@"chain [id ""some1"", chain [name ""some2"", class ""some3""]]")
         };
 
-        [TestCaseSource(nameof(Data))]
+        [TestCaseSource(nameof(s_data))]
         public string ByExtensions_ToDescriptiveString(By by)
         {
             return by.ToDescriptiveString();

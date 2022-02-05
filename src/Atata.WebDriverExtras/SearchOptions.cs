@@ -8,13 +8,13 @@ namespace Atata
     /// </summary>
     public class SearchOptions : ICloneable
     {
-        private TimeSpan? timeout;
+        private TimeSpan? _timeout;
 
-        private TimeSpan? retryInterval;
+        private TimeSpan? _retryInterval;
 
-        private Visibility? visibility;
+        private Visibility? _visibility;
 
-        private bool? isSafely;
+        private bool? _isSafely;
 
         /// <summary>
         /// Gets or sets the timeout.
@@ -22,14 +22,14 @@ namespace Atata
         /// </summary>
         public TimeSpan Timeout
         {
-            get => timeout ?? RetrySettings.Timeout;
-            set => timeout = value;
+            get => _timeout ?? RetrySettings.Timeout;
+            set => _timeout = value;
         }
 
         /// <summary>
         /// Gets a value indicating whether <c>Timeout</c> is set.
         /// </summary>
-        public bool IsTimeoutSet => timeout.HasValue;
+        public bool IsTimeoutSet => _timeout.HasValue;
 
         /// <summary>
         /// Gets or sets the retry interval.
@@ -37,14 +37,14 @@ namespace Atata
         /// </summary>
         public TimeSpan RetryInterval
         {
-            get => retryInterval ?? RetrySettings.Interval;
-            set => retryInterval = value;
+            get => _retryInterval ?? RetrySettings.Interval;
+            set => _retryInterval = value;
         }
 
         /// <summary>
         /// Gets a value indicating whether <c>RetryInterval</c> is set.
         /// </summary>
-        public bool IsRetryIntervalSet => retryInterval.HasValue;
+        public bool IsRetryIntervalSet => _retryInterval.HasValue;
 
         /// <summary>
         /// Gets or sets the visibility of the search element.
@@ -52,14 +52,14 @@ namespace Atata
         /// </summary>
         public Visibility Visibility
         {
-            get => visibility ?? Visibility.Visible;
-            set => visibility = value;
+            get => _visibility ?? Visibility.Visible;
+            set => _visibility = value;
         }
 
         /// <summary>
         /// Gets a value indicating whether <c>Visibility</c> is set.
         /// </summary>
-        public bool IsVisibilitySet => visibility.HasValue;
+        public bool IsVisibilitySet => _visibility.HasValue;
 
         /// <summary>
         /// Gets or sets a value indicating whether the search element is safely searching.
@@ -69,14 +69,14 @@ namespace Atata
         /// </summary>
         public bool IsSafely
         {
-            get => isSafely ?? false;
-            set => isSafely = value;
+            get => _isSafely ?? false;
+            set => _isSafely = value;
         }
 
         /// <summary>
         /// Gets a value indicating whether <c>IsSafely</c> is set.
         /// </summary>
-        public bool IsSafelySet => isSafely.HasValue;
+        public bool IsSafelySet => _isSafely.HasValue;
 
         public static SearchOptions Safely(bool isSafely = true)
         {

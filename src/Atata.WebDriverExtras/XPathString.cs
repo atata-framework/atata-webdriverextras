@@ -71,7 +71,7 @@ namespace Atata
 
             string GetCommaOrEmpty()
             {
-                if (prefix == string.Empty)
+                if (prefix.Length == 0)
                 {
                     prefix = ",";
                     return string.Empty;
@@ -86,7 +86,7 @@ namespace Atata
 
             for (int i = 0; i < parts.Length; i++)
             {
-                int countOfEmptySiblings = parts.Skip(i).TakeWhile(x => x == string.Empty).Count();
+                int countOfEmptySiblings = parts.Skip(i).TakeWhile(x => x.Length == 0).Count();
 
                 if (countOfEmptySiblings == 0)
                 {
@@ -117,9 +117,6 @@ namespace Atata
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return Value;
-        }
+        public override string ToString() => Value;
     }
 }

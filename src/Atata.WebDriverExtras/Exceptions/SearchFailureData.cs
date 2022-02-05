@@ -86,17 +86,13 @@ namespace Atata
             return builder.Append("element").ToString();
         }
 
-        private static string WrapWithDoubleQuotes(string name)
-        {
-            return !name.StartsWith("\"") && !name.StartsWith("'")
+        private static string WrapWithDoubleQuotes(string name) =>
+            name[0] != '"' && name[0] != '\''
                 ? $"\"{name}\""
                 : name;
-        }
 
-        private string GetElementNameOrExtractFromBy()
-        {
-            return ElementName ?? (By as ExtendedBy)?.GetElementNameWithKind();
-        }
+        private string GetElementNameOrExtractFromBy() =>
+            ElementName ?? (By as ExtendedBy)?.GetElementNameWithKind();
 
         private void Populate(StringBuilder builder, bool appendAlikeElementsWithInverseVisibility)
         {

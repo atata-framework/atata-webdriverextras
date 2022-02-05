@@ -6,15 +6,15 @@ namespace Atata.WebDriverExtras.Tests
 {
     public sealed class StopwatchAsserter : IDisposable
     {
-        private readonly TimeSpan expectedTime;
+        private readonly TimeSpan _expectedTime;
 
-        private readonly TimeSpan upperToleranceTime;
+        private readonly TimeSpan _upperToleranceTime;
 
-        private readonly TimeSpan lowerToleranceTime;
+        private readonly TimeSpan _lowerToleranceTime;
 
-        private readonly Stopwatch watch;
+        private readonly Stopwatch _watch;
 
-        private bool doAssertOnDispose = true;
+        private bool _doAssertOnDispose = true;
 
         public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime)
             : this(expectedTime, upperToleranceTime, TimeSpan.Zero)
@@ -23,11 +23,11 @@ namespace Atata.WebDriverExtras.Tests
 
         public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime, TimeSpan lowerToleranceTime)
         {
-            this.expectedTime = expectedTime;
-            this.upperToleranceTime = upperToleranceTime;
-            this.lowerToleranceTime = lowerToleranceTime;
+            _expectedTime = expectedTime;
+            _upperToleranceTime = upperToleranceTime;
+            _lowerToleranceTime = lowerToleranceTime;
 
-            watch = Stopwatch.StartNew();
+            _watch = Stopwatch.StartNew();
         }
 
         public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1, double lowerToleranceSeconds = 0.001)
@@ -46,7 +46,7 @@ namespace Atata.WebDriverExtras.Tests
             }
             catch (Exception)
             {
-                doAssertOnDispose = false;
+                _doAssertOnDispose = false;
                 throw;
             }
             finally
@@ -57,10 +57,10 @@ namespace Atata.WebDriverExtras.Tests
 
         public void Dispose()
         {
-            watch.Stop();
+            _watch.Stop();
 
-            if (doAssertOnDispose)
-                Assert.That(watch.Elapsed, Is.InRange(expectedTime - lowerToleranceTime, expectedTime + upperToleranceTime));
+            if (_doAssertOnDispose)
+                Assert.That(_watch.Elapsed, Is.InRange(_expectedTime - _lowerToleranceTime, _expectedTime + _upperToleranceTime));
         }
     }
 }

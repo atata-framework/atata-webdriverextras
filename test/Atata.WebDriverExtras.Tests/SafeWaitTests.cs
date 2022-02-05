@@ -8,12 +8,12 @@ namespace Atata.WebDriverExtras.Tests
     [Parallelizable(ParallelScope.None)]
     public class SafeWaitTests
     {
-        private SafeWait<object> wait;
+        private SafeWait<object> _sut;
 
         [SetUp]
         public void SetUp()
         {
-            wait = new SafeWait<object>(new object())
+            _sut = new SafeWait<object>(new object())
             {
                 Timeout = TimeSpan.FromSeconds(.3),
                 PollingInterval = TimeSpan.FromSeconds(.05)
@@ -24,7 +24,7 @@ namespace Atata.WebDriverExtras.Tests
         public void SafeWait_Success_Immediate()
         {
             using (StopwatchAsserter.WithinSeconds(0, .01))
-                wait.Until(_ =>
+                _sut.Until(_ =>
                 {
                     return true;
                 });
@@ -34,7 +34,7 @@ namespace Atata.WebDriverExtras.Tests
         public void SafeWait_Timeout()
         {
             using (StopwatchAsserter.WithinSeconds(.3, .015))
-                wait.Until(_ =>
+                _sut.Until(_ =>
                 {
                     return false;
                 });
@@ -44,7 +44,7 @@ namespace Atata.WebDriverExtras.Tests
         public void SafeWait_PollingInterval()
         {
             using (StopwatchAsserter.WithinSeconds(.3, .2))
-                wait.Until(_ =>
+                _sut.Until(_ =>
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(.1));
                     return false;
@@ -54,10 +54,10 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void SafeWait_PollingInterval_GreaterThanTimeout()
         {
-            wait.PollingInterval = TimeSpan.FromSeconds(1);
+            _sut.PollingInterval = TimeSpan.FromSeconds(1);
 
             using (StopwatchAsserter.WithinSeconds(.3, .02))
-                wait.Until(_ =>
+                _sut.Until(_ =>
                 {
                     return false;
                 });
