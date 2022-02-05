@@ -26,19 +26,10 @@ namespace Atata
         private static TimeoutIntervalPair s_threadStaticSettings;
 
         /// <summary>
-        /// Gets or sets a value indicating whether the <see cref="Timeout"/> and <see cref="Interval"/> properties use thread-static approach (value unique for each thread).
-        /// </summary>
-        [Obsolete("Use ThreadBoundary instead.")] // Obsolete since v1.3.0.
-        public static bool IsThreadStatic
-        {
-            get => ThreadBoundary == RetrySettingsThreadBoundary.ThreadStatic;
-            set => ThreadBoundary = value ? RetrySettingsThreadBoundary.ThreadStatic : RetrySettingsThreadBoundary.Static;
-        }
-
-        /// <summary>
         /// Gets or sets the thread boundary of <see cref="RetrySettings"/>.
+        /// The default value is <see cref="RetrySettingsThreadBoundary.AsyncLocal"/>.
         /// </summary>
-        public static RetrySettingsThreadBoundary ThreadBoundary { get; set; } = RetrySettingsThreadBoundary.ThreadStatic;
+        public static RetrySettingsThreadBoundary ThreadBoundary { get; set; } = RetrySettingsThreadBoundary.AsyncLocal;
 
         /// <summary>
         /// Gets the retry timeout.
