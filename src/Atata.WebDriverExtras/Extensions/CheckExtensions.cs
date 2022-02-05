@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Atata
 {
     internal static class CheckExtensions
     {
-        internal static T Check<T>(this T value, Predicate<T> checkPredicate, string argumentName, string errorMessage = null)
+        internal static T Check<T>(this T value, Predicate<T> checkPredicate, string argumentName, string errorMessage)
         {
             if (checkPredicate != null && !checkPredicate(value))
                 throw new ArgumentException(errorMessage, argumentName);
@@ -18,7 +17,17 @@ namespace Atata
         internal static T CheckNotNull<T>(this T value, string argumentName, string errorMessage = null)
         {
             if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
+                throw CreateArgumentNullException(argumentName, errorMessage);
+
+            return value;
+        }
+
+        internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string errorMessage = null)
+        {
+            if (value == null)
+                throw CreateArgumentNullException(argumentName, errorMessage);
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentException(ConcatMessage("Should not be empty string or whitespace.", errorMessage), argumentName);
 
             return value;
         }
@@ -26,8 +35,8 @@ namespace Atata
         internal static string CheckNotNullOrEmpty(this string value, string argumentName, string errorMessage = null)
         {
             if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
-            if (value == string.Empty)
+                throw CreateArgumentNullException(argumentName, errorMessage);
+            if (value.Length == 0)
                 throw new ArgumentException(ConcatMessage("Should not be empty string.", errorMessage), argumentName);
 
             return value;
@@ -36,21 +45,11 @@ namespace Atata
         internal static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T> collection, string argumentName, string errorMessage = null)
         {
             if (collection == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
+                throw CreateArgumentNullException(argumentName, errorMessage);
             if (!collection.Any())
                 throw new ArgumentException(ConcatMessage("Collection should contain at least one element.", errorMessage), argumentName);
 
             return collection;
-        }
-
-        internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string errorMessage = null)
-        {
-            if (value == null)
-                throw new ArgumentNullException(argumentName, errorMessage);
-            if (value == string.Empty)
-                throw new ArgumentException(ConcatMessage("Should not be empty string or whitespace.", errorMessage), argumentName);
-
-            return value;
         }
 
         internal static T CheckNotEquals<T>(this T value, string argumentName, T invalidValue, string errorMessage = null)
@@ -71,26 +70,45 @@ namespace Atata
             return value;
         }
 
-        internal static int CheckIndexNonNegative(this int value)
+        internal static T CheckLessOrEqual<T>(this T value, string argumentName, T checkValue, string errorMessage = null)
+            where T : struct, IComparable<T>
         {
-            if (value < 0)
-            {
-#pragma warning disable S3928, CA2208 // Parameter names used into ArgumentException constructors should match an existing one
-                throw new ArgumentOutOfRangeException("index", value, "Index was out of range. Must be non-negative.");
-#pragma warning restore S3928, CA2208 // Parameter names used into ArgumentException constructors should match an existing one
-            }
+            if (value.CompareTo(checkValue) > 0)
+                throw new ArgumentOutOfRangeException(argumentName, value, ConcatMessage($"Invalid {typeof(T).FullName} value: {value}. Should be less or equal to: {checkValue}.", errorMessage));
 
             return value;
         }
 
+        internal static int CheckIndexNonNegative(this int index)
+        {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException(nameof(index), index, "Index was out of range. Must be non-negative.");
+
+            return index;
+        }
+
+        internal static Type CheckIs<T>(this Type value, string argumentName, string errorMessage = null)
+        {
+            value.CheckNotNull(argumentName);
+
+            Type expectedType = typeof(T);
+
+            if (!expectedType.IsAssignableFrom(value))
+                throw new ArgumentException(ConcatMessage($"{value.FullName} type should be assignable to {expectedType.FullName}.", errorMessage), argumentName);
+
+            return value;
+        }
+
+        private static ArgumentNullException CreateArgumentNullException(string argumentName, string message) =>
+            message is null
+            ? new ArgumentNullException(argumentName)
+            : new ArgumentNullException(argumentName, message);
+
         private static string ConcatMessage(string primaryMessage, string secondaryMessage)
         {
-            StringBuilder builder = new StringBuilder(primaryMessage);
-
-            if (!string.IsNullOrEmpty(secondaryMessage))
-                builder.AppendFormat(" {0}", secondaryMessage);
-
-            return builder.ToString();
+            return string.IsNullOrEmpty(secondaryMessage)
+                ? primaryMessage
+                : $"{primaryMessage} {secondaryMessage}";
         }
     }
 }
