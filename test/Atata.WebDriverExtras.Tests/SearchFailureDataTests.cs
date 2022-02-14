@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
 
 namespace Atata.WebDriverExtras.Tests
 {
@@ -154,7 +153,7 @@ $@"Able to locate hidden ""anchor"" element that should be missing:
             SearchFailureData data = new SearchFailureData
             {
                 By = By.XPath(".//a"),
-                AlikeElementsWithInverseVisibility = new[] { new RemoteWebElement(null, null), new RemoteWebElement(null, null) }
+                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
             };
 
             string expected =
@@ -171,7 +170,7 @@ $@"Unable to locate element:
             {
                 By = By.XPath(".//a"),
                 SearchOptions = SearchOptions.Visible(),
-                AlikeElementsWithInverseVisibility = new[] { new RemoteWebElement(null, null) }
+                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null) }
             };
 
             string expected =
@@ -190,7 +189,7 @@ $@"Unable to locate visible element:
             {
                 By = By.XPath(".//a"),
                 SearchOptions = SearchOptions.Visible(),
-                AlikeElementsWithInverseVisibility = new[] { new RemoteWebElement(null, null), new RemoteWebElement(null, null) }
+                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
             };
 
             string expected =
@@ -209,7 +208,7 @@ $@"Unable to locate visible element:
             {
                 By = By.XPath(".//a"),
                 SearchOptions = SearchOptions.Visible(),
-                AlikeElementsWithInverseVisibility = new[] { new RemoteWebElement(null, null), new RemoteWebElement(null, null) }
+                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
             };
 
             string expected =

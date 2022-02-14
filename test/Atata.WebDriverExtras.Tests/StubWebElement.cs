@@ -52,7 +52,16 @@ namespace Atata.WebDriverExtras.Tests
         public string GetCssValue(string propertyName) =>
             throw new NotSupportedException();
 
+        public string GetDomAttribute(string attributeName) =>
+            throw new NotSupportedException();
+
+        public string GetDomProperty(string propertyName) =>
+            throw new NotSupportedException();
+
         public string GetProperty(string propertyName) =>
+            throw new NotSupportedException();
+
+        public ISearchContext GetShadowRoot() =>
             throw new NotSupportedException();
 
         public void SendKeys(string text) =>
