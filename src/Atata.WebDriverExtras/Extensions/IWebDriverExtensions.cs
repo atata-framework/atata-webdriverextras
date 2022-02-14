@@ -2,11 +2,49 @@
 using System.Drawing;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Internal;
 
 namespace Atata
 {
     public static class IWebDriverExtensions
     {
+        /// <summary>
+        /// Casts the web driver to <see cref="IJavaScriptExecutor"/> type.
+        /// Considers <see cref="IWrapsDriver"/>.
+        /// </summary>
+        /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
+        /// <returns><paramref name="webDriver"/> casted to <see cref="IJavaScriptExecutor"/>.</returns>
+        /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <see cref="IJavaScriptExecutor"/>.</exception>
+        public static IJavaScriptExecutor AsScriptExecutor(this IWebDriver webDriver) =>
+            webDriver.As<IJavaScriptExecutor>();
+
+        /// <summary>
+        /// Casts the web driver to <see cref="ITakesScreenshot"/> type.
+        /// Considers <see cref="IWrapsDriver"/>.
+        /// </summary>
+        /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
+        /// <returns><paramref name="webDriver"/> casted to <see cref="ITakesScreenshot"/>.</returns>
+        /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <see cref="ITakesScreenshot"/>.</exception>
+        public static ITakesScreenshot AsScreenshotTaker(this IWebDriver webDriver) =>
+            webDriver.As<ITakesScreenshot>();
+
+        /// <summary>
+        /// Casts the web driver to the specified interface type.
+        /// Considers <see cref="IWrapsDriver"/>.
+        /// </summary>
+        /// <typeparam name="TInterface">The type of the interface.</typeparam>
+        /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
+        /// <returns><paramref name="webDriver"/> casted to <typeparamref name="TInterface"/>.</returns>
+        /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <typeparamref name="TInterface"/>.</exception>
+        public static TInterface As<TInterface>(this IWebDriver webDriver) =>
+            webDriver is null
+                ? throw new ArgumentNullException(nameof(webDriver))
+                : webDriver is TInterface castedWebDriver
+                    ? castedWebDriver
+                    : webDriver is IWrapsDriver webDriverWrapper
+                        ? webDriverWrapper.WrappedDriver.As<TInterface>()
+                        : throw new NotSupportedException($"{webDriver.GetType().FullName} doesn't implement {typeof(TInterface).FullName}.");
+
         public static T Maximize<T>(this T driver)
             where T : IWebDriver
         {
