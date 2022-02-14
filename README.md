@@ -24,7 +24,7 @@ using Atata;
 Use extension methods for `IWebDriver`, `IWebElement`, `By`, etc.:
 
 ```C#
-RemoteWebDriver driver = GetSomeDriver();
+IWebDriver driver = new ChromeDriver();
 
 // Sets the retry timeout as 7 seconds. The default value of the timeout is 5 seconds.
 driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(7));
