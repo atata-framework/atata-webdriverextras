@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Remote;
 
 namespace Atata.WebDriverExtras.Tests
 {
@@ -9,7 +9,7 @@ namespace Atata.WebDriverExtras.Tests
     {
         public const string BaseUrl = "http://localhost:57440/";
 
-        protected RemoteWebDriver Driver { get; private set; }
+        protected IWebDriver Driver { get; private set; }
 
         [SetUp]
         public virtual void SetUp()
@@ -24,7 +24,7 @@ namespace Atata.WebDriverExtras.Tests
             Driver?.Dispose();
         }
 
-        protected RemoteWebDriver GoTo(string relativeUrl)
+        protected IWebDriver GoTo(string relativeUrl)
         {
             Driver.Navigate().GoToUrl(BaseUrl + relativeUrl);
             return Driver;
