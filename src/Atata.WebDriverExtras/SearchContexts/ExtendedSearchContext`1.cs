@@ -77,113 +77,25 @@ namespace Atata
             }
         }
 
-        /// <inheritdoc/>
-        public IWebElement FindElement(By by)
-        {
-            return Find(by);
-        }
+        /// <summary>
+        /// Finds the first <see cref="IWebElement"/> using the given method.
+        /// </summary>
+        /// <param name="by">The locating mechanism to use.</param>
+        /// <returns>The first matching <see cref="IWebElement"/> on the current context.</returns>
+        /// <exception cref="NoSuchElementException">If no element matches the criteria.</exception>
+        public IWebElement FindElement(By by) =>
+            Find(by);
 
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElements(By by)
-        {
-            return FindAll(by);
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementById(string id)
-        {
-            return Find(By.Id(id));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsById(string id)
-        {
-            return FindAll(By.Id(id));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByName(string name)
-        {
-            return Find(By.Name(name));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByName(string name)
-        {
-            return FindAll(By.Name(name));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByTagName(string tagName)
-        {
-            return Find(By.TagName(tagName));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByTagName(string tagName)
-        {
-            return FindAll(By.TagName(tagName));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByClassName(string className)
-        {
-            return Find(By.ClassName(className));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByClassName(string className)
-        {
-            return FindAll(By.ClassName(className));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByLinkText(string linkText)
-        {
-            return Find(By.LinkText(linkText));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByLinkText(string linkText)
-        {
-            return FindAll(By.LinkText(linkText));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByPartialLinkText(string partialLinkText)
-        {
-            return Find(By.PartialLinkText(partialLinkText));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByPartialLinkText(string partialLinkText)
-        {
-            return FindAll(By.PartialLinkText(partialLinkText));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByCssSelector(string cssSelector)
-        {
-            return Find(By.CssSelector(cssSelector));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByCssSelector(string cssSelector)
-        {
-            return FindAll(By.CssSelector(cssSelector));
-        }
-
-        /// <inheritdoc/>
-        public IWebElement FindElementByXPath(string xpath)
-        {
-            return Find(By.XPath(xpath));
-        }
-
-        /// <inheritdoc/>
-        public ReadOnlyCollection<IWebElement> FindElementsByXPath(string xpath)
-        {
-            return FindAll(By.XPath(xpath));
-        }
+        /// <summary>
+        /// Finds all <see cref="IWebElement">IWebElements</see> within the current context using the given mechanism.
+        /// </summary>
+        /// <param name="by">The locating mechanism to use.</param>
+        /// <returns>
+        /// A <see cref="ReadOnlyCollection{T}"/> of all <see cref="IWebElement">WebElements</see>
+        /// matching the current criteria, or an empty list if nothing matches.
+        /// </returns>
+        public ReadOnlyCollection<IWebElement> FindElements(By by) =>
+            FindAll(by);
 
         private IWebElement Find(By by)
         {

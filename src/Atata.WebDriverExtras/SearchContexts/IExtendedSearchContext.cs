@@ -1,21 +1,11 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 
 namespace Atata
 {
     /// <summary>
     /// Defines the interface that extends <see cref="ISearchContext"/>.
     /// </summary>
-    public interface IExtendedSearchContext :
-        ISearchContext,
-        IFindsById,
-        IFindsByName,
-        IFindsByTagName,
-        IFindsByClassName,
-        IFindsByLinkText,
-        IFindsByPartialLinkText,
-        IFindsByCssSelector,
-        IFindsByXPath
+    public interface IExtendedSearchContext : ISearchContext
     {
         bool Exists(By by);
 
