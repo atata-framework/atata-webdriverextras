@@ -20,7 +20,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void ByExtensions_Then_GetAll()
         {
-            var elements = Driver.GetAll(_defaultChain.OfAnyVisibility());
+            var elements = Driver.GetAll(_defaultChain);
 
             Assert.That(elements, Has.Count.EqualTo(5));
         }
@@ -28,7 +28,7 @@ namespace Atata.WebDriverExtras.Tests
         [Test]
         public void ByExtensions_Then_GetAll_Visible()
         {
-            var elements = Driver.GetAll(_defaultChain);
+            var elements = Driver.GetAll(_defaultChain.Visible());
 
             Assert.That(elements, Has.Count.EqualTo(4));
             Assert.That(elements.Last().Text, Is.EqualTo("Item 5"));

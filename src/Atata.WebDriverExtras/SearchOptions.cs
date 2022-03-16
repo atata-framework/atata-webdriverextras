@@ -17,6 +17,12 @@ namespace Atata
         private bool? _isSafely;
 
         /// <summary>
+        /// Gets or sets the default visibility of the search element.
+        /// The default value is <see cref="Visibility.Any"/>.
+        /// </summary>
+        public static Visibility DefaultVisibility { get; set; }
+
+        /// <summary>
         /// Gets or sets the timeout.
         /// The default value is taken from <see cref="RetrySettings.Timeout"/>.
         /// </summary>
@@ -27,7 +33,7 @@ namespace Atata
         }
 
         /// <summary>
-        /// Gets a value indicating whether <c>Timeout</c> is set.
+        /// Gets a value indicating whether <see cref="Timeout"/> is set.
         /// </summary>
         public bool IsTimeoutSet => _timeout.HasValue;
 
@@ -42,22 +48,23 @@ namespace Atata
         }
 
         /// <summary>
-        /// Gets a value indicating whether <c>RetryInterval</c> is set.
+        /// Gets a value indicating whether <see cref="RetryInterval"/> is set.
         /// </summary>
         public bool IsRetryIntervalSet => _retryInterval.HasValue;
 
         /// <summary>
         /// Gets or sets the visibility of the search element.
-        /// The default value is <c>Visible</c>.
+        /// The default value is taken from <see cref="DefaultVisibility"/> property,
+        /// which is <see cref="Visibility.Any"/> by default.
         /// </summary>
         public Visibility Visibility
         {
-            get => _visibility ?? Visibility.Visible;
+            get => _visibility ?? DefaultVisibility;
             set => _visibility = value;
         }
 
         /// <summary>
-        /// Gets a value indicating whether <c>Visibility</c> is set.
+        /// Gets a value indicating whether <see cref="Visibility"/> is set.
         /// </summary>
         public bool IsVisibilitySet => _visibility.HasValue;
 
@@ -74,7 +81,7 @@ namespace Atata
         }
 
         /// <summary>
-        /// Gets a value indicating whether <c>IsSafely</c> is set.
+        /// Gets a value indicating whether <see cref="IsSafely"/> is set.
         /// </summary>
         public bool IsSafelySet => _isSafely.HasValue;
 

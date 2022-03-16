@@ -92,7 +92,7 @@ namespace Atata.WebDriverExtras.Tests
 
             using (StopwatchAsserter.WithinSeconds(3, .3))
                 Assert.Throws<NoSuchElementException>(() =>
-                    Driver.Get(_hiddenElementBy.Within(TimeSpan.FromSeconds(3))));
+                    Driver.Get(_hiddenElementBy.Visible().Within(TimeSpan.FromSeconds(3))));
         }
 
         [Test]

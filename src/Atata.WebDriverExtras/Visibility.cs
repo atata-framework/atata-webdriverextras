@@ -6,6 +6,11 @@
     public enum Visibility
     {
         /// <summary>
+        /// Finds the elements with any visibility.
+        /// </summary>
+        Any,
+
+        /// <summary>
         /// Finds only the visible elements.
         /// </summary>
         Visible,
@@ -13,11 +18,6 @@
         /// <summary>
         /// Finds only the hidden elements.
         /// </summary>
-        Hidden,
-
-        /// <summary>
-        /// Finds the elements with any visibility.
-        /// </summary>
-        Any
+        Hidden
     }
 }
