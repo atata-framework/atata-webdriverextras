@@ -38,11 +38,11 @@ IWebElement element2 = driver.Get(By.XPath(".//some[xpath]").Safely());
 // Get all the visible elements within 15 seconds.
 ReadOnlyCollection<IWebElement> elements = driver.GetAll(By.ClassName("some-class").Within(TimeSpan.FromSeconds(15)));
 
-// Get the hidden element safely at once (without retry).
-IWebElement element3 = driver.Get(By.CssSelector(".some-css").Hidden().Safely().AtOnce());
+// Get the visible element unsafely at once (without retry).
+IWebElement element3 = driver.Get(By.Id("another-id").Visible().AtOnce());
 
-// Get the element of any visibility unsafely at once.
-IWebElement element4 = driver.Get(By.Id("another-id").OfAnyVisibility().AtOnce());
+// Get the hidden element safely at once.
+IWebElement element4 = driver.Get(By.CssSelector(".some-css").Hidden().Safely().AtOnce());
 
 // Gets a value indicating whether the element exists at once.
 bool isElementExists = driver.Exists(By.Name("some-name").Safely().AtOnce());
@@ -54,6 +54,12 @@ driver.Missing(By.Name("some-name").Within(TimeSpan.FromSeconds(15)));
 IWebElement element5 = driver.Get(By.Id("root-container").
     Then(By.XPath("./div[@class='sub-container']")).
     Then(By.CssSelector("span.item")));
+
+// Set default element visibility for search globally.
+SearchOptions.DefaultVisibility = Visibility.Visible;
+
+// After DefaultVisibility is set to Visibility.Visible, the code below will find only visible element.
+IWebElement element6 = driver.Get(By.Id("some-id"));
 ```
 
 ## License
