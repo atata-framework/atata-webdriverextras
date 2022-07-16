@@ -101,20 +101,24 @@ namespace Atata
         {
             SearchOptions options = by.GetSearchOptionsOrDefault();
 
+            IWebElement FindElement(T context) =>
+                context.FindElement(by);
+
             ReadOnlyCollection<IWebElement> lastFoundElements = null;
 
-            IWebElement FindElement(T context)
+            IWebElement FindElementWithVisibilityFiltering(T context)
             {
                 lastFoundElements = context.FindElements(by);
 
-                return options.Visibility == Visibility.Any
-                    ? lastFoundElements.FirstOrDefault()
-                    : lastFoundElements.FirstOrDefault(CreateVisibilityPredicate(options.Visibility));
+                return lastFoundElements.FirstOrDefault(CreateVisibilityPredicate(options.Visibility));
             }
 
+            RetryOptions retryOptions = options.ToRetryOptions();
             Stopwatch searchWatch = Stopwatch.StartNew();
 
-            IWebElement element = Until(FindElement, options.ToRetryOptions());
+            IWebElement element = options.Visibility == Visibility.Any
+                ? Until(FindElement, retryOptions.IgnoringExceptionType(typeof(NoSuchElementException)))
+                : Until(FindElementWithVisibilityFiltering, retryOptions);
 
             searchWatch.Stop();
 
