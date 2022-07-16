@@ -58,9 +58,6 @@ namespace Atata.WebDriverExtras.Tests
         public string GetDomProperty(string propertyName) =>
             throw new NotSupportedException();
 
-        public string GetProperty(string propertyName) =>
-            throw new NotSupportedException();
-
         public ISearchContext GetShadowRoot() =>
             throw new NotSupportedException();
 
