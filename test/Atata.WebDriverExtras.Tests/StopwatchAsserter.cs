@@ -30,13 +30,11 @@ namespace Atata.WebDriverExtras.Tests
             _watch = Stopwatch.StartNew();
         }
 
-        public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1, double lowerToleranceSeconds = 0.001)
-        {
-            return new StopwatchAsserter(
+        public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1, double lowerToleranceSeconds = 0.001) =>
+            new StopwatchAsserter(
                 TimeSpan.FromSeconds(seconds),
                 TimeSpan.FromSeconds(upperToleranceSeconds),
                 TimeSpan.FromSeconds(lowerToleranceSeconds));
-        }
 
         public TResult Execute<TResult>(Func<TResult> function)
         {

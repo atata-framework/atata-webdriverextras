@@ -12,10 +12,8 @@ namespace Atata
         /// Initializes a new instance of the <see cref="XPathString"/> class.
         /// </summary>
         /// <param name="value">The value.</param>
-        public XPathString(string value)
-        {
+        public XPathString(string value) =>
             Value = ConvertTo(value);
-        }
 
         /// <summary>
         /// Gets the value.
@@ -29,10 +27,8 @@ namespace Atata
         /// <returns>
         /// The result of the conversion.
         /// </returns>
-        public static implicit operator string(XPathString value)
-        {
-            return value.Value;
-        }
+        public static implicit operator string(XPathString value) =>
+            value.Value;
 
         /// <summary>
         /// Performs an explicit conversion from <see cref="string"/> to <see cref="XPathString"/>.
@@ -41,10 +37,8 @@ namespace Atata
         /// <returns>
         /// The result of the conversion.
         /// </returns>
-        public static explicit operator XPathString(string value)
-        {
-            return new XPathString(value);
-        }
+        public static explicit operator XPathString(string value) =>
+            new XPathString(value);
 
         /// <summary>
         /// Converts to XPath valid string wrapping the value with <c>'</c> or <c>"</c> characters.
@@ -52,14 +46,12 @@ namespace Atata
         /// </summary>
         /// <param name="value">The string value.</param>
         /// <returns>The valid XPath string.</returns>
-        public static string ConvertTo(string value)
-        {
-            return value != null && value.Contains("'")
+        public static string ConvertTo(string value) =>
+            value != null && value.Contains("'")
                 ? value.Contains("\"")
                     ? NormalizeHybridQuotedString(value)
                     : $"\"{value}\""
                 : $"'{value}'";
-        }
 
         private static string NormalizeHybridQuotedString(string value)
         {

@@ -16,10 +16,8 @@ namespace Atata.WebDriverExtras.Tests
         [TestCase(60.01d, ExpectedResult = "1m 0.01s")]
         [TestCase(152d, ExpectedResult = "2m 32s")]
         [TestCase(152.9d, ExpectedResult = "2m 32.9s")]
-        public string TimeSpanExtensions_ToShortIntervalString(double value)
-        {
-            return TimeSpan.FromSeconds(value).ToShortIntervalString();
-        }
+        public string TimeSpanExtensions_ToShortIntervalString(double value) =>
+            TimeSpan.FromSeconds(value).ToShortIntervalString();
 
         [TestCase(0d, ExpectedResult = "0.000s")]
         [TestCase(15d, ExpectedResult = "15.000s")]
@@ -31,9 +29,7 @@ namespace Atata.WebDriverExtras.Tests
         [TestCase(60.01d, ExpectedResult = "1m 0.010s")]
         [TestCase(152d, ExpectedResult = "2m 32.000s")]
         [TestCase(152.9d, ExpectedResult = "2m 32.900s")]
-        public string TimeSpanExtensions_ToLongIntervalString(double value)
-        {
-            return TimeSpan.FromSeconds(value).ToLongIntervalString();
-        }
+        public string TimeSpanExtensions_ToLongIntervalString(double value) =>
+            TimeSpan.FromSeconds(value).ToLongIntervalString();
     }
 }

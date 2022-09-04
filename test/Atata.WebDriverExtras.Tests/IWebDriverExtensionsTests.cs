@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 
 namespace Atata.WebDriverExtras.Tests
 {
@@ -41,10 +40,8 @@ namespace Atata.WebDriverExtras.Tests
 
             private class DriverWrapper : IWebDriver, IWrapsDriver
             {
-                public DriverWrapper(IWebDriver webDriver)
-                {
+                public DriverWrapper(IWebDriver webDriver) =>
                     WrappedDriver = webDriver;
-                }
 
                 public string Url { get; set; }
 

@@ -12,10 +12,8 @@ namespace Atata.WebDriverExtras.Tests
         protected IWebDriver Driver { get; private set; }
 
         [SetUp]
-        public virtual void SetUp()
-        {
+        public virtual void SetUp() =>
             Driver = new ChromeDriver();
-        }
 
         [TearDown]
         public void TearDown()

@@ -85,45 +85,29 @@ namespace Atata
         /// </summary>
         public bool IsSafelySet => _isSafely.HasValue;
 
-        public static SearchOptions Safely(bool isSafely = true)
-        {
-            return new SearchOptions { IsSafely = isSafely };
-        }
+        public static SearchOptions Safely(bool isSafely = true) =>
+            new SearchOptions { IsSafely = isSafely };
 
-        public static SearchOptions Unsafely()
-        {
-            return new SearchOptions { IsSafely = false };
-        }
+        public static SearchOptions Unsafely() =>
+            new SearchOptions { IsSafely = false };
 
-        public static SearchOptions SafelyAtOnce(bool isSafely = true)
-        {
-            return new SearchOptions { IsSafely = isSafely, Timeout = TimeSpan.Zero };
-        }
+        public static SearchOptions SafelyAtOnce(bool isSafely = true) =>
+            new SearchOptions { IsSafely = isSafely, Timeout = TimeSpan.Zero };
 
-        public static SearchOptions UnsafelyAtOnce()
-        {
-            return new SearchOptions { IsSafely = false, Timeout = TimeSpan.Zero };
-        }
+        public static SearchOptions UnsafelyAtOnce() =>
+            new SearchOptions { IsSafely = false, Timeout = TimeSpan.Zero };
 
-        public static SearchOptions OfVisibility(Visibility visibility)
-        {
-            return new SearchOptions { Visibility = visibility };
-        }
+        public static SearchOptions OfVisibility(Visibility visibility) =>
+            new SearchOptions { Visibility = visibility };
 
-        public static SearchOptions Visible()
-        {
-            return new SearchOptions { Visibility = Visibility.Visible };
-        }
+        public static SearchOptions Visible() =>
+            new SearchOptions { Visibility = Visibility.Visible };
 
-        public static SearchOptions Hidden()
-        {
-            return new SearchOptions { Visibility = Visibility.Hidden };
-        }
+        public static SearchOptions Hidden() =>
+            new SearchOptions { Visibility = Visibility.Hidden };
 
-        public static SearchOptions OfAnyVisibility()
-        {
-            return new SearchOptions { Visibility = Visibility.Any };
-        }
+        public static SearchOptions OfAnyVisibility() =>
+            new SearchOptions { Visibility = Visibility.Any };
 
         public static SearchOptions Within(TimeSpan timeout, TimeSpan? retryInterval = null)
         {
@@ -165,10 +149,8 @@ namespace Atata
             return options;
         }
 
-        public static SearchOptions AtOnce()
-        {
-            return new SearchOptions { Timeout = TimeSpan.Zero };
-        }
+        public static SearchOptions AtOnce() =>
+            new SearchOptions { Timeout = TimeSpan.Zero };
 
         public RetryOptions ToRetryOptions()
         {
@@ -190,18 +172,14 @@ namespace Atata
         /// Creates a new object that is a copy of the current instance.
         /// </summary>
         /// <returns>A new object that is a copy of this instance.</returns>
-        public SearchOptions Clone()
-        {
-            return (SearchOptions)MemberwiseClone();
-        }
+        public SearchOptions Clone() =>
+            (SearchOptions)MemberwiseClone();
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A <see cref="string"/> that represents this instance.</returns>
-        public override string ToString()
-        {
-            return $"{{{nameof(Visibility)}={Visibility}, {nameof(Timeout)}={Timeout.ToShortIntervalString()}, {nameof(RetryInterval)}={RetryInterval.ToShortIntervalString()}, {nameof(IsSafely)}={IsSafely}}}";
-        }
+        public override string ToString() =>
+            $"{{{nameof(Visibility)}={Visibility}, {nameof(Timeout)}={Timeout.ToShortIntervalString()}, {nameof(RetryInterval)}={RetryInterval.ToShortIntervalString()}, {nameof(IsSafely)}={IsSafely}}}";
     }
 }

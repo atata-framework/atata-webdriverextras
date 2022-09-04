@@ -24,9 +24,7 @@ namespace Atata.WebDriverExtras.Tests
         };
 
         [TestCaseSource(nameof(s_data))]
-        public string ByExtensions_ToDescriptiveString(By by)
-        {
-            return by.ToDescriptiveString();
-        }
+        public string ByExtensions_ToDescriptiveString(By by) =>
+            by.ToDescriptiveString();
     }
 }

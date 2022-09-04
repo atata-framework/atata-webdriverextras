@@ -11,33 +11,25 @@ namespace Atata.WebDriverExtras.Tests
         private SafeWait<object> _sut;
 
         [SetUp]
-        public void SetUp()
-        {
+        public void SetUp() =>
             _sut = new SafeWait<object>(new object())
             {
                 Timeout = TimeSpan.FromSeconds(.3),
                 PollingInterval = TimeSpan.FromSeconds(.05)
             };
-        }
 
         [Test]
         public void SafeWait_Success_Immediate()
         {
             using (StopwatchAsserter.WithinSeconds(0, .01))
-                _sut.Until(_ =>
-                {
-                    return true;
-                });
+                _sut.Until(_ => true);
         }
 
         [Test]
         public void SafeWait_Timeout()
         {
             using (StopwatchAsserter.WithinSeconds(.3, .015))
-                _sut.Until(_ =>
-                {
-                    return false;
-                });
+                _sut.Until(_ => false);
         }
 
         [Test]
@@ -57,10 +49,7 @@ namespace Atata.WebDriverExtras.Tests
             _sut.PollingInterval = TimeSpan.FromSeconds(1);
 
             using (StopwatchAsserter.WithinSeconds(.3, .02))
-                _sut.Until(_ =>
-                {
-                    return false;
-                });
+                _sut.Until(_ => false);
         }
     }
 }

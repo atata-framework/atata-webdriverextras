@@ -14,10 +14,8 @@ namespace Atata
         /// </summary>
         /// <param name="value">The <see cref="TimeSpan"/> value.</param>
         /// <returns>The short interval string representation of the <see cref="TimeSpan"/> value.</returns>
-        public static string ToShortIntervalString(this TimeSpan value)
-        {
-            return ToIntervalString(value, "FFF", false);
-        }
+        public static string ToShortIntervalString(this TimeSpan value) =>
+            ToIntervalString(value, "FFF", false);
 
         /// <summary>
         /// Converts the value of the <see cref="TimeSpan"/> object to its equivalent long interval string representation.
@@ -25,10 +23,8 @@ namespace Atata
         /// </summary>
         /// <param name="value">The <see cref="TimeSpan"/> value.</param>
         /// <returns>The long interval string representation of the <see cref="TimeSpan"/> value.</returns>
-        public static string ToLongIntervalString(this TimeSpan value)
-        {
-            return ToIntervalString(value, "fff", true);
-        }
+        public static string ToLongIntervalString(this TimeSpan value) =>
+            ToIntervalString(value, "fff", true);
 
         private static string ToIntervalString(TimeSpan value, string millisecondsFormat, bool secondsRequired)
         {

@@ -38,20 +38,14 @@ namespace Atata
             return extendedBy;
         }
 
-        public static By Visible(this By by)
-        {
-            return by.With(Visibility.Visible);
-        }
+        public static By Visible(this By by) =>
+            by.With(Visibility.Visible);
 
-        public static By Hidden(this By by)
-        {
-            return by.With(Visibility.Hidden);
-        }
+        public static By Hidden(this By by) =>
+            by.With(Visibility.Hidden);
 
-        public static By OfAnyVisibility(this By by)
-        {
-            return by.With(Visibility.Any);
-        }
+        public static By OfAnyVisibility(this By by) =>
+            by.With(Visibility.Any);
 
         public static By Within(this By by, TimeSpan timeout)
         {
@@ -136,10 +130,8 @@ namespace Atata
             return byChain != null;
         }
 
-        private static string GetMethod(this By by)
-        {
-            return by.ToString().Split(':')[0].Replace("By.", string.Empty);
-        }
+        private static string GetMethod(this By by) =>
+            by.ToString().Split(':')[0].Replace("By.", string.Empty);
 
         private static string GetSelector(this By by)
         {
@@ -190,10 +182,8 @@ namespace Atata
         /// </summary>
         /// <param name="by">The by.</param>
         /// <returns>The search options.</returns>
-        public static SearchOptions GetSearchOptionsOrDefault(this By by)
-        {
-            return (by as ExtendedBy)?.Options ?? new SearchOptions();
-        }
+        public static SearchOptions GetSearchOptionsOrDefault(this By by) =>
+            (by as ExtendedBy)?.Options ?? new SearchOptions();
 
         /// <summary>
         /// Converts to descriptive string.

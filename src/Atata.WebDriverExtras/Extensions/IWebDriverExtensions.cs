@@ -2,7 +2,6 @@
 using System.Drawing;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Internal;
 
 namespace Atata
 {

@@ -2,14 +2,10 @@
 {
     public class XPathBuilder : XPathBuilder<XPathBuilder>
     {
-        public static implicit operator string(XPathBuilder builder)
-        {
-            return builder.XPath;
-        }
+        public static implicit operator string(XPathBuilder builder) =>
+            builder.XPath;
 
-        protected override XPathBuilder CreateInstance()
-        {
-            return new XPathBuilder();
-        }
+        protected override XPathBuilder CreateInstance() =>
+            new XPathBuilder();
     }
 }

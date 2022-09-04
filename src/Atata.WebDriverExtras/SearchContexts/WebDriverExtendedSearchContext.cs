@@ -20,9 +20,7 @@ namespace Atata
         {
         }
 
-        public bool TitleContains(string text)
-        {
-            return Until(x => x.TitleContains(text));
-        }
+        public bool TitleContains(string text) =>
+            Until(x => x.TitleContains(text));
     }
 }

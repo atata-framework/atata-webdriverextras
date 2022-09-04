@@ -8,16 +8,14 @@ namespace Atata
     /// </summary>
     public static class ExceptionFactory
     {
-        public static NoSuchElementException CreateForNoSuchElement(string elementName = null, By by = null, ISearchContext searchContext = null)
-        {
-            return CreateForNoSuchElement(
+        public static NoSuchElementException CreateForNoSuchElement(string elementName = null, By by = null, ISearchContext searchContext = null) =>
+            CreateForNoSuchElement(
                 new SearchFailureData
                 {
                     ElementName = elementName,
                     By = by,
                     SearchContext = searchContext
                 });
-        }
 
         /// <summary>
         /// Creates an instance of <see cref="NoSuchElementException"/> with message generated using <paramref name="searchFailureData"/>.
@@ -31,16 +29,14 @@ namespace Atata
             return new NoSuchElementException(message);
         }
 
-        public static NotMissingElementException CreateForNotMissingElement(string elementName = null, By by = null, ISearchContext searchContext = null)
-        {
-            return CreateForNotMissingElement(
-               new SearchFailureData
-               {
-                   ElementName = elementName,
-                   By = by,
-                   SearchContext = searchContext
-               });
-        }
+        public static NotMissingElementException CreateForNotMissingElement(string elementName = null, By by = null, ISearchContext searchContext = null) =>
+            CreateForNotMissingElement(
+                new SearchFailureData
+                {
+                    ElementName = elementName,
+                    By = by,
+                    SearchContext = searchContext
+                });
 
         /// <summary>
         /// Creates an instance of <see cref="NotMissingElementException"/> with message generated using <paramref name="searchFailureData"/>.

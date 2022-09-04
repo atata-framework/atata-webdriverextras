@@ -30,9 +30,7 @@ namespace Atata.WebDriverExtras.Tests
         [TestCase("''a'b\"c''", ExpectedResult = "concat(\"''\",'a',\"'\",'b\"c',\"''\")")]
         [TestCase("'''a'''b\"c'''", ExpectedResult = "concat(\"'''\",'a',\"'''\",'b\"c',\"'''\")")]
         [TestCase("''\"''", ExpectedResult = "concat(\"''\",'\"',\"''\")")]
-        public string XPathString_ConvertTo(string value)
-        {
-            return XPathString.ConvertTo(value);
-        }
+        public string XPathString_ConvertTo(string value) =>
+            XPathString.ConvertTo(value);
     }
 }

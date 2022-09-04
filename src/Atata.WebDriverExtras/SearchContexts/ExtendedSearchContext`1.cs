@@ -190,21 +190,17 @@ namespace Atata
             return wait.Until(condition);
         }
 
-        public bool Exists(By by)
-        {
-            return Find(by) != null;
-        }
+        public bool Exists(By by) =>
+            Find(by) != null;
 
         public bool Missing(By by)
         {
             SearchOptions options = by.GetSearchOptionsOrDefault();
 
-            bool FindNoElement(T context)
-            {
-                return options.Visibility == Visibility.Any
+            bool FindNoElement(T context) =>
+                options.Visibility == Visibility.Any
                     ? !context.FindElements(by).Any()
                     : !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
-            }
 
             Stopwatch searchWatch = Stopwatch.StartNew();
 
@@ -229,10 +225,8 @@ namespace Atata
             }
         }
 
-        public bool MissingAll(params By[] byArray)
-        {
-            return MissingAll(byArray.ToDictionary(x => x, x => (ISearchContext)Context));
-        }
+        public bool MissingAll(params By[] byArray) =>
+            MissingAll(byArray.ToDictionary(x => x, x => (ISearchContext)Context));
 
         public bool MissingAll(Dictionary<By, ISearchContext> byContextPairs)
         {
@@ -290,10 +284,8 @@ namespace Atata
             }
         }
 
-        private static bool IsMissing(ISearchContext context, By by, SearchOptions options)
-        {
-            return !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
-        }
+        private static bool IsMissing(ISearchContext context, By by, SearchOptions options) =>
+            !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
 
         private IWait<T> CreateWait(RetryOptions options)
         {

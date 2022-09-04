@@ -16,10 +16,8 @@ namespace Atata
         /// <returns>
         ///   <c>true</c> if the type is a subclass of the specified raw generic type; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsSubclassOfRawGeneric(this Type type, Type genericType)
-        {
-            return type.GetDepthOfInheritanceOfRawGeneric(genericType) != null;
-        }
+        public static bool IsSubclassOfRawGeneric(this Type type, Type genericType) =>
+            type.GetDepthOfInheritanceOfRawGeneric(genericType) != null;
 
         /// <summary>
         /// Gets the depth of inheritance of the specified raw generic type (e.g. <c>typeof(List&lt;&gt;)</c>).
@@ -55,10 +53,8 @@ namespace Atata
         /// <returns>
         ///   <c>true</c> if it implements the generic interface type; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsImplementGenericInterface(this Type type, Type genericType)
-        {
-            return type.GetGenericInterfaceType(genericType) != null;
-        }
+        public static bool IsImplementGenericInterface(this Type type, Type genericType) =>
+            type.GetGenericInterfaceType(genericType) != null;
 
         /// <summary>
         /// Gets an actual type of the specified generic interface that this type implements.
@@ -66,9 +62,7 @@ namespace Atata
         /// <param name="type">The type.</param>
         /// <param name="genericType">Type of the generic interface.</param>
         /// <returns>The actual generic interface type or <see langword="null"/>.</returns>
-        public static Type GetGenericInterfaceType(this Type type, Type genericType)
-        {
-            return type.GetInterfaces().FirstOrDefault(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericType);
-        }
+        public static Type GetGenericInterfaceType(this Type type, Type genericType) =>
+            type.GetInterfaces().FirstOrDefault(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericType);
     }
 }

@@ -39,15 +39,11 @@ namespace Atata
             return this;
         }
 
-        public override IWebElement FindElement(ISearchContext context)
-        {
-            return By.FindElement(context);
-        }
+        public override IWebElement FindElement(ISearchContext context) =>
+            By.FindElement(context);
 
-        public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
-        {
-            return By.FindElements(context);
-        }
+        public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context) =>
+            By.FindElements(context);
 
         public string GetElementNameWithKind()
         {
@@ -64,9 +60,7 @@ namespace Atata
                 return null;
         }
 
-        public override string ToString()
-        {
-            return By.ToString();
-        }
+        public override string ToString() =>
+            By.ToString();
     }
 }

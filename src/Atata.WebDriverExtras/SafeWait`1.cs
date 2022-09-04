@@ -156,9 +156,7 @@ namespace Atata
             return false;
         }
 
-        private bool IsIgnoredException(Exception exception)
-        {
-            return _ignoredExceptions.Any(type => type.IsAssignableFrom(exception.GetType()));
-        }
+        private bool IsIgnoredException(Exception exception) =>
+            _ignoredExceptions.Any(type => type.IsAssignableFrom(exception.GetType()));
     }
 }

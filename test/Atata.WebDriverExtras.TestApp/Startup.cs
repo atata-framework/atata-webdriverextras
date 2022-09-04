@@ -5,10 +5,8 @@ namespace Atata.WebDriverExtras.TestApp
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
+        public void ConfigureServices(IServiceCollection services) =>
             services.AddRazorPages();
-        }
 
         public void Configure(IApplicationBuilder app)
         {
@@ -19,9 +17,7 @@ namespace Atata.WebDriverExtras.TestApp
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+                endpoints.MapRazorPages());
         }
     }
 }
