@@ -12,8 +12,13 @@ public abstract class UITestFixture
     protected IWebDriver Driver { get; private set; }
 
     [SetUp]
-    public virtual void SetUp() =>
-        Driver = new ChromeDriver();
+    public virtual void SetUp()
+    {
+        ChromeOptions options = new();
+        options.AddArguments("window-size=1200,800", "headless");
+
+        Driver = new ChromeDriver(options);
+    }
 
     [TearDown]
     public void TearDown()
