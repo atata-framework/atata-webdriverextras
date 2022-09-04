@@ -1,64 +1,61 @@
-﻿using System;
-using System.Diagnostics;
-using NUnit.Framework;
+﻿using System.Diagnostics;
 
-namespace Atata.WebDriverExtras.Tests
+namespace Atata.WebDriverExtras.Tests;
+
+public sealed class StopwatchAsserter : IDisposable
 {
-    public sealed class StopwatchAsserter : IDisposable
+    private readonly TimeSpan _expectedTime;
+
+    private readonly TimeSpan _upperToleranceTime;
+
+    private readonly TimeSpan _lowerToleranceTime;
+
+    private readonly Stopwatch _watch;
+
+    private bool _doAssertOnDispose = true;
+
+    public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime)
+        : this(expectedTime, upperToleranceTime, TimeSpan.Zero)
     {
-        private readonly TimeSpan _expectedTime;
+    }
 
-        private readonly TimeSpan _upperToleranceTime;
+    public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime, TimeSpan lowerToleranceTime)
+    {
+        _expectedTime = expectedTime;
+        _upperToleranceTime = upperToleranceTime;
+        _lowerToleranceTime = lowerToleranceTime;
 
-        private readonly TimeSpan _lowerToleranceTime;
+        _watch = Stopwatch.StartNew();
+    }
 
-        private readonly Stopwatch _watch;
+    public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1, double lowerToleranceSeconds = 0.001) =>
+        new(
+            TimeSpan.FromSeconds(seconds),
+            TimeSpan.FromSeconds(upperToleranceSeconds),
+            TimeSpan.FromSeconds(lowerToleranceSeconds));
 
-        private bool _doAssertOnDispose = true;
-
-        public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime)
-            : this(expectedTime, upperToleranceTime, TimeSpan.Zero)
+    public TResult Execute<TResult>(Func<TResult> function)
+    {
+        try
         {
+            return function.Invoke();
         }
-
-        public StopwatchAsserter(TimeSpan expectedTime, TimeSpan upperToleranceTime, TimeSpan lowerToleranceTime)
+        catch (Exception)
         {
-            _expectedTime = expectedTime;
-            _upperToleranceTime = upperToleranceTime;
-            _lowerToleranceTime = lowerToleranceTime;
-
-            _watch = Stopwatch.StartNew();
+            _doAssertOnDispose = false;
+            throw;
         }
-
-        public static StopwatchAsserter WithinSeconds(double seconds, double upperToleranceSeconds = 1, double lowerToleranceSeconds = 0.001) =>
-            new StopwatchAsserter(
-                TimeSpan.FromSeconds(seconds),
-                TimeSpan.FromSeconds(upperToleranceSeconds),
-                TimeSpan.FromSeconds(lowerToleranceSeconds));
-
-        public TResult Execute<TResult>(Func<TResult> function)
+        finally
         {
-            try
-            {
-                return function.Invoke();
-            }
-            catch (Exception)
-            {
-                _doAssertOnDispose = false;
-                throw;
-            }
-            finally
-            {
-                Dispose();
-            }
+            Dispose();
         }
+    }
 
-        public void Dispose()
-        {
-            _watch.Stop();
+    public void Dispose()
+    {
+        _watch.Stop();
 
-            if (_doAssertOnDispose)
-                Assert.That(_watch.Elapsed, Is.InRange(_expectedTime - _lowerToleranceTime, _expectedTime + _upperToleranceTime));
-        }
+        if (_doAssertOnDispose)
+            Assert.That(_watch.Elapsed, Is.InRange(_expectedTime - _lowerToleranceTime, _expectedTime + _upperToleranceTime));
     }
 }

@@ -1,20 +1,16 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿namespace Atata.WebDriverExtras.Tests;
 
-namespace Atata.WebDriverExtras.Tests
+public class IWebElementExtensionsTests : UITestFixture
 {
-    public class IWebElementExtensionsTests : UITestFixture
+    [Test]
+    public void IWebElementExtensions_GetElementId()
     {
-        [Test]
-        public void IWebElementExtensions_GetElementId()
-        {
-            GoTo("static");
+        GoTo("static");
 
-            IWebElement element = Driver.Get(By.Id("first-name"));
+        IWebElement element = Driver.Get(By.Id("first-name"));
 
-            string id = element.GetElementId();
+        string id = element.GetElementId();
 
-            Assert.That(id, Is.Not.Null.And.Not.Empty);
-        }
+        Assert.That(id, Is.Not.Null.And.Not.Empty);
     }
 }

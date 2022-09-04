@@ -1,78 +1,74 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using System.Collections.ObjectModel;
 
-namespace Atata.WebDriverExtras.Tests
+namespace Atata.WebDriverExtras.Tests;
+
+public static class IWebDriverExtensionsTests
 {
-    public static class IWebDriverExtensionsTests
+    public class As : UITestFixture
     {
-        public class As : UITestFixture
+        [Test]
+        public void WithNull() =>
+            Assert.Throws<ArgumentNullException>(() =>
+                ((IWebDriver)null).As<IJavaScriptExecutor>());
+
+        [Test]
+        public void DirectInterface() =>
+            Assert.That(Driver.As<IJavaScriptExecutor>(), Is.EqualTo(Driver));
+
+        [Test]
+        public void MissingInterface() =>
+            Assert.Throws<NotSupportedException>(() =>
+                Driver.As<IEquatable<int>>());
+
+        [Test]
+        public void InterfaceInWrappedDriver()
         {
-            [Test]
-            public void WithNull() =>
-                Assert.Throws<ArgumentNullException>(() =>
-                    ((IWebDriver)null).As<IJavaScriptExecutor>());
+            using IWebDriver wrapper = new DriverWrapper(Driver);
+            Assert.That(wrapper.As<IJavaScriptExecutor>(), Is.EqualTo(Driver));
+        }
 
-            [Test]
-            public void DirectInterface() =>
-                Assert.That(Driver.As<IJavaScriptExecutor>(), Is.EqualTo(Driver));
+        [Test]
+        public void MissingInterfaceInWrappedDriver()
+        {
+            using IWebDriver wrapper = new DriverWrapper(Driver);
+            Assert.Throws<NotSupportedException>(() =>
+                wrapper.As<IEquatable<int>>());
+        }
 
-            [Test]
-            public void MissingInterface() =>
-                Assert.Throws<NotSupportedException>(() =>
-                    Driver.As<IEquatable<int>>());
+        private class DriverWrapper : IWebDriver, IWrapsDriver
+        {
+            public DriverWrapper(IWebDriver webDriver) =>
+                WrappedDriver = webDriver;
 
-            [Test]
-            public void InterfaceInWrappedDriver()
+            public string Url { get; set; }
+
+            public string Title { get; }
+
+            public string PageSource { get; }
+
+            public string CurrentWindowHandle { get; }
+
+            public ReadOnlyCollection<string> WindowHandles { get; }
+
+            public IWebDriver WrappedDriver { get; }
+
+            public void Close() => throw new NotSupportedException();
+
+            public void Dispose()
             {
-                using IWebDriver wrapper = new DriverWrapper(Driver);
-                Assert.That(wrapper.As<IJavaScriptExecutor>(), Is.EqualTo(Driver));
             }
 
-            [Test]
-            public void MissingInterfaceInWrappedDriver()
-            {
-                using IWebDriver wrapper = new DriverWrapper(Driver);
-                Assert.Throws<NotSupportedException>(() =>
-                    wrapper.As<IEquatable<int>>());
-            }
+            public IWebElement FindElement(By by) => throw new NotSupportedException();
 
-            private class DriverWrapper : IWebDriver, IWrapsDriver
-            {
-                public DriverWrapper(IWebDriver webDriver) =>
-                    WrappedDriver = webDriver;
+            public ReadOnlyCollection<IWebElement> FindElements(By by) => throw new NotSupportedException();
 
-                public string Url { get; set; }
+            public IOptions Manage() => throw new NotSupportedException();
 
-                public string Title { get; }
+            public INavigation Navigate() => throw new NotSupportedException();
 
-                public string PageSource { get; }
+            public void Quit() => throw new NotSupportedException();
 
-                public string CurrentWindowHandle { get; }
-
-                public ReadOnlyCollection<string> WindowHandles { get; }
-
-                public IWebDriver WrappedDriver { get; }
-
-                public void Close() => throw new NotSupportedException();
-
-                public void Dispose()
-                {
-                }
-
-                public IWebElement FindElement(By by) => throw new NotSupportedException();
-
-                public ReadOnlyCollection<IWebElement> FindElements(By by) => throw new NotSupportedException();
-
-                public IOptions Manage() => throw new NotSupportedException();
-
-                public INavigation Navigate() => throw new NotSupportedException();
-
-                public void Quit() => throw new NotSupportedException();
-
-                public ITargetLocator SwitchTo() => throw new NotSupportedException();
-            }
+            public ITargetLocator SwitchTo() => throw new NotSupportedException();
         }
     }
 }

@@ -1,283 +1,278 @@
-﻿using System;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿namespace Atata.WebDriverExtras.Tests;
 
-namespace Atata.WebDriverExtras.Tests
+[TestFixture]
+public class SearchFailureDataTests
 {
-    [TestFixture]
-    public class SearchFailureDataTests
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_Empty()
     {
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_Empty()
+        SearchFailureData data = new SearchFailureData();
+
+        string expected = "Unable to locate element.";
+
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void SearchFailureData_ToStringForNotMissingElement_Empty()
+    {
+        SearchFailureData data = new SearchFailureData();
+
+        string expected = "Able to locate element that should be missing.";
+
+        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_By()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData();
+            By = By.XPath(".//a")
+        };
 
-            string expected = "Unable to locate element.";
-
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
-
-        [Test]
-        public void SearchFailureData_ToStringForNotMissingElement_Empty()
-        {
-            SearchFailureData data = new SearchFailureData();
-
-            string expected = "Able to locate element that should be missing.";
-
-            Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
-        }
-
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_By()
-        {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a")
-            };
-
-            string expected =
+        string expected =
 @"Unable to locate element:
 - By: XPath "".//a""";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_ElementName_By()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_ElementName_By()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                ElementName = "anchor",
-                By = By.XPath(".//a")
-            };
+            ElementName = "anchor",
+            By = By.XPath(".//a")
+        };
 
-            string expected =
+        string expected =
 @"Unable to locate ""anchor"" element:
 - By: XPath "".//a""";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNotMissingElement_ElementName_By()
+    [Test]
+    public void SearchFailureData_ToStringForNotMissingElement_ElementName_By()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                ElementName = "anchor",
-                By = By.XPath(".//a")
-            };
+            ElementName = "anchor",
+            By = By.XPath(".//a")
+        };
 
-            string expected =
+        string expected =
 @"Able to locate ""anchor"" element that should be missing:
 - By: XPath "".//a""";
 
-            Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_ByWithElementNameAndKind()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_ByWithElementNameAndKind()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a").Named("Any").OfKind("anchor")
-            };
+            By = By.XPath(".//a").Named("Any").OfKind("anchor")
+        };
 
-            string expected =
+        string expected =
 @"Unable to locate ""Any"" anchor element:
 - By: XPath "".//a""";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_ElementName_By_SearchOptions()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_ElementName_By_SearchOptions()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                ElementName = "anchor",
-                By = By.XPath(".//a"),
-                SearchOptions = SearchOptions.Visible()
-            };
+            ElementName = "anchor",
+            By = By.XPath(".//a"),
+            SearchOptions = SearchOptions.Visible()
+        };
 
-            string expected =
+        string expected =
 $@"Unable to locate visible ""anchor"" element:
 - By: XPath "".//a""
 - Search options: {data.SearchOptions}";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_ElementName_By_SearchTime_SearchOptions()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_ElementName_By_SearchTime_SearchOptions()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                ElementName = "anchor",
-                By = By.XPath(".//a"),
-                SearchTime = TimeSpan.FromSeconds(1.5d),
-                SearchOptions = SearchOptions.Hidden()
-            };
+            ElementName = "anchor",
+            By = By.XPath(".//a"),
+            SearchTime = TimeSpan.FromSeconds(1.5d),
+            SearchOptions = SearchOptions.Hidden()
+        };
 
-            string expected =
+        string expected =
 $@"Unable to locate hidden ""anchor"" element:
 - By: XPath "".//a""
 - Search time: {data.SearchTime.Value.ToShortIntervalString()}
 - Search options: {data.SearchOptions}";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNotMissingElement_ElementName_By_SearchTime_SearchOptions()
+    [Test]
+    public void SearchFailureData_ToStringForNotMissingElement_ElementName_By_SearchTime_SearchOptions()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                ElementName = "anchor",
-                By = By.XPath(".//a"),
-                SearchTime = TimeSpan.FromSeconds(1.5d),
-                SearchOptions = SearchOptions.Hidden()
-            };
+            ElementName = "anchor",
+            By = By.XPath(".//a"),
+            SearchTime = TimeSpan.FromSeconds(1.5d),
+            SearchOptions = SearchOptions.Hidden()
+        };
 
-            string expected =
+        string expected =
 $@"Able to locate hidden ""anchor"" element that should be missing:
 - By: XPath "".//a""
 - Search time: {data.SearchTime.Value.ToShortIntervalString()}
 - Search options: {data.SearchOptions}";
 
-            Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_By_AlikeElementsWithInverseVisibility()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_By_AlikeElementsWithInverseVisibility()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
-            };
+            By = By.XPath(".//a"),
+            AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
+        };
 
-            string expected =
+        string expected =
 $@"Unable to locate element:
 - By: XPath "".//a""";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_By_SearchOptions_AlikeElementsWithInverseVisibility_1()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_By_SearchOptions_AlikeElementsWithInverseVisibility_1()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchOptions = SearchOptions.Visible(),
-                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null) }
-            };
+            By = By.XPath(".//a"),
+            SearchOptions = SearchOptions.Visible(),
+            AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null) }
+        };
 
-            string expected =
+        string expected =
 $@"Unable to locate visible element:
 - By: XPath "".//a""
 - Search options: {data.SearchOptions}
 - Notice: Found 1 element matching specified selector but hidden";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchOptions = SearchOptions.Visible(),
-                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
-            };
+            By = By.XPath(".//a"),
+            SearchOptions = SearchOptions.Visible(),
+            AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
+        };
 
-            string expected =
+        string expected =
 $@"Unable to locate visible element:
 - By: XPath "".//a""
 - Search options: {data.SearchOptions}
 - Notice: Found 2 elements matching specified selector but hidden";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNotMissingElement_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
+    [Test]
+    public void SearchFailureData_ToStringForNotMissingElement_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchOptions = SearchOptions.Visible(),
-                AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
-            };
+            By = By.XPath(".//a"),
+            SearchOptions = SearchOptions.Visible(),
+            AlikeElementsWithInverseVisibility = new[] { new WebElement(null, null), new WebElement(null, null) }
+        };
 
-            string expected =
+        string expected =
 $@"Able to locate visible element that should be missing:
 - By: XPath "".//a""
 - Search options: {data.SearchOptions}";
 
-            Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_By_SearchContext()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_By_SearchContext()
+    {
+        IWebElement contextElement = StubWebElement.Div;
+
+        SearchFailureData data = new SearchFailureData
         {
-            IWebElement contextElement = StubWebElement.Div;
+            By = By.XPath(".//a"),
+            SearchContext = contextElement
+        };
 
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchContext = contextElement
-            };
-
-            string expected =
+        string expected =
 $@"Unable to locate element:
 - By: XPath "".//a""
 
 Context element:
 {contextElement.ToDetailedString()}";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNotMissingElement_By_SearchContext()
+    [Test]
+    public void SearchFailureData_ToStringForNotMissingElement_By_SearchContext()
+    {
+        IWebElement contextElement = StubWebElement.Div;
+
+        SearchFailureData data = new SearchFailureData
         {
-            IWebElement contextElement = StubWebElement.Div;
+            By = By.XPath(".//a"),
+            SearchContext = contextElement
+        };
 
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchContext = contextElement
-            };
-
-            string expected =
+        string expected =
 $@"Able to locate element that should be missing:
 - By: XPath "".//a""
 
 Context element:
 {contextElement.ToDetailedString()}";
 
-            Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+    }
 
-        [Test]
-        public void SearchFailureData_ToStringForNoSuchElement_SearchContext()
+    [Test]
+    public void SearchFailureData_ToStringForNoSuchElement_SearchContext()
+    {
+        IWebElement contextElement = StubWebElement.Div;
+
+        SearchFailureData data = new SearchFailureData
         {
-            IWebElement contextElement = StubWebElement.Div;
+            SearchContext = contextElement
+        };
 
-            SearchFailureData data = new SearchFailureData
-            {
-                SearchContext = contextElement
-            };
-
-            string expected =
+        string expected =
 $@"Unable to locate element:
 
 Context element:
 {contextElement.ToDetailedString()}";
 
-            Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
-        }
+        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
     }
 }

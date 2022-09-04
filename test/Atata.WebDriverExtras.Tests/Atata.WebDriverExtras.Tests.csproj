@@ -1,10 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
+    <Using Include="NUnit.Framework" />
+    <Using Include="OpenQA.Selenium" />
+    <Using Include="System.Collections" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Atata.Cli" Version="2.2.0" />
     <PackageReference Include="Atata.WebDriverSetup" Version="2.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
     <PackageReference Include="NUnit" Version="3.13.3" />

@@ -1,31 +1,30 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium.Chrome;
 
-namespace Atata.WebDriverExtras.Tests
+namespace Atata.WebDriverExtras.Tests;
+
+[TestFixture]
+public abstract class UITestFixture
 {
-    [TestFixture]
-    public abstract class UITestFixture
+    public const int TestAppPort = 57440;
+
+    public static string BaseUrl { get; } = $"http://localhost:{TestAppPort}/";
+
+    protected IWebDriver Driver { get; private set; }
+
+    [SetUp]
+    public virtual void SetUp() =>
+        Driver = new ChromeDriver();
+
+    [TearDown]
+    public void TearDown()
     {
-        public const string BaseUrl = "http://localhost:57440/";
+        Driver?.Close();
+        Driver?.Dispose();
+    }
 
-        protected IWebDriver Driver { get; private set; }
-
-        [SetUp]
-        public virtual void SetUp() =>
-            Driver = new ChromeDriver();
-
-        [TearDown]
-        public void TearDown()
-        {
-            Driver?.Close();
-            Driver?.Dispose();
-        }
-
-        protected IWebDriver GoTo(string relativeUrl)
-        {
-            Driver.Navigate().GoToUrl(BaseUrl + relativeUrl);
-            return Driver;
-        }
+    protected IWebDriver GoTo(string relativeUrl)
+    {
+        Driver.Navigate().GoToUrl(BaseUrl + relativeUrl);
+        return Driver;
     }
 }

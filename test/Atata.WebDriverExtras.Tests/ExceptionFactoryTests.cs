@@ -1,61 +1,57 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿namespace Atata.WebDriverExtras.Tests;
 
-namespace Atata.WebDriverExtras.Tests
+[TestFixture]
+public class ExceptionFactoryTests
 {
-    [TestFixture]
-    public class ExceptionFactoryTests
+    [Test]
+    public void ExceptionFactory_CreateForNoSuchElement_Null()
     {
-        [Test]
-        public void ExceptionFactory_CreateForNoSuchElement_Null()
+        var exception = ExceptionFactory.CreateForNoSuchElement(null);
+
+        string expectedMessage = new SearchFailureData().ToStringForNoSuchElement();
+
+        Assert.That(exception.Message, Is.EqualTo(expectedMessage));
+    }
+
+    [Test]
+    public void ExceptionFactory_CreateForNoSuchElement()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            var exception = ExceptionFactory.CreateForNoSuchElement(null);
+            By = By.XPath(".//a"),
+            SearchOptions = SearchOptions.Visible()
+        };
 
-            string expectedMessage = new SearchFailureData().ToStringForNoSuchElement();
+        var exception = ExceptionFactory.CreateForNoSuchElement(data);
 
-            Assert.That(exception.Message, Is.EqualTo(expectedMessage));
-        }
+        string expectedMessage = data.ToStringForNoSuchElement();
 
-        [Test]
-        public void ExceptionFactory_CreateForNoSuchElement()
+        Assert.That(exception.Message, Is.EqualTo(expectedMessage));
+    }
+
+    [Test]
+    public void ExceptionFactory_CreateForNotMissingElement_Null()
+    {
+        var exception = ExceptionFactory.CreateForNotMissingElement(null);
+
+        string expectedMessage = new SearchFailureData().ToStringForNotMissingElement();
+
+        Assert.That(exception.Message, Is.EqualTo(expectedMessage));
+    }
+
+    [Test]
+    public void ExceptionFactory_CreateForNotMissingElement()
+    {
+        SearchFailureData data = new SearchFailureData
         {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchOptions = SearchOptions.Visible()
-            };
+            By = By.XPath(".//a"),
+            SearchOptions = SearchOptions.Visible()
+        };
 
-            var exception = ExceptionFactory.CreateForNoSuchElement(data);
+        var exception = ExceptionFactory.CreateForNotMissingElement(data);
 
-            string expectedMessage = data.ToStringForNoSuchElement();
+        string expectedMessage = data.ToStringForNotMissingElement();
 
-            Assert.That(exception.Message, Is.EqualTo(expectedMessage));
-        }
-
-        [Test]
-        public void ExceptionFactory_CreateForNotMissingElement_Null()
-        {
-            var exception = ExceptionFactory.CreateForNotMissingElement(null);
-
-            string expectedMessage = new SearchFailureData().ToStringForNotMissingElement();
-
-            Assert.That(exception.Message, Is.EqualTo(expectedMessage));
-        }
-
-        [Test]
-        public void ExceptionFactory_CreateForNotMissingElement()
-        {
-            SearchFailureData data = new SearchFailureData
-            {
-                By = By.XPath(".//a"),
-                SearchOptions = SearchOptions.Visible()
-            };
-
-            var exception = ExceptionFactory.CreateForNotMissingElement(data);
-
-            string expectedMessage = data.ToStringForNotMissingElement();
-
-            Assert.That(exception.Message, Is.EqualTo(expectedMessage));
-        }
+        Assert.That(exception.Message, Is.EqualTo(expectedMessage));
     }
 }

@@ -1,55 +1,50 @@
-﻿using System;
-using System.Threading;
-using NUnit.Framework;
+﻿namespace Atata.WebDriverExtras.Tests;
 
-namespace Atata.WebDriverExtras.Tests
+[TestFixture]
+[Parallelizable(ParallelScope.None)]
+public class SafeWaitTests
 {
-    [TestFixture]
-    [Parallelizable(ParallelScope.None)]
-    public class SafeWaitTests
+    private SafeWait<object> _sut;
+
+    [SetUp]
+    public void SetUp() =>
+        _sut = new SafeWait<object>(new object())
+        {
+            Timeout = TimeSpan.FromSeconds(.3),
+            PollingInterval = TimeSpan.FromSeconds(.05)
+        };
+
+    [Test]
+    public void SafeWait_Success_Immediate()
     {
-        private SafeWait<object> _sut;
+        using (StopwatchAsserter.WithinSeconds(0, .01))
+            _sut.Until(_ => true);
+    }
 
-        [SetUp]
-        public void SetUp() =>
-            _sut = new SafeWait<object>(new object())
+    [Test]
+    public void SafeWait_Timeout()
+    {
+        using (StopwatchAsserter.WithinSeconds(.3, .015))
+            _sut.Until(_ => false);
+    }
+
+    [Test]
+    public void SafeWait_PollingInterval()
+    {
+        using (StopwatchAsserter.WithinSeconds(.3, .2))
+            _sut.Until(_ =>
             {
-                Timeout = TimeSpan.FromSeconds(.3),
-                PollingInterval = TimeSpan.FromSeconds(.05)
-            };
+                Thread.Sleep(TimeSpan.FromSeconds(.1));
+                return false;
+            });
+    }
 
-        [Test]
-        public void SafeWait_Success_Immediate()
-        {
-            using (StopwatchAsserter.WithinSeconds(0, .01))
-                _sut.Until(_ => true);
-        }
+    [Test]
+    public void SafeWait_PollingInterval_GreaterThanTimeout()
+    {
+        _sut.PollingInterval = TimeSpan.FromSeconds(1);
 
-        [Test]
-        public void SafeWait_Timeout()
-        {
-            using (StopwatchAsserter.WithinSeconds(.3, .015))
-                _sut.Until(_ => false);
-        }
-
-        [Test]
-        public void SafeWait_PollingInterval()
-        {
-            using (StopwatchAsserter.WithinSeconds(.3, .2))
-                _sut.Until(_ =>
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(.1));
-                    return false;
-                });
-        }
-
-        [Test]
-        public void SafeWait_PollingInterval_GreaterThanTimeout()
-        {
-            _sut.PollingInterval = TimeSpan.FromSeconds(1);
-
-            using (StopwatchAsserter.WithinSeconds(.3, .02))
-                _sut.Until(_ => false);
-        }
+        using (StopwatchAsserter.WithinSeconds(.3, .02))
+            _sut.Until(_ => false);
     }
 }
