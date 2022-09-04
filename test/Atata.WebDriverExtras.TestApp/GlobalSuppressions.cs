@@ -2,7 +2,6 @@
 
 #pragma warning disable S103 // Lines should not be too long
 
-[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.WebDriverExtras.TestApp.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)")]
-[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.WebDriverExtras.TestApp.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder)")]
+[assembly: SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.WebDriverExtras.TestApp.Program.Main(System.String[])")]
 
 #pragma warning restore S103 // Lines should not be too long
