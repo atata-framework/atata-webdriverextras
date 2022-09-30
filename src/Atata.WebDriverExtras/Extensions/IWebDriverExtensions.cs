@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.Interactions;
 
 namespace Atata
@@ -26,6 +27,16 @@ namespace Atata
         /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <see cref="ITakesScreenshot"/>.</exception>
         public static ITakesScreenshot AsScreenshotTaker(this IWebDriver webDriver) =>
             webDriver.As<ITakesScreenshot>();
+
+        /// <summary>
+        /// Casts the web driver to <see cref="IDevTools"/> type.
+        /// Considers <see cref="IWrapsDriver"/>.
+        /// </summary>
+        /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
+        /// <returns><paramref name="webDriver"/> casted to <see cref="IDevTools"/>.</returns>
+        /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <see cref="IDevTools"/>.</exception>
+        public static IDevTools AsDevTools(this IWebDriver webDriver) =>
+            webDriver.As<IDevTools>();
 
         /// <summary>
         /// Casts the web driver to the specified interface type.
