@@ -232,7 +232,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(5, .5))
             result = Driver.Try().MissingAll(_existingElementBy.Safely(), _anotherMissingElementBy.Safely());
 
         Assert.That(result, Is.False);
