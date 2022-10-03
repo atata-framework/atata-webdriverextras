@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
+using AssertIs = NUnit.Framework.Is;
+
 namespace Atata.WebDriverExtras.Tests;
 
 public static class IWebDriverExtensionsTests
@@ -13,7 +15,7 @@ public static class IWebDriverExtensionsTests
 
         [Test]
         public void HasInterface() =>
-            Assert.That(Driver.As<IJavaScriptExecutor>(), Is.EqualTo(Driver));
+            Assert.That(Driver.As<IJavaScriptExecutor>(), AssertIs.EqualTo(Driver));
 
         [Test]
         public void MissingInterface() =>
@@ -24,7 +26,7 @@ public static class IWebDriverExtensionsTests
         public void HasInterfaceInWrappedDriver()
         {
             using IWebDriver wrapper = new DriverWrapper(Driver);
-            Assert.That(wrapper.As<IJavaScriptExecutor>(), Is.EqualTo(Driver));
+            Assert.That(wrapper.As<IJavaScriptExecutor>(), AssertIs.EqualTo(Driver));
         }
 
         [Test]
@@ -33,6 +35,36 @@ public static class IWebDriverExtensionsTests
             using IWebDriver wrapper = new DriverWrapper(Driver);
             Assert.Throws<NotSupportedException>(() =>
                 wrapper.As<IEquatable<int>>());
+        }
+    }
+
+    public class Is : UITestFixture
+    {
+        [Test]
+        public void WithNull() =>
+            Assert.Throws<ArgumentNullException>(() =>
+                ((IWebDriver)null).Is<IJavaScriptExecutor>());
+
+        [Test]
+        public void HasInterface() =>
+            Assert.That(Driver.Is<IJavaScriptExecutor>(), AssertIs.True);
+
+        [Test]
+        public void MissingInterface() =>
+            Assert.That(Driver.Is<IEquatable<int>>(), AssertIs.False);
+
+        [Test]
+        public void HasInterfaceInWrappedDriver()
+        {
+            using IWebDriver wrapper = new DriverWrapper(Driver);
+            Assert.That(wrapper.Is<IJavaScriptExecutor>(), AssertIs.True);
+        }
+
+        [Test]
+        public void MissingInterfaceInWrappedDriver()
+        {
+            using IWebDriver wrapper = new DriverWrapper(Driver);
+            Assert.That(wrapper.Is<IEquatable<int>>(), AssertIs.False);
         }
     }
 
@@ -48,8 +80,8 @@ public static class IWebDriverExtensionsTests
         {
             bool result = Driver.TryAs<IJavaScriptExecutor>(out var casted);
 
-            Assert.That(result, Is.True);
-            Assert.That(casted, Is.EqualTo(Driver));
+            Assert.That(result, AssertIs.True);
+            Assert.That(casted, AssertIs.EqualTo(Driver));
         }
 
         [Test]
@@ -57,8 +89,8 @@ public static class IWebDriverExtensionsTests
         {
             bool result = Driver.TryAs<IEquatable<int>>(out var casted);
 
-            Assert.That(result, Is.False);
-            Assert.That(casted, Is.Null);
+            Assert.That(result, AssertIs.False);
+            Assert.That(casted, AssertIs.Null);
         }
 
         [Test]
@@ -68,8 +100,8 @@ public static class IWebDriverExtensionsTests
 
             bool result = Driver.TryAs<IJavaScriptExecutor>(out var casted);
 
-            Assert.That(result, Is.True);
-            Assert.That(casted, Is.EqualTo(Driver));
+            Assert.That(result, AssertIs.True);
+            Assert.That(casted, AssertIs.EqualTo(Driver));
         }
 
         [Test]
@@ -79,8 +111,8 @@ public static class IWebDriverExtensionsTests
 
             bool result = wrapper.TryAs<IEquatable<int>>(out var casted);
 
-            Assert.That(result, Is.False);
-            Assert.That(casted, Is.Null);
+            Assert.That(result, AssertIs.False);
+            Assert.That(casted, AssertIs.Null);
         }
     }
 

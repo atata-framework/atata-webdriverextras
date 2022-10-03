@@ -52,7 +52,20 @@ namespace Atata
                 : throw new NotSupportedException($"{webDriver.GetType().FullName} doesn't implement {typeof(TInterface).FullName}.");
 
         /// <summary>
+        /// Determines whether the web driver implements <typeparamref name="TInterface"/>.
+        /// Considers <see cref="IWrapsDriver"/>.
+        /// </summary>
+        /// <typeparam name="TInterface">The type of the interface.</typeparam>
+        /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
+        /// <returns>
+        ///   <c>true</c> if [is] [the specified web driver]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool Is<TInterface>(this IWebDriver webDriver) =>
+            webDriver.TryAs<TInterface>(out _);
+
+        /// <summary>
         /// Tries to cast the web driver to the specified interface type.
+        /// Considers <see cref="IWrapsDriver"/>.
         /// </summary>
         /// <typeparam name="TInterface">The type of the interface.</typeparam>
         /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
