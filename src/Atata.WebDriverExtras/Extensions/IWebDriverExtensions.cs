@@ -47,13 +47,40 @@ namespace Atata
         /// <returns><paramref name="webDriver"/> casted to <typeparamref name="TInterface"/>.</returns>
         /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <typeparamref name="TInterface"/>.</exception>
         public static TInterface As<TInterface>(this IWebDriver webDriver) =>
-            webDriver is null
-                ? throw new ArgumentNullException(nameof(webDriver))
-                : webDriver is TInterface castedWebDriver
-                    ? castedWebDriver
-                    : webDriver is IWrapsDriver webDriverWrapper
-                        ? webDriverWrapper.WrappedDriver.As<TInterface>()
-                        : throw new NotSupportedException($"{webDriver.GetType().FullName} doesn't implement {typeof(TInterface).FullName}.");
+            webDriver.TryAs(out TInterface castedWebDriver)
+                ? castedWebDriver
+                : throw new NotSupportedException($"{webDriver.GetType().FullName} doesn't implement {typeof(TInterface).FullName}.");
+
+        /// <summary>
+        /// Tries to cast the web driver to the specified interface type.
+        /// </summary>
+        /// <typeparam name="TInterface">The type of the interface.</typeparam>
+        /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
+        /// <param name="castedWebDriver">The casted web driver.</param>
+        /// <returns>
+        /// <see langword="true"/> if <paramref name="webDriver"/> can be casted to <typeparamref name="TInterface"/>;
+        /// otherwise, <see langword="false"/>.
+        /// </returns>
+        public static bool TryAs<TInterface>(this IWebDriver webDriver, out TInterface castedWebDriver)
+        {
+            if (webDriver is null)
+                throw new ArgumentNullException(nameof(webDriver));
+
+            if (webDriver is TInterface casted)
+            {
+                castedWebDriver = casted;
+                return true;
+            }
+            else if (webDriver is IWrapsDriver webDriverWrapper)
+            {
+                return webDriverWrapper.WrappedDriver.TryAs(out castedWebDriver);
+            }
+            else
+            {
+                castedWebDriver = default;
+                return false;
+            }
+        }
 
         public static T Maximize<T>(this T driver)
             where T : IWebDriver
