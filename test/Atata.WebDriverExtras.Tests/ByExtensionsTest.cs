@@ -27,7 +27,7 @@ public class ByExtensionsTest : UITestFixture
         var elements = Driver.GetAll(_defaultChain.Visible());
 
         Assert.That(elements, Has.Count.EqualTo(4));
-        Assert.That(elements.Last().Text, Is.EqualTo("Item 5"));
+        Assert.That(elements[^1].Text, Is.EqualTo("Item 5"));
     }
 
     [Test]

@@ -33,7 +33,7 @@ namespace Atata
             if (!Items.Any())
                 return new List<IWebElement>().AsReadOnly();
 
-            List<IWebElement> elements = Items.First().FindElements(context).ToList();
+            List<IWebElement> elements = Items[0].FindElements(context).ToList();
 
             foreach (By by in Items.Skip(1))
             {

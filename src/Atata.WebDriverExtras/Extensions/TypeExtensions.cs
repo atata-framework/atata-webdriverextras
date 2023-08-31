@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Atata
 {
@@ -63,6 +62,6 @@ namespace Atata
         /// <param name="genericType">Type of the generic interface.</param>
         /// <returns>The actual generic interface type or <see langword="null"/>.</returns>
         public static Type GetGenericInterfaceType(this Type type, Type genericType) =>
-            type.GetInterfaces().FirstOrDefault(x => x.IsGenericType && x.GetGenericTypeDefinition() == genericType);
+            Array.Find(type.GetInterfaces(), x => x.IsGenericType && x.GetGenericTypeDefinition() == genericType);
     }
 }

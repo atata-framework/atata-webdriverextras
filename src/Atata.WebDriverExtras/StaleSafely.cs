@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using OpenQA.Selenium;
 
 namespace Atata
@@ -13,7 +14,7 @@ namespace Atata
             action.CheckNotNull(nameof(action));
 
             TimeSpan workingTimeout = timeout;
-            DateTime startTime = DateTime.Now;
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
             while (true)
             {
@@ -25,7 +26,7 @@ namespace Atata
                 {
                     onExceptionCallback?.Invoke();
 
-                    TimeSpan spentTime = DateTime.Now - startTime;
+                    TimeSpan spentTime = stopwatch.Elapsed;
 
                     if (spentTime > timeout)
                         throw ExceptionFactory.CreateForTimeout(spentTime, exception);
@@ -42,7 +43,7 @@ namespace Atata
             options = options ?? new SearchOptions();
 
             SearchOptions workingOptions = options.Clone();
-            DateTime startTime = DateTime.Now;
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
             while (true)
             {
@@ -54,7 +55,7 @@ namespace Atata
                 {
                     onExceptionCallback?.Invoke();
 
-                    TimeSpan spentTime = DateTime.Now - startTime;
+                    TimeSpan spentTime = stopwatch.Elapsed;
 
                     if (spentTime > options.Timeout)
                         throw ExceptionFactory.CreateForTimeout(spentTime, exception);
@@ -69,7 +70,7 @@ namespace Atata
             action.CheckNotNull(nameof(action));
 
             TimeSpan workingTimeout = timeout;
-            DateTime startTime = DateTime.Now;
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
             while (true)
             {
@@ -82,7 +83,7 @@ namespace Atata
                 {
                     onExceptionCallback?.Invoke();
 
-                    TimeSpan spentTime = DateTime.Now - startTime;
+                    TimeSpan spentTime = stopwatch.Elapsed;
 
                     if (spentTime > timeout)
                         throw ExceptionFactory.CreateForTimeout(spentTime, exception);
@@ -99,7 +100,7 @@ namespace Atata
             options = options ?? new SearchOptions();
 
             SearchOptions workingOptions = options.Clone();
-            DateTime startTime = DateTime.Now;
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
             while (true)
             {
@@ -112,7 +113,7 @@ namespace Atata
                 {
                     onExceptionCallback?.Invoke();
 
-                    TimeSpan spentTime = DateTime.Now - startTime;
+                    TimeSpan spentTime = stopwatch.Elapsed;
 
                     if (spentTime > options.Timeout)
                         throw ExceptionFactory.CreateForTimeout(spentTime, exception);
