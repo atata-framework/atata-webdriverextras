@@ -210,7 +210,7 @@ namespace Atata
 
             if (!options.IsSafely && !isMissing)
             {
-                throw ExceptionFactory.CreateForNotMissingElement(
+                throw ElementExceptionFactory.CreateForNotMissing(
                     new SearchFailureData
                     {
                         By = by,
@@ -269,7 +269,7 @@ namespace Atata
             {
                 By firstLeftBy = leftBys.FirstOrDefault();
 
-                throw ExceptionFactory.CreateForNotMissingElement(
+                throw ElementExceptionFactory.CreateForNotMissing(
                     new SearchFailureData
                     {
                         By = firstLeftBy,

@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 
 namespace Atata
 {
+    [Obsolete("Use " + nameof(ElementNotMissingException) + " instead.")] // Obsolete since v2.3.0.
     [Serializable]
     public class NotMissingElementException : WebDriverException
     {

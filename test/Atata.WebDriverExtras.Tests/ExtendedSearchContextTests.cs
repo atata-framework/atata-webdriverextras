@@ -185,7 +185,7 @@ public class ExtendedSearchContextTests : UITestFixture
         GoTo("static");
 
         using (StopwatchAsserter.WithinSeconds(5, .3))
-            Assert.Throws<NotMissingElementException>(() =>
+            Assert.Throws<ElementNotMissingException>(() =>
                 Driver.Try().Missing(_existingElementBy.Unsafely()));
     }
 
@@ -221,7 +221,7 @@ public class ExtendedSearchContextTests : UITestFixture
         GoTo("static");
 
         using (StopwatchAsserter.WithinSeconds(5, .3))
-            Assert.Throws<NotMissingElementException>(() =>
+            Assert.Throws<ElementNotMissingException>(() =>
                 Driver.Try().MissingAll(_existingElementBy.Unsafely(), _anotherMissingElementBy.Unsafely()));
     }
 
