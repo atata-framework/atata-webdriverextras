@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace Atata
 {
     /// <summary>
-    /// The exception that is thrown during a waiting for a particular element to be missing, but it was present.
+    /// The exception that is thrown when the expected missing element is actually found.
     /// </summary>
     [Serializable]
     public class ElementNotMissingException : Exception
