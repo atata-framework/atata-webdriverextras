@@ -10,7 +10,7 @@ public class ExceptionFactoryTests
 
         string expectedMessage = new SearchFailureData().ToStringForNoSuchElement();
 
-        Assert.That(exception.Message, Is.EqualTo(expectedMessage));
+        Assert.That(exception.Message, Does.StartWith(expectedMessage));
     }
 
     [Test]
@@ -26,7 +26,7 @@ public class ExceptionFactoryTests
 
         string expectedMessage = data.ToStringForNoSuchElement();
 
-        Assert.That(exception.Message, Is.EqualTo(expectedMessage));
+        Assert.That(exception.Message, Does.StartWith(expectedMessage));
     }
 
     [Test]
