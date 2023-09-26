@@ -12,7 +12,7 @@ public class ExtendedSearchContextTests : UITestFixture
     private readonly By _hiddenElementBy = By.Id("hidden-input");
 
     [Test]
-    public void ExtendedSearchContext_Get_Immediate()
+    public void Get_Immediate()
     {
         GoTo("static");
 
@@ -25,7 +25,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_Safely()
+    public void Get_Safely()
     {
         GoTo("static");
 
@@ -38,17 +38,17 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_Unsafely()
+    public void Get_Unsafely()
     {
         GoTo("static");
 
         using (StopwatchAsserter.WithinSeconds(5, .3))
-            Assert.Throws<NoSuchElementException>(() =>
+            Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Get(_missingElementBy.Unsafely()));
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_Hidden()
+    public void Get_Hidden()
     {
         GoTo("static");
 
@@ -60,7 +60,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_OfAnyVisibility()
+    public void Get_OfAnyVisibility()
     {
         GoTo("static");
 
@@ -72,27 +72,27 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_Timeout()
+    public void Get_Timeout()
     {
         GoTo("static");
 
         using (StopwatchAsserter.WithinSeconds(3, .3))
-            Assert.Throws<NoSuchElementException>(() =>
+            Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Get(_missingElementBy.Within(TimeSpan.FromSeconds(3))));
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_Timeout_ButHidden()
+    public void Get_Timeout_ButHidden()
     {
         GoTo("static");
 
         using (StopwatchAsserter.WithinSeconds(3, .3))
-            Assert.Throws<NoSuchElementException>(() =>
+            Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Get(_hiddenElementBy.Visible().Within(TimeSpan.FromSeconds(3))));
     }
 
     [Test]
-    public void ExtendedSearchContext_Get_Retry()
+    public void Get_Retry()
     {
         GoTo("dynamic");
 
@@ -105,17 +105,17 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Try_Get_Timeout()
+    public void Try_Get_Timeout()
     {
         GoTo("static");
 
         using (StopwatchAsserter.WithinSeconds(3, .3))
-            Assert.Throws<NoSuchElementException>(() =>
+            Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Try(TimeSpan.FromSeconds(3)).Get(_missingElementBy));
     }
 
     [Test]
-    public void ExtendedSearchContext_Try_Until_Immediate()
+    public void Try_Until_Immediate()
     {
         GoTo("static");
 
@@ -128,7 +128,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Try_Until_DefaultTimeout()
+    public void Try_Until_DefaultTimeout()
     {
         GoTo("static");
 
@@ -141,7 +141,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Try_Until_TimeoutOfTry()
+    public void Try_Until_TimeoutOfTry()
     {
         GoTo("static");
 
@@ -154,7 +154,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Try_Until_TimeoutOfUntil()
+    public void Try_Until_TimeoutOfUntil()
     {
         GoTo("static");
 
@@ -167,7 +167,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Missing()
+    public void Missing()
     {
         GoTo("static");
 
@@ -180,7 +180,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Missing_Timeout_Unsafely()
+    public void Missing_Timeout_Unsafely()
     {
         GoTo("static");
 
@@ -190,7 +190,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_Missing_Timeout_Safely()
+    public void Missing_Timeout_Safely()
     {
         GoTo("static");
 
@@ -203,7 +203,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_MissingAll()
+    public void MissingAll()
     {
         GoTo("static");
 
@@ -216,7 +216,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_MissingAll_Timeout_Unsafely()
+    public void MissingAll_Timeout_Unsafely()
     {
         GoTo("static");
 
@@ -226,7 +226,7 @@ public class ExtendedSearchContextTests : UITestFixture
     }
 
     [Test]
-    public void ExtendedSearchContext_MissingAll_Timeout_Safely()
+    public void MissingAll_Timeout_Safely()
     {
         GoTo("static");
 

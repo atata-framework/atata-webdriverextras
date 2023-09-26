@@ -25,7 +25,7 @@ namespace Atata
             ReadOnlyCollection<IWebElement> elements = FindElements(context);
 
             return elements.FirstOrDefault()
-                ?? throw ExceptionFactory.CreateForNoSuchElement(by: this, searchContext: context);
+                ?? throw ElementExceptionFactory.CreateForNotFound(by: this, searchContext: context);
         }
 
         public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)

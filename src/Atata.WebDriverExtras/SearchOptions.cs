@@ -1,5 +1,4 @@
 ﻿using System;
-using OpenQA.Selenium;
 
 namespace Atata
 {
@@ -71,7 +70,7 @@ namespace Atata
         /// <summary>
         /// Gets or sets a value indicating whether the search element is safely searching.
         /// If it is <c>true</c> then <c>null</c> is returned after the search,
-        /// otherwise an exception of <see cref="NoSuchElementException"/> or <see cref="NotMissingElementException"/> is thrown.
+        /// otherwise an exception of <see cref="ElementNotFoundException"/> or <see cref="ElementNotMissingException"/> is thrown.
         /// The default value is <c>false</c>.
         /// </summary>
         public bool IsSafely

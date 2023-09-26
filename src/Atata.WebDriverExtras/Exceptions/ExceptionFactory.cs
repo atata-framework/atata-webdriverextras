@@ -8,6 +8,7 @@ namespace Atata
     /// </summary>
     public static class ExceptionFactory
     {
+        [Obsolete("Use ElementExceptionFactory.CreateForNotFound(...) instead.")] // Obsolete since v2.3.0.
         public static NoSuchElementException CreateForNoSuchElement(string elementName = null, By by = null, ISearchContext searchContext = null) =>
             CreateForNoSuchElement(
                 new SearchFailureData
@@ -17,11 +18,7 @@ namespace Atata
                     SearchContext = searchContext
                 });
 
-        /// <summary>
-        /// Creates an instance of <see cref="NoSuchElementException"/> with message generated using <paramref name="searchFailureData"/>.
-        /// </summary>
-        /// <param name="searchFailureData">The search failure data.</param>
-        /// <returns>An instance of <see cref="NoSuchElementException"/>.</returns>
+        [Obsolete("Use ElementExceptionFactory.CreateForNotFound(...) instead.")] // Obsolete since v2.3.0.
         public static NoSuchElementException CreateForNoSuchElement(SearchFailureData searchFailureData)
         {
             string message = (searchFailureData ?? new SearchFailureData()).ToStringForNoSuchElement();

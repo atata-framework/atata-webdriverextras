@@ -4,27 +4,27 @@
 public class SearchFailureDataTests
 {
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_Empty()
+    public void ToStringForElementNotFound_Empty()
     {
         SearchFailureData data = new SearchFailureData();
 
         string expected = "Unable to locate element.";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNotMissingElement_Empty()
+    public void ToStringForElementNotMissing_Empty()
     {
         SearchFailureData data = new SearchFailureData();
 
         string expected = "Able to locate element that should be missing.";
 
-        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotMissing(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_By()
+    public void ToStringForElementNotFound_By()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -35,11 +35,11 @@ public class SearchFailureDataTests
 @"Unable to locate element:
 - By: XPath "".//a""";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_ElementName_By()
+    public void ToStringForElementNotFound_ElementName_By()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -51,11 +51,11 @@ public class SearchFailureDataTests
 @"Unable to locate ""anchor"" element:
 - By: XPath "".//a""";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNotMissingElement_ElementName_By()
+    public void ToStringForElementNotMissing_ElementName_By()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -67,11 +67,11 @@ public class SearchFailureDataTests
 @"Able to locate ""anchor"" element that should be missing:
 - By: XPath "".//a""";
 
-        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotMissing(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_ByWithElementNameAndKind()
+    public void ToStringForElementNotFound_ByWithElementNameAndKind()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -82,11 +82,11 @@ public class SearchFailureDataTests
 @"Unable to locate ""Any"" anchor element:
 - By: XPath "".//a""";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_ElementName_By_SearchOptions()
+    public void ToStringForElementNotFound_ElementName_By_SearchOptions()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -100,11 +100,11 @@ $@"Unable to locate visible ""anchor"" element:
 - By: XPath "".//a""
 - Search options: {data.SearchOptions}";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_ElementName_By_SearchTime_SearchOptions()
+    public void ToStringForElementNotFound_ElementName_By_SearchTime_SearchOptions()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -120,11 +120,11 @@ $@"Unable to locate hidden ""anchor"" element:
 - Search time: {data.SearchTime.Value.ToShortIntervalString()}
 - Search options: {data.SearchOptions}";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNotMissingElement_ElementName_By_SearchTime_SearchOptions()
+    public void ToStringForElementNotMissing_ElementName_By_SearchTime_SearchOptions()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -140,11 +140,11 @@ $@"Able to locate hidden ""anchor"" element that should be missing:
 - Search time: {data.SearchTime.Value.ToShortIntervalString()}
 - Search options: {data.SearchOptions}";
 
-        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotMissing(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_By_AlikeElementsWithInverseVisibility()
+    public void ToStringForElementNotFound_By_AlikeElementsWithInverseVisibility()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -156,11 +156,11 @@ $@"Able to locate hidden ""anchor"" element that should be missing:
 $@"Unable to locate element:
 - By: XPath "".//a""";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_By_SearchOptions_AlikeElementsWithInverseVisibility_1()
+    public void ToStringForElementNotFound_By_SearchOptions_AlikeElementsWithInverseVisibility_1()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -175,11 +175,11 @@ $@"Unable to locate visible element:
 - Search options: {data.SearchOptions}
 - Notice: Found 1 element matching specified selector but hidden";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
+    public void ToStringForElementNotFound_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -194,11 +194,11 @@ $@"Unable to locate visible element:
 - Search options: {data.SearchOptions}
 - Notice: Found 2 elements matching specified selector but hidden";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNotMissingElement_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
+    public void ToStringForElementNotMissing_By_SearchOptions_AlikeElementsWithInverseVisibility_2()
     {
         SearchFailureData data = new SearchFailureData
         {
@@ -212,11 +212,11 @@ $@"Able to locate visible element that should be missing:
 - By: XPath "".//a""
 - Search options: {data.SearchOptions}";
 
-        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotMissing(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_By_SearchContext()
+    public void ToStringForElementNotFound_By_SearchContext()
     {
         IWebElement contextElement = StubWebElement.Div;
 
@@ -233,11 +233,11 @@ $@"Unable to locate element:
 Context element:
 {contextElement.ToDetailedString()}";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNotMissingElement_By_SearchContext()
+    public void ToStringForElementNotMissing_By_SearchContext()
     {
         IWebElement contextElement = StubWebElement.Div;
 
@@ -254,11 +254,11 @@ $@"Able to locate element that should be missing:
 Context element:
 {contextElement.ToDetailedString()}";
 
-        Assert.That(data.ToStringForNotMissingElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotMissing(), Is.EqualTo(expected));
     }
 
     [Test]
-    public void SearchFailureData_ToStringForNoSuchElement_SearchContext()
+    public void ToStringForElementNotFound_SearchContext()
     {
         IWebElement contextElement = StubWebElement.Div;
 
@@ -273,6 +273,6 @@ $@"Unable to locate element:
 Context element:
 {contextElement.ToDetailedString()}";
 
-        Assert.That(data.ToStringForNoSuchElement(), Is.EqualTo(expected));
+        Assert.That(data.ToStringForElementNotFound(), Is.EqualTo(expected));
     }
 }

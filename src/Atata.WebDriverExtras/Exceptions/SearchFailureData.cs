@@ -41,11 +41,11 @@ namespace Atata
         /// </summary>
         public ISearchContext SearchContext { get; set; }
 
-        /// <summary>
-        /// Generates a string message for <see cref="NoSuchElementException"/>.
-        /// </summary>
-        /// <returns>A message for <see cref="NoSuchElementException"/>.</returns>
-        public string ToStringForNoSuchElement()
+        [Obsolete("Don't use this method as it will be removed in v3.")] // Obsolete since v2.3.0.
+        public string ToStringForNoSuchElement() =>
+            ToStringForElementNotFound();
+
+        internal string ToStringForElementNotFound()
         {
             StringBuilder builder = new StringBuilder();
 
@@ -56,11 +56,11 @@ namespace Atata
             return builder.ToString();
         }
 
-        /// <summary>
-        /// Generates a string message for <see cref="NotMissingElementException"/>.
-        /// </summary>
-        /// <returns>A message for <see cref="NotMissingElementException"/>.</returns>
-        public string ToStringForNotMissingElement()
+        [Obsolete("Don't use this method as it will be removed in v3.")] // Obsolete since v2.3.0.
+        public string ToStringForNotMissingElement() =>
+            ToStringForElementNotMissing();
+
+        internal string ToStringForElementNotMissing()
         {
             StringBuilder builder = new StringBuilder();
 

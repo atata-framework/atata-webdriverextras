@@ -22,4 +22,8 @@ Atata Framework documentation: https://atata.io</Description>
     <PackageReference Include="Selenium.WebDriver" Version="4.12.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Atata.WebDriverExtras.Tests" />
+  </ItemGroup>
+
 </Project>

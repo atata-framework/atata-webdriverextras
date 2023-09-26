@@ -73,7 +73,7 @@ namespace Atata
                 case Visibility.Any:
                     return x => true;
                 default:
-                    throw ExceptionFactory.CreateForUnsupportedEnumValue<Visibility>(visibility, nameof(visibility));
+                    throw ExceptionFactory.CreateForUnsupportedEnumValue(visibility, nameof(visibility));
             }
         }
 
@@ -82,7 +82,7 @@ namespace Atata
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
         /// <returns>The first matching <see cref="IWebElement"/> on the current context.</returns>
-        /// <exception cref="NoSuchElementException">If no element matches the criteria.</exception>
+        /// <exception cref="ElementNotFoundException">If no element matches the criteria.</exception>
         public IWebElement FindElement(By by) =>
             Find(by);
 
@@ -124,7 +124,7 @@ namespace Atata
 
             if (!options.IsSafely && element == null)
             {
-                throw ExceptionFactory.CreateForNoSuchElement(
+                throw ElementExceptionFactory.CreateForNotFound(
                     new SearchFailureData
                     {
                         By = by,
