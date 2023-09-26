@@ -13,6 +13,8 @@ Is a part of [Atata Framework](https://atata.io).
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
+**[What's new in v2.3.0](https://atata.io/blog/2023/09/26/atata.webdriverextras-2.3.0-released/)**
+
 ## Usage
 
 Add `Atata` namespace:
@@ -29,7 +31,7 @@ IWebDriver driver = new ChromeDriver();
 // Sets the retry timeout as 7 seconds. The default value of the timeout is 5 seconds.
 driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(7));
 
-// Get the visible element within 7 seconds. Throws NoSuchElementException if the element is not found.
+// Get the visible element within 7 seconds. Throws ElementNotFoundException if the element is not found.
 IWebElement element1 = driver.Get(By.Id("some-id"));
 
 // Get the visible element safely (without throw on failure) within 7 seconds. Returns null if the element is not found.
@@ -47,7 +49,7 @@ IWebElement element4 = driver.Get(By.CssSelector(".some-css").Hidden().Safely().
 // Gets a value indicating whether the element exists at once.
 bool isElementExists = driver.Exists(By.Name("some-name").Safely().AtOnce());
 
-// Waits until the element will be missing within 15 seconds; else throws NotMissingElementException.
+// Waits until the element will be missing within 15 seconds; else throws ElementNotMissingException.
 driver.Missing(By.Name("some-name").Within(TimeSpan.FromSeconds(15)));
 
 // Get the element using the chain of By.
