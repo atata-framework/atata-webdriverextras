@@ -32,23 +32,23 @@ namespace Atata
         public static RetrySettingsThreadBoundary ThreadBoundary { get; set; } = RetrySettingsThreadBoundary.AsyncLocal;
 
         /// <summary>
-        /// Gets the retry timeout.
+        /// Gets or sets the retry timeout.
         /// The default value is 5 seconds.
         /// </summary>
         public static TimeSpan Timeout
         {
             get => ResolveCurrentSettings().TimeoutValue ?? DefaultTimeout;
-            internal set => ResolveCurrentSettings().TimeoutValue = value;
+            set => ResolveCurrentSettings().TimeoutValue = value;
         }
 
         /// <summary>
-        /// Gets the retry interval.
+        /// Gets or sets the retry interval.
         /// The default value is 500 milliseconds.
         /// </summary>
         public static TimeSpan Interval
         {
             get => ResolveCurrentSettings().IntervalValue ?? DefaultInterval;
-            internal set => ResolveCurrentSettings().IntervalValue = value;
+            set => ResolveCurrentSettings().IntervalValue = value;
         }
 
         private static TimeoutIntervalPair ResolveCurrentSettings()
