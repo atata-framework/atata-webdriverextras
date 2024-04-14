@@ -41,10 +41,6 @@ namespace Atata
         /// </summary>
         public ISearchContext SearchContext { get; set; }
 
-        [Obsolete("Don't use this method as it will be removed in v3.")] // Obsolete since v2.3.0.
-        public string ToStringForNoSuchElement() =>
-            ToStringForElementNotFound();
-
         internal string ToStringForElementNotFound()
         {
             StringBuilder builder = new StringBuilder();
@@ -55,10 +51,6 @@ namespace Atata
 
             return builder.ToString();
         }
-
-        [Obsolete("Don't use this method as it will be removed in v3.")] // Obsolete since v2.3.0.
-        public string ToStringForNotMissingElement() =>
-            ToStringForElementNotMissing();
 
         internal string ToStringForElementNotMissing()
         {
