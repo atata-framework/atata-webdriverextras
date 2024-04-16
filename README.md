@@ -13,7 +13,7 @@ Is a part of [Atata Framework](https://atata.io).
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v2.3.0](https://atata.io/blog/2023/09/26/atata.webdriverextras-2.3.0-released/)**
+**[What's new in v3.0.0](https://github.com/atata-framework/atata-webdriverextras/releases/tag/v3.0.0)**
 
 ## Usage
 
@@ -29,7 +29,7 @@ Use extension methods for `IWebDriver`, `IWebElement`, `By`, etc.:
 IWebDriver driver = new ChromeDriver();
 
 // Sets the retry timeout as 7 seconds. The default value of the timeout is 5 seconds.
-driver.Manage().Timeouts().SetRetryTimeout(TimeSpan.FromSeconds(7));
+RetrySettings.Timeout = TimeSpan.FromSeconds(7);
 
 // Get the visible element within 7 seconds. Throws ElementNotFoundException if the element is not found.
 IWebElement element1 = driver.Get(By.Id("some-id"));
