@@ -15,7 +15,10 @@ public abstract class UITestFixture
     public virtual void SetUp()
     {
         ChromeOptions options = new();
-        options.AddArguments("window-size=1200,800", "headless");
+        options.AddArguments(
+            "window-size=1200,800",
+            "headless",
+            "disable-search-engine-choice-screen");
 
         Driver = new ChromeDriver(options);
     }
