@@ -132,6 +132,7 @@ public class SafeWait<T> : IWait<T>
 
     protected virtual bool DoesConditionResultSatisfy<TResult>(TResult result)
     {
+        // TODO: Extend `else if` block by checking collection count using Count property when result is IReadOnlyCollection<object>.
         if (typeof(TResult) == typeof(bool))
         {
             var boolResult = result as bool?;
