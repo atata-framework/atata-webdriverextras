@@ -1,14 +1,11 @@
-﻿using OpenQA.Selenium;
+﻿namespace Atata;
 
-namespace Atata
+/// <summary>
+/// Defines the interface that extends <see cref="ISearchContext"/>.
+/// </summary>
+public interface IExtendedSearchContext : ISearchContext
 {
-    /// <summary>
-    /// Defines the interface that extends <see cref="ISearchContext"/>.
-    /// </summary>
-    public interface IExtendedSearchContext : ISearchContext
-    {
-        bool Exists(By by);
+    bool Exists(By by);
 
-        bool Missing(By by);
-    }
+    bool Missing(By by);
 }

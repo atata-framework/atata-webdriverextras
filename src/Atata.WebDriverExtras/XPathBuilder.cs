@@ -1,11 +1,10 @@
-﻿namespace Atata
-{
-    public class XPathBuilder : XPathBuilder<XPathBuilder>
-    {
-        public static implicit operator string(XPathBuilder builder) =>
-            builder.XPath;
+﻿namespace Atata;
 
-        protected override XPathBuilder CreateInstance() =>
-            new XPathBuilder();
-    }
+public class XPathBuilder : XPathBuilder<XPathBuilder>
+{
+    public static implicit operator string(XPathBuilder builder) =>
+        builder.XPath;
+
+    protected override XPathBuilder CreateInstance() =>
+        new();
 }
