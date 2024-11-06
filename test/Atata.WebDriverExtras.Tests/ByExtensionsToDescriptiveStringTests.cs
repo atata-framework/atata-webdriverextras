@@ -3,8 +3,8 @@
 [TestFixture]
 public class ByExtensionsToDescriptiveStringTests
 {
-    private static readonly TestCaseData[] s_data = new[]
-    {
+    private static readonly TestCaseData[] s_data =
+    [
         new TestCaseData(By.Id("some")).Returns(@"id ""some"""),
         new TestCaseData(By.Name("some")).Returns(@"name ""some"""),
         new TestCaseData(By.ClassName("some")).Returns(@"class ""some"""),
@@ -18,7 +18,7 @@ public class ByExtensionsToDescriptiveStringTests
                 By.Id("some1"),
                 new ByChain(By.Name("some2"), By.ClassName("some3"))))
             .Returns(@"chain [id ""some1"", chain [name ""some2"", class ""some3""]]")
-    };
+    ];
 
     [TestCaseSource(nameof(s_data))]
     public string ByExtensions_ToDescriptiveString(By by) =>
