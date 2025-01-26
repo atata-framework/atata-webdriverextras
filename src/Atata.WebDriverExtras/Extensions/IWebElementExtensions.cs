@@ -13,7 +13,7 @@ public static class IWebElementExtensions
         new(element, timeout, retryInterval);
 
     public static bool HasClass(this IWebElement element, string className) =>
-        element.GetAttribute("class").Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Contains(className);
+        element.GetAttribute("class").Trim().Split([' '], StringSplitOptions.RemoveEmptyEntries).Contains(className);
 
     public static string GetValue(this IWebElement element) =>
         element.GetAttribute("value");

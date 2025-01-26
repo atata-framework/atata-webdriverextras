@@ -116,7 +116,7 @@ public static class IWebDriverExtensionsTests
         }
     }
 
-    private class DriverWrapper : IWebDriver, IWrapsDriver
+    private sealed class DriverWrapper : IWebDriver, IWrapsDriver
     {
         public DriverWrapper(IWebDriver webDriver) =>
             WrappedDriver = webDriver;

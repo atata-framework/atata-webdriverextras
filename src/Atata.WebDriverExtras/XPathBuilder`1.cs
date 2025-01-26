@@ -81,7 +81,7 @@ public abstract class XPathBuilder<TBuilder>
     }
 
     public TBuilder Class(params string[] classNames) =>
-        classNames != null && classNames.Any()
+        classNames != null && classNames.Length != 0
             ? JoinAnd(classNames.Select(x => $"contains(concat(' ', normalize-space(@class), ' '), ' {x} ')"))
             : (TBuilder)this;
 
@@ -101,7 +101,7 @@ public abstract class XPathBuilder<TBuilder>
         _($"[{index + 1}]");
 
     public TBuilder WhereClass(params string[] classNames) =>
-        classNames != null && classNames.Any()
+        classNames != null && classNames.Length != 0
             ? _($"[{CreateInstance().Class(classNames).XPath}]")
             : (TBuilder)this;
 

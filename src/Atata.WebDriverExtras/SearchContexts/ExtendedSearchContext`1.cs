@@ -185,7 +185,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
         bool FindNoElement(T context) =>
             options.Visibility == Visibility.Any
-                ? !context.FindElements(by).Any()
+                ? context.FindElements(by).Count == 0
                 : !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
 
         Stopwatch searchWatch = Stopwatch.StartNew();
@@ -232,10 +232,10 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
                     leftBys.Remove(by);
             }
 
-            if (!leftBys.Any())
+            if (leftBys.Count == 0)
             {
                 leftBys = byContextPairs.Keys.Except(currentByArray).Where(by => !IsMissing(byContextPairs[by], by, searchOptions[by])).ToList();
-                if (!leftBys.Any())
+                if (leftBys.Count == 0)
                     return true;
             }
 
@@ -273,9 +273,9 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
     private static bool IsMissing(ISearchContext context, By by, SearchOptions options) =>
         !context.FindElements(by).Any(CreateVisibilityPredicate(options.Visibility));
 
-    private IWait<T> CreateWait(RetryOptions options)
+    private SafeWait<T> CreateWait(RetryOptions options)
     {
-        IWait<T> wait = new SafeWait<T>(Context)
+        SafeWait<T> wait = new(Context)
         {
             Timeout = options.Timeout,
             PollingInterval = options.Interval

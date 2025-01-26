@@ -25,7 +25,7 @@ public class ByChain : By
 
     public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
     {
-        if (!Items.Any())
+        if (Items.Count == 0)
             return new List<IWebElement>().AsReadOnly();
 
         List<IWebElement> elements = [.. Items[0].FindElements(context)];
