@@ -234,7 +234,10 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
             if (leftBys.Count == 0)
             {
-                leftBys = byContextPairs.Keys.Except(currentByArray).Where(by => !IsMissing(byContextPairs[by], by, searchOptions[by])).ToList();
+                leftBys = [.. byContextPairs.Keys
+                    .Except(currentByArray)
+                    .Where(by => !IsMissing(byContextPairs[by], by, searchOptions[by]))];
+
                 if (leftBys.Count == 0)
                     return true;
             }

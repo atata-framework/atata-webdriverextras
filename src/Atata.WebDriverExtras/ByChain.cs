@@ -32,7 +32,7 @@ public class ByChain : By
 
         foreach (By by in Items.Skip(1))
         {
-            elements = elements.SelectMany(x => x.FindElements(by)).ToList();
+            elements = [.. elements.SelectMany(x => x.FindElements(by))];
         }
 
         return elements.AsReadOnly();
