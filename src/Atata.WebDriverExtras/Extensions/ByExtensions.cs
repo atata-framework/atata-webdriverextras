@@ -132,7 +132,7 @@ public static class ByExtensions
     private static string GetSelector(this By by)
     {
         string text = by.ToString();
-        return text.Substring(text.IndexOf(':') + 2);
+        return text[(text.IndexOf(':') + 2)..];
     }
 
     private static By CreateBy(string method, string selector) =>
@@ -189,8 +189,8 @@ public static class ByExtensions
             string byAsString = actualBy.ToString();
             int indexOfColon = byAsString.IndexOf(':');
 
-            string method = byAsString.Substring(0, indexOfColon);
-            string selector = byAsString.Substring(byAsString.IndexOf(':') + 2);
+            string method = byAsString[..indexOfColon];
+            string selector = byAsString[(byAsString.IndexOf(':') + 2)..];
 
             return $"{StringifyByMethod(method)} \"{selector}\"";
         }
