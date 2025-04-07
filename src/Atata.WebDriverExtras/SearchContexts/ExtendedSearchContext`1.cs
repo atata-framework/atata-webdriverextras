@@ -138,9 +138,8 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
         }
         else
         {
-            findFunction = x => x.FindElements(by).
-                Where(CreateVisibilityPredicate(options.Visibility)).
-                ToReadOnly();
+            findFunction = x => new(
+                [.. x.FindElements(by).Where(CreateVisibilityPredicate(options.Visibility))]);
         }
 
         return Until(findFunction, options.ToRetryOptions());

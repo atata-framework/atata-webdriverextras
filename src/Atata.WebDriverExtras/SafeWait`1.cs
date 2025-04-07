@@ -111,7 +111,7 @@ public class SafeWait<T> : IWait<T>
             if (timeUntilTimeout <= TimeSpan.Zero)
             {
                 if (typeof(TResult) == typeof(ReadOnlyCollection<IWebElement>))
-                    return (TResult)(object)new IWebElement[0].ToReadOnly();
+                    return (TResult)(object)new ReadOnlyCollection<IWebElement>([]);
                 else if (typeof(TResult) == typeof(IWebElement[]))
                     return (TResult)(object)new IWebElement[0];
                 else
