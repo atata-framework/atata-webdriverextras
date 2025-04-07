@@ -149,7 +149,7 @@ $@"Able to locate hidden ""anchor"" element that should be missing:
         SearchFailureData data = new SearchFailureData
         {
             By = By.XPath(".//a"),
-            AlikeElementsWithInverseVisibility = [new WebElement(null, null), new WebElement(null, null)]
+            AlikeElementsWithInverseVisibility = [StubWebElement.Div, StubWebElement.Div]
         };
 
         string expected =
@@ -166,7 +166,7 @@ $@"Unable to locate element:
         {
             By = By.XPath(".//a"),
             SearchOptions = SearchOptions.Visible(),
-            AlikeElementsWithInverseVisibility = [new WebElement(null, null)]
+            AlikeElementsWithInverseVisibility = [StubWebElement.Div]
         };
 
         string expected =
@@ -185,7 +185,7 @@ $@"Unable to locate visible element:
         {
             By = By.XPath(".//a"),
             SearchOptions = SearchOptions.Visible(),
-            AlikeElementsWithInverseVisibility = [new WebElement(null, null), new WebElement(null, null)]
+            AlikeElementsWithInverseVisibility = [StubWebElement.Div, StubWebElement.Div]
         };
 
         string expected =
@@ -204,7 +204,7 @@ $@"Unable to locate visible element:
         {
             By = By.XPath(".//a"),
             SearchOptions = SearchOptions.Visible(),
-            AlikeElementsWithInverseVisibility = [new WebElement(null, null), new WebElement(null, null)]
+            AlikeElementsWithInverseVisibility = [StubWebElement.Div, StubWebElement.Div]
         };
 
         string expected =
