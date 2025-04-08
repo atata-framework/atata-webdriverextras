@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Enable nullable reference types feature.
 - Upgrade Selenium.WebDriver package reference to v4.31.0.
 
 ## [3.1.0] - 2025-01-26
