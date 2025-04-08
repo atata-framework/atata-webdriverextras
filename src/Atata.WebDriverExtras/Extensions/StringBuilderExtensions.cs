@@ -3,6 +3,7 @@
 /// <summary>
 /// Provides a set of extension methods for <see cref="StringBuilder"/>.
 /// </summary>
+// TODO: v4. Remove StringBuilderExtensions.
 public static class StringBuilderExtensions
 {
     /// <summary>
