@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-#pragma warning disable S103 // Lines should not be too long
+﻿#pragma warning disable S103 // Lines should not be too long
 
 [assembly: SuppressMessage("Minor Code Smell", "S3240:The simplest possible condition syntax should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.ExtendedSearchContext`1.Missing(OpenQA.Selenium.By)~System.Boolean")]
 [assembly: SuppressMessage("Minor Code Smell", "S3240:The simplest possible condition syntax should be used", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.ExtendedSearchContext`1.FindAll(OpenQA.Selenium.By,Atata.SearchOptions)~System.Collections.ObjectModel.ReadOnlyCollection{OpenQA.Selenium.IWebElement}")]
@@ -12,5 +10,3 @@
 [assembly: SuppressMessage("StyleCop.CSharp.OrderingRules", "SA1204:Static elements should appear before instance elements", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.SearchFailureData.WrapWithDoubleQuotes(System.String)~System.String")]
 [assembly: SuppressMessage("Minor Code Smell", "S3267:Loops should be simplified with \"LINQ\" expressions", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.ExtendedSearchContext`1.MissingAll(System.Collections.Generic.Dictionary{OpenQA.Selenium.By,OpenQA.Selenium.ISearchContext})~System.Boolean")]
 [assembly: SuppressMessage("Style", "IDE0066:Convert switch statement to expression", Justification = "<Pending>", Scope = "member", Target = "~M:Atata.RetrySettings.ResolveCurrentSettings~Atata.RetrySettings.TimeoutIntervalPair")]
-
-#pragma warning restore S103 // Lines should not be too long
