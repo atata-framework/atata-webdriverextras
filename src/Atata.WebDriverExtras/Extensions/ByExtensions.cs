@@ -1,23 +1,25 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 public static class ByExtensions
 {
-    public static By OfKind(this By by, string kind, string name = null)
+    public static By OfKind(this By by, string kind, string? name = null)
     {
         ExtendedBy extendedBy = new(by) { ElementKind = kind };
-        return name != null ? extendedBy.Named(name) : extendedBy;
+
+        return name is not null
+            ? extendedBy.Named(name)
+            : extendedBy;
     }
 
     public static By Named(this By by, string name)
     {
         ExtendedBy extendedBy = new(by) { ElementName = name };
 
-        if (name != null && extendedBy.ToString().Contains("{0}"))
-        {
-            return extendedBy.FormatWith(name);
-        }
-
-        return extendedBy;
+        return name is not null && extendedBy.ToString().Contains("{0}")
+            ? extendedBy.FormatWith(name)
+            : extendedBy;
     }
 
     public static By Safely(this By by, bool isSafely = true)
@@ -105,7 +107,7 @@ public static class ByExtensions
     {
         By formattedBy;
 
-        if (TryResolveByChain(by, out ByChain byChain))
+        if (TryResolveByChain(by, out ByChain? byChain))
         {
             formattedBy = new ByChain(byChain.Items.Select(x => x.FormatWith(args)));
         }
@@ -120,10 +122,10 @@ public static class ByExtensions
             : formattedBy;
     }
 
-    private static bool TryResolveByChain(By by, out ByChain byChain)
+    private static bool TryResolveByChain(By by, [MaybeNullWhen(false)] out ByChain byChain)
     {
         byChain = (by as ByChain) ?? (by as ExtendedBy)?.By as ByChain;
-        return byChain != null;
+        return byChain is not null;
     }
 
     private static string GetMethod(this By by) =>
@@ -151,13 +153,13 @@ public static class ByExtensions
 
     public static By Then(this By by, By nextBy)
     {
-        ExtendedBy originalByAsExtended = by as ExtendedBy;
+        ExtendedBy? originalByAsExtended = by as ExtendedBy;
 
-        By newByChain = TryResolveByChain(by, out ByChain byChain)
-            ? new ByChain(byChain.Items.Concat([nextBy]))
-            : new ByChain(originalByAsExtended?.By ?? by, nextBy);
+        ByChain newByChain = TryResolveByChain(by, out ByChain? byChain)
+            ? new(byChain.Items.Concat([nextBy]))
+            : new(originalByAsExtended?.By ?? by, nextBy);
 
-        return originalByAsExtended != null
+        return originalByAsExtended is not null
             ? new ExtendedBy(newByChain).ApplySettingsFrom(originalByAsExtended)
             : newByChain;
     }
