@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 // TODO: Review IWebElementExtensions class. Remove unused methods.
 public static class IWebElementExtensions
@@ -13,16 +15,22 @@ public static class IWebElementExtensions
         new(element, timeout, retryInterval);
 
     public static bool HasClass(this IWebElement element, string className) =>
-        element.GetAttribute("class").Trim().Split([' '], StringSplitOptions.RemoveEmptyEntries).Contains(className);
+        element.GetAttribute("class")
+            ?.Trim()
+            .Split([' '], StringSplitOptions.RemoveEmptyEntries)
+            .Contains(className)
+            ?? false;
 
-    public static string GetValue(this IWebElement element) =>
+    public static string? GetValue(this IWebElement element) =>
         element.GetAttribute("value");
 
     public static IWebElement FillInWith(this IWebElement element, string text)
     {
         element.Clear();
-        if (!string.IsNullOrEmpty(text))
+
+        if (text?.Length > 0)
             element.SendKeys(text);
+
         return element;
     }
 
@@ -32,7 +40,7 @@ public static class IWebElementExtensions
 
         try
         {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
 
             builder.AppendFormat("- Tag: {0}", element.TagName);
 
@@ -44,12 +52,12 @@ public static class IWebElementExtensions
 
             string elementId = element.GetElementId();
 
-            if (!string.IsNullOrEmpty(elementId))
+            if (elementId?.Length > 0)
                 builder.AppendLine().AppendFormat("- Element ID: {0}", elementId);
 
-            string elementText = element.Text?.Trim();
+            string? elementText = element.Text?.Trim();
 
-            if (!string.IsNullOrEmpty(elementText))
+            if (elementText?.Length > 0)
             {
                 string elementTextSplitter = elementText.Contains(Environment.NewLine) ? Environment.NewLine : " ";
                 builder.AppendLine().AppendFormat("- Text:{0}{1}", elementTextSplitter, elementText);
@@ -76,6 +84,6 @@ public static class IWebElementExtensions
             "Id",
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-        return property?.GetValue(element, []) as string;
+        return (string)property.GetValue(element, []);
     }
 }
