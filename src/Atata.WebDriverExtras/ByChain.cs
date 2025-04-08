@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 public class ByChain : By
 {
@@ -9,7 +11,7 @@ public class ByChain : By
 
     public ByChain(IEnumerable<By> items)
     {
-        Items = items.ToList().AsReadOnly();
+        Items = new((items as IList<By>) ?? [.. items]);
         Description = $"By.Chain([{string.Join(", ", Items)}])";
     }
 

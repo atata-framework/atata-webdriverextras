@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 internal class ExtendedBy : By
 {
@@ -6,24 +8,24 @@ internal class ExtendedBy : By
     {
         by.CheckNotNull(nameof(by));
 
-        ExtendedBy byAsExtended = by as ExtendedBy;
+        ExtendedBy? byAsExtended = by as ExtendedBy;
 
         By = byAsExtended?.By ?? by;
         Description = By.ToString();
 
-        if (byAsExtended != null)
+        if (byAsExtended is not null)
             ApplySettingsFrom(byAsExtended);
         else
-            Options = new SearchOptions();
+            Options = new();
     }
 
     internal By By { get; }
 
-    internal string ElementName { get; set; }
+    internal string? ElementName { get; set; }
 
-    internal string ElementKind { get; set; }
+    internal string? ElementKind { get; set; }
 
-    internal SearchOptions Options { get; set; }
+    internal SearchOptions Options { get; set; } = null!;
 
     public ExtendedBy ApplySettingsFrom(ExtendedBy otherExtendedBy)
     {
@@ -42,7 +44,7 @@ internal class ExtendedBy : By
     public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context) =>
         By.FindElements(context);
 
-    public string GetElementNameWithKind()
+    public string? GetElementNameWithKind()
     {
         bool hasName = !string.IsNullOrWhiteSpace(ElementName);
         bool hasKind = !string.IsNullOrWhiteSpace(ElementKind);
