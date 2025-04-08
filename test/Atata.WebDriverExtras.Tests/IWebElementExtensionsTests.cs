@@ -7,9 +7,9 @@ public class IWebElementExtensionsTests : UITestFixture
     {
         GoTo("static");
 
-        IWebElement element = Driver.Get(By.Id("first-name"));
+        IWebElement? element = Driver.Get(By.Id("first-name"));
 
-        string id = element.GetElementId();
+        string id = element!.GetElementId();
 
         Assert.That(id, Is.Not.Null.And.Not.Empty);
     }

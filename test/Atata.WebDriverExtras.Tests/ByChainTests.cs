@@ -34,7 +34,7 @@ public class ByChainTests : UITestFixture
     [Test]
     public void ByChain_Get()
     {
-        var element = Driver.Get(_defaultChain);
+        var element = Driver.Get(_defaultChain)!;
 
         Assert.That(element.Text, Is.EqualTo("Item 1"));
     }
@@ -42,7 +42,7 @@ public class ByChainTests : UITestFixture
     [Test]
     public void ByChain_Get_Hidden()
     {
-        var element = Driver.Get(_defaultChain.Hidden());
+        var element = Driver.Get(_defaultChain.Hidden())!;
 
         Assert.That(element.GetAttribute("textContent"), Is.EqualTo("Item 3"));
     }
@@ -53,7 +53,7 @@ public class ByChainTests : UITestFixture
         var element = Driver.Get(new ByChain(
             By.Id("{0}"),
             By.CssSelector("div.sub-container"),
-            By.XPath(".//span[.='{1}']")).FormatWith("root-container", "Item 2"));
+            By.XPath(".//span[.='{1}']")).FormatWith("root-container", "Item 2"))!;
 
         Assert.That(element.Text, Is.EqualTo("Item 2"));
     }

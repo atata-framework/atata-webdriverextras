@@ -12,7 +12,7 @@ public static class ISearchContextExtensions
     /// <param name="searchContext">The search context.</param>
     /// <param name="by">The <see cref="By"/> instance.</param>
     /// <returns>The found element or <see langword="null"/> (if executes safely).</returns>
-    public static IWebElement Get<T>(this T searchContext, By by)
+    public static IWebElement? Get<T>(this T searchContext, By by)
         where T : ISearchContext
     {
         var contextToSearchIn = ResolveContext(searchContext);

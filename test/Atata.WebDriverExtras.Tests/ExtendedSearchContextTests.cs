@@ -16,7 +16,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        IWebElement element;
+        IWebElement? element;
 
         using (StopwatchAsserter.WithinSeconds(0, .3))
             element = Driver.Get(_existingElementBy);
@@ -29,7 +29,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        IWebElement element;
+        IWebElement? element;
 
         using (StopwatchAsserter.WithinSeconds(5, .3))
             element = Driver.Get(_missingElementBy.Safely());
@@ -54,7 +54,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         using (StopwatchAsserter.WithinSeconds(0, .3))
         {
-            IWebElement element = Driver.Get(_hiddenElementBy.Hidden());
+            IWebElement? element = Driver.Get(_hiddenElementBy.Hidden());
             Assert.That(element, Is.Not.Null);
         }
     }
@@ -66,7 +66,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         using (StopwatchAsserter.WithinSeconds(0, .3))
         {
-            IWebElement element = Driver.Get(_hiddenElementBy.OfAnyVisibility());
+            IWebElement? element = Driver.Get(_hiddenElementBy.OfAnyVisibility());
             Assert.That(element, Is.Not.Null);
         }
     }
@@ -96,9 +96,9 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("dynamic");
 
-        Driver.Get(By.Id("add-value")).Click();
+        Driver.Get(By.Id("add-value"))!.Click();
 
-        IWebElement element = StopwatchAsserter.WithinSeconds(2, 1.5).Execute(
+        IWebElement? element = StopwatchAsserter.WithinSeconds(2, 1.5).Execute(
             () => Driver.Get(By.Id("value-block")));
 
         Assert.That(element, Is.Not.Null);
