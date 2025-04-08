@@ -1,7 +1,9 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 /// <summary>
-/// The exception that is thrown when the searched element is not found.
+/// An exception that is thrown when the searched element is not found.
 /// </summary>
 [Serializable]
 public class ElementNotFoundException : Exception
@@ -10,12 +12,12 @@ public class ElementNotFoundException : Exception
     {
     }
 
-    public ElementNotFoundException(string message)
+    public ElementNotFoundException(string? message)
         : base(message)
     {
     }
 
-    public ElementNotFoundException(string message, Exception innerException)
+    public ElementNotFoundException(string? message, Exception? innerException)
         : base(message, innerException)
     {
     }

@@ -1,8 +1,10 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 public static class ElementExceptionFactory
 {
-    public static ElementNotFoundException CreateForNotFound(string elementName = null, By by = null, ISearchContext searchContext = null) =>
+    public static ElementNotFoundException CreateForNotFound(string? elementName = null, By? by = null, ISearchContext? searchContext = null) =>
         CreateForNotFound(
             new SearchFailureData
             {
@@ -18,7 +20,7 @@ public static class ElementExceptionFactory
         return new ElementNotFoundException(message);
     }
 
-    public static ElementNotMissingException CreateForNotMissing(string elementName = null, By by = null, ISearchContext searchContext = null) =>
+    public static ElementNotMissingException CreateForNotMissing(string? elementName = null, By? by = null, ISearchContext? searchContext = null) =>
         CreateForNotMissing(
             new SearchFailureData
             {
@@ -29,7 +31,7 @@ public static class ElementExceptionFactory
 
     public static ElementNotMissingException CreateForNotMissing(SearchFailureData searchFailureData)
     {
-        string message = (searchFailureData ?? new SearchFailureData()).ToStringForElementNotMissing();
+        string message = (searchFailureData ?? new()).ToStringForElementNotMissing();
 
         return new ElementNotMissingException(message);
     }

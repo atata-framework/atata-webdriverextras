@@ -60,7 +60,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
             Visibility.Visible => x => x.Displayed,
             Visibility.Hidden => x => !x.Displayed,
             Visibility.Any => x => true,
-            _ => throw ExceptionFactory.CreateForUnsupportedEnumValue(visibility, nameof(visibility)),
+            _ => throw ExceptionFactory.CreateForUnsupportedEnumValue(visibility),
         };
 
     /// <summary>

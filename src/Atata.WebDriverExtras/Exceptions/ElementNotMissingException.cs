@@ -1,7 +1,9 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 /// <summary>
-/// The exception that is thrown when the expected missing element is actually found.
+/// An exception that is thrown when the expected missing element is actually found.
 /// </summary>
 [Serializable]
 public class ElementNotMissingException : Exception
@@ -10,12 +12,12 @@ public class ElementNotMissingException : Exception
     {
     }
 
-    public ElementNotMissingException(string message)
+    public ElementNotMissingException(string? message)
         : base(message)
     {
     }
 
-    public ElementNotMissingException(string message, Exception innerException)
+    public ElementNotMissingException(string? message, Exception? innerException)
         : base(message, innerException)
     {
     }
