@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 public abstract class XPathBuilder<TBuilder>
     where TBuilder : XPathBuilder<TBuilder>
@@ -81,7 +83,7 @@ public abstract class XPathBuilder<TBuilder>
     }
 
     public TBuilder Class(params string[] classNames) =>
-        classNames != null && classNames.Length != 0
+        classNames?.Length > 0
             ? JoinAnd(classNames.Select(x => $"contains(concat(' ', normalize-space(@class), ' '), ' {x} ')"))
             : (TBuilder)this;
 
@@ -101,7 +103,7 @@ public abstract class XPathBuilder<TBuilder>
         _($"[{index + 1}]");
 
     public TBuilder WhereClass(params string[] classNames) =>
-        classNames != null && classNames.Length != 0
+        classNames?.Length > 0
             ? _($"[{CreateInstance().Class(classNames).XPath}]")
             : (TBuilder)this;
 

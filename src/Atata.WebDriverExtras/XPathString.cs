@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 /// <summary>
 /// Represents XPath string value.
@@ -54,7 +56,7 @@ public class XPathString
     {
         string[] parts = value.Split('\'');
 
-        StringBuilder builder = new StringBuilder("concat(");
+        StringBuilder builder = new("concat(");
 
         string prefix = string.Empty;
 
@@ -106,5 +108,6 @@ public class XPathString
     /// Returns a string that represents the current object.
     /// </summary>
     /// <returns>A <see cref="string"/> that represents this instance.</returns>
-    public override string ToString() => Value;
+    public override string ToString() =>
+        Value;
 }
