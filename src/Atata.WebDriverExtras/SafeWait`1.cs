@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 /// <summary>
 /// Represents the retriable operation to wait for condition safely (without throwing exception on timeout).
@@ -44,7 +46,7 @@ public class SafeWait<T> : IWait<T>
     /// </summary>
     public TimeSpan PollingInterval { get; set; } = RetrySettings.Interval;
 
-    public string Message { get; set; }
+    public string Message { get; set; } = string.Empty;
 
     /// <summary>
     /// Configures this instance to ignore specific types of exceptions while waiting for a condition.
@@ -67,6 +69,12 @@ public class SafeWait<T> : IWait<T>
         _ignoredExceptions.AddRange(exceptionTypes);
     }
 
+    [return: NotNull]
+    TResult IWait<T>.Until<TResult>(Func<T, TResult?> condition)
+        where TResult : default
+        =>
+        Until(condition)!;
+
     /// <summary>
     /// Repeatedly applies this instance's input value to the given function until one of the following
     /// occurs:
@@ -81,7 +89,7 @@ public class SafeWait<T> : IWait<T>
     /// <typeparam name="TResult">The delegate's expected return type.</typeparam>
     /// <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
     /// <returns>The delegate's return value.</returns>
-    public TResult Until<TResult>(Func<T, TResult> condition)
+    public TResult? Until<TResult>(Func<T, TResult> condition)
     {
         condition.CheckNotNull(nameof(condition));
 
