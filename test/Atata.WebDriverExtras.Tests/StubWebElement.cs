@@ -7,6 +7,7 @@ public class StubWebElement : IWebElement
 {
     public static StubWebElement Div { get; } = new()
     {
+        Id = "div-id-001",
         TagName = "div",
         Text = "Some text",
         Enabled = true,
@@ -14,6 +15,8 @@ public class StubWebElement : IWebElement
         Size = new Size(100, 150),
         Displayed = true
     };
+
+    public string Id { get; set; } = string.Empty;
 
     public string TagName { get; set; } = string.Empty;
 
