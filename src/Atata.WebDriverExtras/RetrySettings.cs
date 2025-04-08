@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 /// <summary>
 /// Provides the default settings for operations that can be retried.
@@ -17,10 +19,10 @@ public static class RetrySettings
 
     private static readonly AsyncLocal<TimeoutIntervalPair> s_asyncLocalSettings = new();
 
-    private static TimeoutIntervalPair s_staticSettings;
+    private static TimeoutIntervalPair? s_staticSettings;
 
     [ThreadStatic]
-    private static TimeoutIntervalPair s_threadStaticSettings;
+    private static TimeoutIntervalPair? s_threadStaticSettings;
 
     /// <summary>
     /// Gets or sets the thread boundary of <see cref="RetrySettings"/>.
