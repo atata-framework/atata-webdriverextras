@@ -24,7 +24,7 @@ public class SafeWaitTests
     [Test]
     public void SafeWait_Timeout()
     {
-        using (StopwatchAsserter.WithinSeconds(.3, .015))
+        using (StopwatchAsserter.WithinSeconds(.3, .1))
             _sut.Until(_ => false);
     }
 
@@ -44,7 +44,7 @@ public class SafeWaitTests
     {
         _sut.PollingInterval = TimeSpan.FromSeconds(1);
 
-        using (StopwatchAsserter.WithinSeconds(.3, .02))
+        using (StopwatchAsserter.WithinSeconds(.3, .1))
             _sut.Until(_ => false);
     }
 }

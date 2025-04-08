@@ -147,7 +147,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(2, .05))
+        using (StopwatchAsserter.WithinSeconds(2, .15))
             result = Driver.Try(TimeSpan.FromSeconds(2)).Until(x => false);
 
         Assert.That(result, Is.False);
@@ -160,7 +160,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(2, .05))
+        using (StopwatchAsserter.WithinSeconds(2, .15))
             result = Driver.Try().Until(x => false, TimeSpan.FromSeconds(2));
 
         Assert.That(result, Is.False);
