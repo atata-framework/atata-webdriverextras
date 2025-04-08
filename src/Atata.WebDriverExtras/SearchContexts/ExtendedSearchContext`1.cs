@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 /// <summary>
 /// Represents an extended context that wraps <see cref="ISearchContext"/>.
@@ -63,13 +65,16 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
             _ => throw ExceptionFactory.CreateForUnsupportedEnumValue(visibility),
         };
 
+    IWebElement ISearchContext.FindElement(By by) =>
+        FindElement(by)!;
+
     /// <summary>
     /// Finds the first <see cref="IWebElement"/> using the given method.
     /// </summary>
     /// <param name="by">The locating mechanism to use.</param>
     /// <returns>The first matching <see cref="IWebElement"/> on the current context.</returns>
     /// <exception cref="ElementNotFoundException">If no element matches the criteria.</exception>
-    public IWebElement FindElement(By by) =>
+    public IWebElement? FindElement(By by) =>
         Find(by);
 
     /// <summary>
@@ -83,16 +88,16 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
     public ReadOnlyCollection<IWebElement> FindElements(By by) =>
         FindAll(by);
 
-    private IWebElement Find(By by)
+    private IWebElement? Find(By by)
     {
         SearchOptions options = by.GetSearchOptionsOrDefault();
 
-        IWebElement FindElement(T context) =>
+        IWebElement? FindElement(T context) =>
             context.FindElement(by);
 
-        ReadOnlyCollection<IWebElement> lastFoundElements = null;
+        ReadOnlyCollection<IWebElement>? lastFoundElements = null;
 
-        IWebElement FindElementWithVisibilityFiltering(T context)
+        IWebElement? FindElementWithVisibilityFiltering(T context)
         {
             lastFoundElements = context.FindElements(by);
 
@@ -102,13 +107,13 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
         RetryOptions retryOptions = options.ToRetryOptions();
         Stopwatch searchWatch = Stopwatch.StartNew();
 
-        IWebElement element = options.Visibility == Visibility.Any
+        IWebElement? element = options.Visibility == Visibility.Any
             ? Until(FindElement, retryOptions.IgnoringExceptionType(typeof(NoSuchElementException)))
             : Until(FindElementWithVisibilityFiltering, retryOptions);
 
         searchWatch.Stop();
 
-        if (!options.IsSafely && element == null)
+        if (!options.IsSafely && element is null)
         {
             throw ElementExceptionFactory.CreateForNotFound(
                 new SearchFailureData
@@ -126,9 +131,9 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
         }
     }
 
-    private ReadOnlyCollection<IWebElement> FindAll(By by, SearchOptions options = null)
+    private ReadOnlyCollection<IWebElement> FindAll(By by, SearchOptions? options = null)
     {
-        options = options ?? by.GetSearchOptionsOrDefault();
+        options ??= by.GetSearchOptionsOrDefault();
 
         Func<T, ReadOnlyCollection<IWebElement>> findFunction;
 
@@ -142,10 +147,10 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
                 [.. x.FindElements(by).Where(CreateVisibilityPredicate(options.Visibility))]);
         }
 
-        return Until(findFunction, options.ToRetryOptions());
+        return Until(findFunction, options.ToRetryOptions())!;
     }
 
-    public TResult Until<TResult>(Func<T, TResult> condition, TimeSpan? timeout = null, TimeSpan? retryInterval = null)
+    public TResult? Until<TResult>(Func<T, TResult> condition, TimeSpan? timeout = null, TimeSpan? retryInterval = null)
     {
         RetryOptions options = new();
 
@@ -158,9 +163,9 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
         return Until(condition, options);
     }
 
-    public TResult Until<TResult>(Func<T, TResult> condition, RetryOptions options)
+    public TResult? Until<TResult>(Func<T, TResult> condition, RetryOptions options)
     {
-        if (condition == null)
+        if (condition is null)
             throw new ArgumentNullException(nameof(condition));
 
         options ??= new();
