@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Atata</RootNamespace>
-    <Version>3.1.0</Version>
+    <Version>3.2.0</Version>
     <Title>Atata WebDriver Extras</Title>
     <Description>A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.
 
@@ -17,7 +17,7 @@ Atata Framework documentation: https://atata.io</Description>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
     <PackageId>Atata.WebDriverExtras</PackageId>
     <PackageTags>atata automation testing test selenium webdriver browser</PackageTags>
-    <PackageReleaseNotes>https://github.com/atata-framework/atata-webdriverextras/releases/tag/v3.1.0</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/atata-framework/atata-webdriverextras/releases/tag/v3.2.0</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
   </PropertyGroup>
 
