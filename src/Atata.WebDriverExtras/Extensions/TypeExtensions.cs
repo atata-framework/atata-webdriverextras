@@ -14,7 +14,7 @@ public static class TypeExtensions
     ///   <c>true</c> if the type is a subclass of the specified raw generic type; otherwise, <c>false</c>.
     /// </returns>
     public static bool IsSubclassOfRawGeneric(this Type type, Type genericType) =>
-        type.GetDepthOfInheritanceOfRawGeneric(genericType) != null;
+        type.GetDepthOfInheritanceOfRawGeneric(genericType) is not null;
 
     /// <summary>
     /// Gets the depth of inheritance of the specified raw generic type (e.g. <c>typeof(List&lt;&gt;)</c>).
@@ -24,13 +24,13 @@ public static class TypeExtensions
     /// <returns>The depth of inheritance or <see langword="null"/>.</returns>
     public static int? GetDepthOfInheritanceOfRawGeneric(this Type type, Type genericType)
     {
-        if (genericType == null)
+        if (genericType is null)
             return null;
 
         Type typeToCheck = type;
         int depth = 0;
 
-        while (typeToCheck != null && typeToCheck != typeof(object))
+        while (typeToCheck is not null && typeToCheck != typeof(object))
         {
             if (typeToCheck.IsGenericType && typeToCheck.GetGenericTypeDefinition() == genericType)
                 return depth;
@@ -51,7 +51,7 @@ public static class TypeExtensions
     ///   <c>true</c> if it implements the generic interface type; otherwise, <c>false</c>.
     /// </returns>
     public static bool IsImplementGenericInterface(this Type type, Type genericType) =>
-        type.GetGenericInterfaceType(genericType) != null;
+        type.GetGenericInterfaceType(genericType) is not null;
 
     /// <summary>
     /// Gets an actual type of the specified generic interface that this type implements.
