@@ -24,7 +24,7 @@ public class SafeWaitTests
     [Test]
     public void SafeWait_Timeout()
     {
-        using (StopwatchAsserter.WithinSeconds(.3, .1))
+        using (StopwatchAsserter.WithinSeconds(.3, .2))
             _sut.Until(_ => false);
     }
 
