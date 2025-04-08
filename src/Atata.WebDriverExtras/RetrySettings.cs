@@ -13,6 +13,7 @@ public static class RetrySettings
     /// <summary>
     /// The default interval is 500 milliseconds.
     /// </summary>
+    // TODO: v4. Change DefaultInterval value to 200 milliseconds.
     public static readonly TimeSpan DefaultInterval = TimeSpan.FromSeconds(0.5);
 
     private static readonly AsyncLocal<TimeoutIntervalPair> s_asyncLocalSettings = new();
