@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 internal static class CheckExtensions
 {
@@ -10,7 +12,7 @@ internal static class CheckExtensions
         return value;
     }
 
-    internal static T CheckNotNull<T>(this T value, string argumentName, string errorMessage = null)
+    internal static T CheckNotNull<T>(this T value, string argumentName, string? errorMessage = null)
     {
         if (value is null)
             throw CreateArgumentNullException(argumentName, errorMessage);
@@ -18,7 +20,7 @@ internal static class CheckExtensions
         return value;
     }
 
-    internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string errorMessage = null)
+    internal static string CheckNotNullOrWhitespace(this string value, string argumentName, string? errorMessage = null)
     {
         if (value is null)
             throw CreateArgumentNullException(argumentName, errorMessage);
@@ -28,7 +30,7 @@ internal static class CheckExtensions
         return value;
     }
 
-    internal static string CheckNotNullOrEmpty(this string value, string argumentName, string errorMessage = null)
+    internal static string CheckNotNullOrEmpty(this string value, string argumentName, string? errorMessage = null)
     {
         if (value is null)
             throw CreateArgumentNullException(argumentName, errorMessage);
@@ -38,7 +40,7 @@ internal static class CheckExtensions
         return value;
     }
 
-    internal static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T> collection, string argumentName, string errorMessage = null)
+    internal static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T> collection, string argumentName, string? errorMessage = null)
     {
         if (collection is null)
             throw CreateArgumentNullException(argumentName, errorMessage);
@@ -53,7 +55,7 @@ internal static class CheckExtensions
         return collection;
     }
 
-    internal static T CheckNotEquals<T>(this T value, string argumentName, T invalidValue, string errorMessage = null)
+    internal static T CheckNotEquals<T>(this T value, string argumentName, T invalidValue, string? errorMessage = null)
         where T : struct
     {
         if (Equals(value, invalidValue))
@@ -62,7 +64,7 @@ internal static class CheckExtensions
         return value;
     }
 
-    internal static T CheckGreaterOrEqual<T>(this T value, string argumentName, T checkValue, string errorMessage = null)
+    internal static T CheckGreaterOrEqual<T>(this T value, string argumentName, T checkValue, string? errorMessage = null)
         where T : struct, IComparable<T>
     {
         if (value.CompareTo(checkValue) < 0)
@@ -71,7 +73,7 @@ internal static class CheckExtensions
         return value;
     }
 
-    internal static T CheckLessOrEqual<T>(this T value, string argumentName, T checkValue, string errorMessage = null)
+    internal static T CheckLessOrEqual<T>(this T value, string argumentName, T checkValue, string? errorMessage = null)
         where T : struct, IComparable<T>
     {
         if (value.CompareTo(checkValue) > 0)
@@ -88,7 +90,15 @@ internal static class CheckExtensions
         return index;
     }
 
-    internal static Type CheckIs<T>(this Type value, string argumentName, string errorMessage = null)
+    internal static int CheckIndexLessThanSize(this int index, int size)
+    {
+        if (index >= size)
+            throw new ArgumentOutOfRangeException(nameof(index), index, $"Index was out of range. Must be less than the size of the collection, which is {size}.");
+
+        return index;
+    }
+
+    internal static Type CheckIs<T>(this Type value, string argumentName, string? errorMessage = null)
     {
         value.CheckNotNull(argumentName);
 
@@ -100,12 +110,12 @@ internal static class CheckExtensions
         return value;
     }
 
-    private static ArgumentNullException CreateArgumentNullException(string argumentName, string message) =>
+    private static ArgumentNullException CreateArgumentNullException(string argumentName, string? message) =>
         message is null
         ? new ArgumentNullException(argumentName)
         : new ArgumentNullException(argumentName, message);
 
-    private static string ConcatMessage(string primaryMessage, string secondaryMessage) =>
+    private static string ConcatMessage(string primaryMessage, string? secondaryMessage) =>
         string.IsNullOrEmpty(secondaryMessage)
             ? primaryMessage
             : $"{primaryMessage} {secondaryMessage}";
