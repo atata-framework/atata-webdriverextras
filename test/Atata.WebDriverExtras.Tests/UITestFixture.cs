@@ -9,7 +9,7 @@ public abstract class UITestFixture
 
     public static string BaseUrl { get; } = $"http://localhost:{TestAppPort}/";
 
-    protected IWebDriver Driver { get; private set; }
+    protected IWebDriver Driver { get; private set; } = null!;
 
     [SetUp]
     public virtual void SetUp()

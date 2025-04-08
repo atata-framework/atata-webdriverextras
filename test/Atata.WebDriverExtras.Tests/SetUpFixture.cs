@@ -7,7 +7,7 @@ namespace Atata.WebDriverExtras.Tests;
 [SetUpFixture]
 public class SetUpFixture
 {
-    private CliCommand _dotnetRunCommand;
+    private CliCommand? _dotnetRunCommand;
 
     [OneTimeSetUp]
     public async Task GlobalSetUpAsync() =>
@@ -30,7 +30,7 @@ public class SetUpFixture
     {
         string testAppPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "Atata.WebDriverExtras.TestApp");
 
-        ProgramCli dotnetCli = new ProgramCli("dotnet", useCommandShell: true)
+        var dotnetCli = new ProgramCli("dotnet", useCommandShell: true)
             .WithWorkingDirectory(testAppPath);
 
         _dotnetRunCommand = dotnetCli.Start("run");
@@ -47,7 +47,7 @@ public class SetUpFixture
     [OneTimeTearDown]
     public void GlobalTearDown()
     {
-        if (_dotnetRunCommand != null)
+        if (_dotnetRunCommand is not null)
         {
             _dotnetRunCommand.Kill(true);
             _dotnetRunCommand.Dispose();

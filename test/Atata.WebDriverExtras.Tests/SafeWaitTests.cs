@@ -4,11 +4,11 @@
 [Parallelizable(ParallelScope.None)]
 public class SafeWaitTests
 {
-    private SafeWait<object> _sut;
+    private SafeWait<object> _sut = null!;
 
     [SetUp]
     public void SetUp() =>
-        _sut = new SafeWait<object>(new object())
+        _sut = new(new object())
         {
             Timeout = TimeSpan.FromSeconds(.3),
             PollingInterval = TimeSpan.FromSeconds(.05)

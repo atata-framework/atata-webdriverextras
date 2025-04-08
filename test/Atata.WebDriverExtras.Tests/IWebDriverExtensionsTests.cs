@@ -11,7 +11,7 @@ public static class IWebDriverExtensionsTests
         [Test]
         public void WithNull() =>
             Assert.Throws<ArgumentNullException>(() =>
-                ((IWebDriver)null).As<IJavaScriptExecutor>());
+                ((IWebDriver)null!).As<IJavaScriptExecutor>());
 
         [Test]
         public void HasInterface() =>
@@ -43,7 +43,7 @@ public static class IWebDriverExtensionsTests
         [Test]
         public void WithNull() =>
             Assert.Throws<ArgumentNullException>(() =>
-                ((IWebDriver)null).Is<IJavaScriptExecutor>());
+                ((IWebDriver)null!).Is<IJavaScriptExecutor>());
 
         [Test]
         public void HasInterface() =>
@@ -73,7 +73,7 @@ public static class IWebDriverExtensionsTests
         [Test]
         public void WithNull() =>
             Assert.Throws<ArgumentNullException>(() =>
-                ((IWebDriver)null).TryAs<IJavaScriptExecutor>(out _));
+                ((IWebDriver)null!).TryAs<IJavaScriptExecutor>(out _));
 
         [Test]
         public void HasInterface()
@@ -121,15 +121,15 @@ public static class IWebDriverExtensionsTests
         public DriverWrapper(IWebDriver webDriver) =>
             WrappedDriver = webDriver;
 
-        public string Url { get; set; }
+        public string Url { get; set; } = string.Empty;
 
-        public string Title { get; }
+        public string Title => string.Empty;
 
-        public string PageSource { get; }
+        public string PageSource => string.Empty;
 
-        public string CurrentWindowHandle { get; }
+        public string CurrentWindowHandle => string.Empty;
 
-        public ReadOnlyCollection<string> WindowHandles { get; }
+        public ReadOnlyCollection<string> WindowHandles => new([]);
 
         public IWebDriver WrappedDriver { get; }
 
