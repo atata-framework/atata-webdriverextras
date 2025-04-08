@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace Atata;
+﻿namespace Atata;
 
 /// <summary>
 /// Provide a set of static methods to execute an action with retry on <see cref="StaleElementReferenceException"/>.

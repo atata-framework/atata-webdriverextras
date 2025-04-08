@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace Atata;
+﻿namespace Atata;
 
 // TODO: Review IWebElementExtensions class. Remove unused methods.
 public static class IWebElementExtensions

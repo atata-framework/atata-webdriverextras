@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-namespace Atata;
+﻿namespace Atata;
 
 public abstract class XPathBuilder<TBuilder>
     where TBuilder : XPathBuilder<TBuilder>
