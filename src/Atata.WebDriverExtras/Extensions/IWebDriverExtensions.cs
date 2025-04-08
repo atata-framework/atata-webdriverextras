@@ -1,4 +1,6 @@
-﻿namespace Atata;
+﻿#nullable enable
+
+namespace Atata;
 
 public static class IWebDriverExtensions
 {
@@ -41,7 +43,7 @@ public static class IWebDriverExtensions
     /// <returns><paramref name="webDriver"/> casted to <typeparamref name="TInterface"/>.</returns>
     /// <exception cref="NotSupportedException"><paramref name="webDriver"/> doesn't implement <typeparamref name="TInterface"/>.</exception>
     public static TInterface As<TInterface>(this IWebDriver webDriver) =>
-        webDriver.TryAs(out TInterface castedWebDriver)
+        webDriver.TryAs(out TInterface? castedWebDriver)
             ? castedWebDriver
             : throw new NotSupportedException($"{webDriver.GetType().FullName} doesn't implement {typeof(TInterface).FullName}.");
 
@@ -68,7 +70,7 @@ public static class IWebDriverExtensions
     /// <see langword="true"/> if <paramref name="webDriver"/> can be casted to <typeparamref name="TInterface"/>;
     /// otherwise, <see langword="false"/>.
     /// </returns>
-    public static bool TryAs<TInterface>(this IWebDriver webDriver, out TInterface castedWebDriver)
+    public static bool TryAs<TInterface>(this IWebDriver webDriver, [NotNullWhen(true)] out TInterface? castedWebDriver)
     {
         if (webDriver is null)
             throw new ArgumentNullException(nameof(webDriver));
@@ -103,7 +105,7 @@ public static class IWebDriverExtensions
     {
         driver.CheckNotNull(nameof(driver));
 
-        driver.Manage().Window.Size = new Size(width, height);
+        driver.Manage().Window.Size = new(width, height);
         return driver;
     }
 
@@ -112,7 +114,7 @@ public static class IWebDriverExtensions
     {
         driver.CheckNotNull(nameof(driver));
 
-        driver.Manage().Window.Position = new Point(x, y);
+        driver.Manage().Window.Position = new(x, y);
         return driver;
     }
 
@@ -122,7 +124,7 @@ public static class IWebDriverExtensions
         driver.CheckNotNull(nameof(driver));
         actionsBuilder.CheckNotNull(nameof(actionsBuilder));
 
-        Actions actions = new Actions(driver);
+        Actions actions = new(driver);
         actions = actionsBuilder(actions);
         actions.Perform();
 
@@ -133,21 +135,21 @@ public static class IWebDriverExtensions
     {
         driver.CheckNotNull(nameof(driver));
 
-        return new WebDriverExtendedSearchContext(driver);
+        return new(driver);
     }
 
     public static WebDriverExtendedSearchContext Try(this IWebDriver driver, TimeSpan timeout)
     {
         driver.CheckNotNull(nameof(driver));
 
-        return new WebDriverExtendedSearchContext(driver, timeout);
+        return new(driver, timeout);
     }
 
     public static WebDriverExtendedSearchContext Try(this IWebDriver driver, TimeSpan timeout, TimeSpan retryInterval)
     {
         driver.CheckNotNull(nameof(driver));
 
-        return new WebDriverExtendedSearchContext(driver, timeout, retryInterval);
+        return new(driver, timeout, retryInterval);
     }
 
     public static bool TitleContains(this IWebDriver driver, string text)
