@@ -3,7 +3,7 @@
 public static class Program
 {
     public static void Main(string[] args) =>
-        CreateWebApplication(new WebApplicationOptions { Args = args })
+        CreateWebApplication(new() { Args = args })
             .Run();
 
     public static WebApplication CreateWebApplication(WebApplicationOptions options)
