@@ -1,5 +1,6 @@
 ﻿namespace Atata;
 
+// TODO: v4. Remove ElementExceptionFactory. Move methods to ElementNotFoundException and ElementNotMissingException.
 public static class ElementExceptionFactory
 {
     public static ElementNotFoundException CreateForNotFound(string? elementName = null, By? by = null, ISearchContext? searchContext = null) =>

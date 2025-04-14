@@ -5,6 +5,7 @@ namespace Atata;
 /// <summary>
 /// Provides a set of methods for an exception creation.
 /// </summary>
+// TODO: v4. Remove ExceptionFactory.
 public static class ExceptionFactory
 {
     public static TimeoutException CreateForTimeout(TimeSpan spentTime, Exception? innerException = null)
