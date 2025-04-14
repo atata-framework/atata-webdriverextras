@@ -28,8 +28,11 @@ public class SafeWait<T> : IWait<T>
     /// <param name="clock">The clock to use when measuring the timeout.</param>
     public SafeWait(T input, IClock clock)
     {
-        _input = input.CheckNotNull(nameof(input));
-        _clock = clock.CheckNotNull(nameof(clock));
+        Guard.ThrowIfNull(input);
+        Guard.ThrowIfNull(clock);
+
+        _input = input;
+        _clock = clock;
     }
 
     /// <summary>
@@ -53,7 +56,7 @@ public class SafeWait<T> : IWait<T>
     /// <param name="exceptionTypes">The types of exceptions to ignore.</param>
     public void IgnoreExceptionTypes(params Type[] exceptionTypes)
     {
-        exceptionTypes.CheckNotNull(nameof(exceptionTypes));
+        Guard.ThrowIfNull(exceptionTypes);
 
         // Commented out due to performance. It is absolutely not critical to have inappropriate type passed.
         ////foreach (Type exceptionType in exceptionTypes)
@@ -89,7 +92,7 @@ public class SafeWait<T> : IWait<T>
     /// <returns>The delegate's return value.</returns>
     public TResult? Until<TResult>(Func<T, TResult> condition)
     {
-        condition.CheckNotNull(nameof(condition));
+        Guard.ThrowIfNull(condition);
 
         DateTime operationStart = _clock.Now;
         DateTime operationTimeoutEnd = operationStart.Add(Timeout);

@@ -50,7 +50,7 @@ public static class ISearchContextExtensions
     private static IExtendedSearchContext ResolveContext<T>(this T searchContext)
         where T : ISearchContext
     {
-        searchContext.CheckNotNull(nameof(searchContext));
+        Guard.ThrowIfNull(searchContext);
 
         if (searchContext.GetType().IsSubclassOfRawGeneric(typeof(ExtendedSearchContext<>)))
             return (IExtendedSearchContext)searchContext;

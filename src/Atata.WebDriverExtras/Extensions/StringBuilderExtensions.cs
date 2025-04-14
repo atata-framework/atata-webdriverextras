@@ -13,7 +13,7 @@ public static class StringBuilderExtensions
     /// <returns>A reference to the same <see cref="StringBuilder"/> instance after the append operation has completed.</returns>
     public static StringBuilder AppendSpace(this StringBuilder builder)
     {
-        builder.CheckNotNull(nameof(builder));
+        Guard.ThrowIfNull(builder);
 
         return builder.Append(' ');
     }

@@ -218,7 +218,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
     public bool MissingAll(Dictionary<By, ISearchContext> byContextPairs)
     {
-        byContextPairs.CheckNotNullOrEmpty(nameof(byContextPairs));
+        Guard.ThrowIfNullOrEmpty(byContextPairs);
 
         Dictionary<By, SearchOptions> searchOptions = byContextPairs.Keys.ToDictionary(x => x, x => x.GetSearchOptionsOrDefault());
 

@@ -7,7 +7,7 @@ public static class StaleSafely
 {
     public static TResult Execute<TResult>(Func<TimeSpan, TResult> action, TimeSpan timeout, Action? onExceptionCallback = null)
     {
-        action.CheckNotNull(nameof(action));
+        Guard.ThrowIfNull(action);
 
         TimeSpan workingTimeout = timeout;
         Stopwatch stopwatch = Stopwatch.StartNew();
@@ -34,7 +34,7 @@ public static class StaleSafely
 
     public static TResult Execute<TResult>(Func<SearchOptions, TResult> action, SearchOptions options, Action? onExceptionCallback = null)
     {
-        action.CheckNotNull(nameof(action));
+        Guard.ThrowIfNull(action);
 
         options ??= new();
 
@@ -63,7 +63,7 @@ public static class StaleSafely
 
     public static void Execute(Action<TimeSpan> action, TimeSpan timeout, Action? onExceptionCallback = null)
     {
-        action.CheckNotNull(nameof(action));
+        Guard.ThrowIfNull(action);
 
         TimeSpan workingTimeout = timeout;
         Stopwatch stopwatch = Stopwatch.StartNew();
@@ -91,7 +91,7 @@ public static class StaleSafely
 
     public static void Execute(Action<SearchOptions> action, SearchOptions options, Action? onExceptionCallback = null)
     {
-        action.CheckNotNull(nameof(action));
+        Guard.ThrowIfNull(action);
 
         options ??= new();
 

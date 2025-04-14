@@ -92,7 +92,7 @@ public static class IWebDriverExtensions
     public static T Maximize<T>(this T driver)
         where T : IWebDriver
     {
-        driver.CheckNotNull(nameof(driver));
+        Guard.ThrowIfNull(driver);
 
         driver.Manage().Window.Maximize();
         return driver;
@@ -101,7 +101,7 @@ public static class IWebDriverExtensions
     public static T SetSize<T>(this T driver, int width, int height)
         where T : IWebDriver
     {
-        driver.CheckNotNull(nameof(driver));
+        Guard.ThrowIfNull(driver);
 
         driver.Manage().Window.Size = new(width, height);
         return driver;
@@ -110,7 +110,7 @@ public static class IWebDriverExtensions
     public static T SetPosition<T>(this T driver, int x, int y)
         where T : IWebDriver
     {
-        driver.CheckNotNull(nameof(driver));
+        Guard.ThrowIfNull(driver);
 
         driver.Manage().Window.Position = new(x, y);
         return driver;
@@ -119,8 +119,8 @@ public static class IWebDriverExtensions
     public static T Perform<T>(this T driver, Func<Actions, Actions> actionsBuilder)
         where T : IWebDriver
     {
-        driver.CheckNotNull(nameof(driver));
-        actionsBuilder.CheckNotNull(nameof(actionsBuilder));
+        Guard.ThrowIfNull(driver);
+        Guard.ThrowIfNull(actionsBuilder);
 
         Actions actions = new(driver);
         actions = actionsBuilder(actions);
@@ -131,29 +131,29 @@ public static class IWebDriverExtensions
 
     public static WebDriverExtendedSearchContext Try(this IWebDriver driver)
     {
-        driver.CheckNotNull(nameof(driver));
+        Guard.ThrowIfNull(driver);
 
         return new(driver);
     }
 
     public static WebDriverExtendedSearchContext Try(this IWebDriver driver, TimeSpan timeout)
     {
-        driver.CheckNotNull(nameof(driver));
+        Guard.ThrowIfNull(driver);
 
         return new(driver, timeout);
     }
 
     public static WebDriverExtendedSearchContext Try(this IWebDriver driver, TimeSpan timeout, TimeSpan retryInterval)
     {
-        driver.CheckNotNull(nameof(driver));
+        Guard.ThrowIfNull(driver);
 
         return new(driver, timeout, retryInterval);
     }
 
     public static bool TitleContains(this IWebDriver driver, string text)
     {
-        driver.CheckNotNull(nameof(driver));
-        text.CheckNotNullOrEmpty(nameof(text));
+        Guard.ThrowIfNull(driver);
+        Guard.ThrowIfNullOrEmpty(text);
 
         return driver?.Title.Contains(text) ?? false;
     }

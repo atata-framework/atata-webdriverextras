@@ -34,7 +34,7 @@ public static class IWebElementExtensions
 
     public static string ToDetailedString(this IWebElement element)
     {
-        element.CheckNotNull(nameof(element));
+        Guard.ThrowIfNull(element);
 
         try
         {
@@ -76,7 +76,7 @@ public static class IWebElementExtensions
     /// <returns>The value of element's <c>Id</c> property or <see langword="null"/> if property is missing.</returns>
     public static string GetElementId(this IWebElement element)
     {
-        element.CheckNotNull(nameof(element));
+        Guard.ThrowIfNull(element);
 
         PropertyInfo property = element.GetType().GetProperty(
             "Id",

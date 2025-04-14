@@ -4,7 +4,7 @@ internal class ExtendedBy : By
 {
     internal ExtendedBy(By by)
     {
-        by.CheckNotNull(nameof(by));
+        Guard.ThrowIfNull(by);
 
         ExtendedBy? byAsExtended = by as ExtendedBy;
 
@@ -27,7 +27,7 @@ internal class ExtendedBy : By
 
     public ExtendedBy ApplySettingsFrom(ExtendedBy otherExtendedBy)
     {
-        otherExtendedBy.CheckNotNull(nameof(otherExtendedBy));
+        Guard.ThrowIfNull(otherExtendedBy);
 
         ElementName = otherExtendedBy.ElementName;
         ElementKind = otherExtendedBy.ElementKind;
