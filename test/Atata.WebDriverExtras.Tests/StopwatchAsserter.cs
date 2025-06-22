@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace Atata.WebDriverExtras.Tests;
+﻿namespace Atata.WebDriverExtras.Tests;
 
 public sealed class StopwatchAsserter : IDisposable
 {

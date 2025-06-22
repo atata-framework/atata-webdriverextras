@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Drawing;
-
-namespace Atata.WebDriverExtras.Tests;
+﻿namespace Atata.WebDriverExtras.Tests;
 
 public class StubWebElement : IWebElement
 {

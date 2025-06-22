@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="NUnit.Framework" />
-    <Using Include="OpenQA.Selenium" />
-    <Using Include="System.Collections" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Atata.Cli" Version="2.2.0" />
     <PackageReference Include="Atata.WebDriverSetup" Version="3.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />

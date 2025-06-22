@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-using AssertIs = NUnit.Framework.Is;
+﻿using AssertIs = NUnit.Framework.Is;
 
 namespace Atata.WebDriverExtras.Tests;
 
