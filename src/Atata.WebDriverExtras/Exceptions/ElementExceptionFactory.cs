@@ -1,6 +1,6 @@
 ﻿namespace Atata;
 
-// TODO: v4. Remove ElementExceptionFactory. Move methods to ElementNotFoundException and ElementNotMissingException.
+// TODO: v5. Remove ElementExceptionFactory.
 public static class ElementExceptionFactory
 {
     [Obsolete("Instead use ElementNotFoundException.Create(...)")] // Obsolete since v4.0.0.
@@ -11,19 +11,11 @@ public static class ElementExceptionFactory
     public static ElementNotFoundException CreateForNotFound(SearchFailureData searchFailureData) =>
         ElementNotFoundException.Create(searchFailureData);
 
+    [Obsolete("Instead use ElementNotMissingException.Create(...)")] // Obsolete since v4.0.0.
     public static ElementNotMissingException CreateForNotMissing(string? elementName = null, By? by = null, ISearchContext? searchContext = null) =>
-        CreateForNotMissing(
-            new SearchFailureData
-            {
-                ElementName = elementName,
-                By = by,
-                SearchContext = searchContext
-            });
+        ElementNotMissingException.Create(elementName, by, searchContext);
 
-    public static ElementNotMissingException CreateForNotMissing(SearchFailureData searchFailureData)
-    {
-        string message = (searchFailureData ?? new()).ToStringForElementNotMissing();
-
-        return new ElementNotMissingException(message);
-    }
+    [Obsolete("Instead use ElementNotMissingException.Create(...)")] // Obsolete since v4.0.0.
+    public static ElementNotMissingException CreateForNotMissing(SearchFailureData searchFailureData) =>
+        ElementNotMissingException.Create(searchFailureData);
 }

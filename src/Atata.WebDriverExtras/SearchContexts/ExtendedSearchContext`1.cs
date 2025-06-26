@@ -198,7 +198,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
         if (!options.IsSafely && !isMissing)
         {
-            throw ElementExceptionFactory.CreateForNotMissing(
+            throw ElementNotMissingException.Create(
                 new SearchFailureData
                 {
                     By = by,
@@ -260,7 +260,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
         {
             By firstLeftBy = leftBys.FirstOrDefault();
 
-            throw ElementExceptionFactory.CreateForNotMissing(
+            throw ElementNotMissingException.Create(
                 new SearchFailureData
                 {
                     By = firstLeftBy,

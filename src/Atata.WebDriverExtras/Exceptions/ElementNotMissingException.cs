@@ -24,4 +24,20 @@ public class ElementNotMissingException : Exception
         : base(info, context)
     {
     }
+
+    public static ElementNotMissingException Create(string? elementName = null, By? by = null, ISearchContext? searchContext = null) =>
+        Create(
+            new SearchFailureData
+            {
+                ElementName = elementName,
+                By = by,
+                SearchContext = searchContext
+            });
+
+    public static ElementNotMissingException Create(SearchFailureData searchFailureData)
+    {
+        string message = (searchFailureData ?? new()).ToStringForElementNotMissing();
+
+        return new(message);
+    }
 }
