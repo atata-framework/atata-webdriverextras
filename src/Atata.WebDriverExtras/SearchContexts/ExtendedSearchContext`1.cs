@@ -113,7 +113,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
         if (!options.IsSafely && element is null)
         {
-            throw ElementExceptionFactory.CreateForNotFound(
+            throw ElementNotFoundException.Create(
                 new SearchFailureData
                 {
                     By = by,

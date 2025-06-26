@@ -24,4 +24,20 @@ public class ElementNotFoundException : Exception
         : base(info, context)
     {
     }
+
+    public static ElementNotFoundException Create(string? elementName = null, By? by = null, ISearchContext? searchContext = null) =>
+        Create(
+            new SearchFailureData
+            {
+                ElementName = elementName,
+                By = by,
+                SearchContext = searchContext
+            });
+
+    public static ElementNotFoundException Create(SearchFailureData searchFailureData)
+    {
+        string message = (searchFailureData ?? new SearchFailureData()).ToStringForElementNotFound();
+
+        return new(message);
+    }
 }

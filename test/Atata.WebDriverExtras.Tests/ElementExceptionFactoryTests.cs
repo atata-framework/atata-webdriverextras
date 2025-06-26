@@ -8,7 +8,7 @@ public static class ElementExceptionFactoryTests
         [Test]
         public void WithNull()
         {
-            var result = ElementExceptionFactory.CreateForNotFound(null!);
+            var result = ElementNotFoundException.Create(null!);
 
             string expectedMessage = new SearchFailureData().ToStringForElementNotFound();
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
@@ -23,7 +23,7 @@ public static class ElementExceptionFactoryTests
                 SearchOptions = SearchOptions.Visible()
             };
 
-            var result = ElementExceptionFactory.CreateForNotFound(data);
+            var result = ElementNotFoundException.Create(data);
 
             string expectedMessage = data.ToStringForElementNotFound();
             Assert.That(result.Message, Is.EqualTo(expectedMessage));

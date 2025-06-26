@@ -20,7 +20,7 @@ public class ByChain : By
         ReadOnlyCollection<IWebElement> elements = FindElements(context);
 
         return elements.FirstOrDefault()
-            ?? throw ElementExceptionFactory.CreateForNotFound(by: this, searchContext: context);
+            ?? throw ElementNotFoundException.Create(by: this, searchContext: context);
     }
 
     public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)

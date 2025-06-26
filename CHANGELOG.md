@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Make obsolete `ElementExceptionFactory.CreateForNotFound` methods.
+  Instead use `ElementNotFoundException.Create(...)`.
+
 ## [3.2.0] - 2025-04-08
 
 ### Changed
