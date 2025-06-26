@@ -1,31 +1,31 @@
 ﻿namespace Atata.WebDriverExtras.Tests;
 
-public static class ElementExceptionFactoryTests
+public static class ElementNotFoundExceptionTests
 {
     [TestFixture]
-    public class CreateForNotMissing
+    public sealed class Create
     {
         [Test]
         public void WithNull()
         {
-            var result = ElementExceptionFactory.CreateForNotMissing(null!);
+            var result = ElementNotFoundException.Create(null!);
 
-            string expectedMessage = new SearchFailureData().ToStringForElementNotMissing();
+            string expectedMessage = new SearchFailureData().ToStringForElementNotFound();
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
         }
 
         [Test]
         public void WithData()
         {
-            SearchFailureData data = new SearchFailureData
+            SearchFailureData data = new()
             {
                 By = By.XPath(".//a"),
                 SearchOptions = SearchOptions.Visible()
             };
 
-            var result = ElementExceptionFactory.CreateForNotMissing(data);
+            var result = ElementNotFoundException.Create(data);
 
-            string expectedMessage = data.ToStringForElementNotMissing();
+            string expectedMessage = data.ToStringForElementNotFound();
             Assert.That(result.Message, Is.EqualTo(expectedMessage));
         }
     }
