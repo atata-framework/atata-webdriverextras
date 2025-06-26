@@ -45,7 +45,7 @@ public static class TimeSpanExtensions
         if (secondsRequired || seconds > 0 || builder.Length == 0)
         {
             if (builder.Length > 0)
-                builder.AppendSpace();
+                builder.Append(' ');
 
             builder.Append(Math.Floor(seconds).ToString("F0"));
 

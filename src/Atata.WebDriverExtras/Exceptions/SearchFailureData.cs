@@ -62,12 +62,12 @@ public class SearchFailureData
         StringBuilder builder = new();
 
         if (SearchOptions is not null && SearchOptions.Visibility != Visibility.Any)
-            builder.Append(SearchOptions.Visibility.ToString().ToLowerInvariant()).AppendSpace();
+            builder.Append(SearchOptions.Visibility.ToString().ToLowerInvariant()).Append(' ');
 
         string? elementName = GetElementNameOrExtractFromBy();
 
         if (elementName?.Length > 0)
-            builder.Append(WrapWithDoubleQuotes(elementName)).AppendSpace();
+            builder.Append(WrapWithDoubleQuotes(elementName)).Append(' ');
 
         return builder.Append("element").ToString();
     }
