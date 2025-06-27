@@ -10,11 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Make obsolete `ElementExceptionFactory.CreateForNotFound` methods.
-  Instead use `ElementNotFoundException.Create(...)`.
+  Use `ElementNotFoundException.Create(...)` instead.
 - Make obsolete `ElementExceptionFactory.CreateForNotMissing` methods.
-  Instead use `ElementNotMissingException.Create(...)`.
+  Use `ElementNotMissingException.Create(...)` instead.
 - Make obsolete `StringBuilderExtensions.AppendSpace` method.
-  Instead use `Append(' ')`.
+  Use `Append(' ')` instead.
 - Make obsolete `IEnumerableExtensions.ToReadOnly` method.
   Instead use constructor of `ReadOnlyCollection<T>` or use another collection type (array, for example).
 - Make obsolete `ExceptionFactory.CreateForTimeout` method.
