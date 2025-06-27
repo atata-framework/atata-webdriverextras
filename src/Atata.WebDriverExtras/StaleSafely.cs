@@ -25,7 +25,7 @@ public static class StaleSafely
                 TimeSpan spentTime = stopwatch.Elapsed;
 
                 if (spentTime > timeout)
-                    throw ExceptionFactory.CreateForTimeout(spentTime, exception);
+                    throw TimeoutExceptionFactory.Create(spentTime, exception);
                 else
                     workingTimeout = timeout - spentTime;
             }
@@ -54,7 +54,7 @@ public static class StaleSafely
                 TimeSpan spentTime = stopwatch.Elapsed;
 
                 if (spentTime > options.Timeout)
-                    throw ExceptionFactory.CreateForTimeout(spentTime, exception);
+                    throw TimeoutExceptionFactory.Create(spentTime, exception);
                 else
                     workingOptions.Timeout = options.Timeout - spentTime;
             }
@@ -82,7 +82,7 @@ public static class StaleSafely
                 TimeSpan spentTime = stopwatch.Elapsed;
 
                 if (spentTime > timeout)
-                    throw ExceptionFactory.CreateForTimeout(spentTime, exception);
+                    throw TimeoutExceptionFactory.Create(spentTime, exception);
                 else
                     workingTimeout = timeout - spentTime;
             }
@@ -112,7 +112,7 @@ public static class StaleSafely
                 TimeSpan spentTime = stopwatch.Elapsed;
 
                 if (spentTime > options.Timeout)
-                    throw ExceptionFactory.CreateForTimeout(spentTime, exception);
+                    throw TimeoutExceptionFactory.Create(spentTime, exception);
                 else
                     workingOptions.Timeout = options.Timeout - spentTime;
             }

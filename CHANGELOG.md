@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Instead use `Append(' ')`.
 - Make obsolete `IEnumerableExtensions.ToReadOnly` method.
   Instead use constructor of `ReadOnlyCollection<T>` or use another collection type (array, for example).
+- Make obsolete `ExceptionFactory.CreateForTimeout` method.
+  Use `TimeoutExceptionFactory.Create(...)` instead.
 
 ### Removed
 
