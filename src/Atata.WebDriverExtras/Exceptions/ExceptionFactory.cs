@@ -10,6 +10,7 @@ public static class ExceptionFactory
     public static TimeoutException CreateForTimeout(TimeSpan spentTime, Exception? innerException = null) =>
         TimeoutExceptionFactory.Create(spentTime, innerException);
 
+    [Obsolete("Do not use this method, because it will be removed.")] // Obsolete since v4.0.0.
     public static ArgumentException CreateForUnsupportedEnumValue<T>(
         T value,
         [CallerArgumentExpression(nameof(value))] string? paramName = null)
