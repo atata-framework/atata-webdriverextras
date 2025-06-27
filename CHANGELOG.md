@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Instead use `ElementNotMissingException.Create(...)`.
 - Make obsolete `StringBuilderExtensions.AppendSpace` method.
   Instead use `Append(' ')`.
+- Make obsolete `IEnumerableExtensions.ToReadOnly` method.
+  Instead use constructor of `ReadOnlyCollection<T>` or use another collection type (array, for example).
 
 ### Removed
 
