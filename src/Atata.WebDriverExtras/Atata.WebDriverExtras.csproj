@@ -6,12 +6,12 @@
     <Version>4.0.0-beta.1</Version>
     <Title>Atata WebDriver Extras</Title>
     <Description>
-      A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.
+A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.
 
-      The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.
+The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.
 
-      Atata.WebDriverExtras on GitHub: https://github.com/atata-framework/atata-webdriverextras
-      Atata Framework documentation: https://atata.io
+Atata.WebDriverExtras on GitHub: https://github.com/atata-framework/atata-webdriverextras
+Atata Framework documentation: https://atata.io
     </Description>
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
     <PackageId>Atata.WebDriverExtras</PackageId>
