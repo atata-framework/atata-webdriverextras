@@ -2,6 +2,7 @@ app
 Atata
 autocomplete
 awaitable
+casted
 CDP
 checkbox
 checkboxes
@@ -18,6 +19,7 @@ deinitialize
 deinitialized
 deinitializes
 deinitializing
+dev
 dropdown
 enum
 enums
