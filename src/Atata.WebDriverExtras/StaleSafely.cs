@@ -1,7 +1,8 @@
 ﻿namespace Atata;
 
 /// <summary>
-/// Provide a set of static methods to execute an action with retry on <see cref="StaleElementReferenceException"/>.
+/// Provide a set of static methods to execute an action with retry on
+/// <see cref="StaleElementReferenceException"/> or <see cref="UnknownErrorException"/>.
 /// </summary>
 public static class StaleSafely
 {
@@ -18,7 +19,7 @@ public static class StaleSafely
             {
                 return action(workingTimeout);
             }
-            catch (StaleElementReferenceException exception)
+            catch (Exception exception) when (exception is StaleElementReferenceException or UnknownErrorException)
             {
                 onExceptionCallback?.Invoke();
 
@@ -47,7 +48,7 @@ public static class StaleSafely
             {
                 return action(workingOptions);
             }
-            catch (StaleElementReferenceException exception)
+            catch (Exception exception) when (exception is StaleElementReferenceException or UnknownErrorException)
             {
                 onExceptionCallback?.Invoke();
 
@@ -75,7 +76,7 @@ public static class StaleSafely
                 action(workingTimeout);
                 return;
             }
-            catch (StaleElementReferenceException exception)
+            catch (Exception exception) when (exception is StaleElementReferenceException or UnknownErrorException)
             {
                 onExceptionCallback?.Invoke();
 
@@ -105,7 +106,7 @@ public static class StaleSafely
                 action(workingOptions);
                 return;
             }
-            catch (StaleElementReferenceException exception)
+            catch (Exception exception) when (exception is StaleElementReferenceException or UnknownErrorException)
             {
                 onExceptionCallback?.Invoke();
 
