@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Use `TimeoutExceptionFactory.Create(...)` instead.
 - Make obsolete `ExceptionFactory.CreateForUnsupportedEnumValue` method.
 - Change `RetrySettings.DefaultInterval` value from 500 to 200 milliseconds.
-- Upgrade Selenium.WebDriver package reference to v4.38.0.
+- Upgrade Selenium.WebDriver package reference to v4.39.0.
 
 ### Removed
 
