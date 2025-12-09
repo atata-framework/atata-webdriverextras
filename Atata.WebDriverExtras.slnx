@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="azure-pipelines.release.yml" />
+    <File Path="azure-pipelines.runsettings" />
+    <File Path="azure-pipelines.yml" />
+    <File Path="CHANGELOG.md" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="General.ruleset" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Solution Items/src/">
+    <File Path="src/Directory.Build.props" />
+  </Folder>
+  <Project Path="src/Atata.WebDriverExtras/Atata.WebDriverExtras.csproj" />
+  <Project Path="test/Atata.WebDriverExtras.TestApp/Atata.WebDriverExtras.TestApp.csproj" />
+  <Project Path="test/Atata.WebDriverExtras.Tests/Atata.WebDriverExtras.Tests.csproj" />
+</Solution>
