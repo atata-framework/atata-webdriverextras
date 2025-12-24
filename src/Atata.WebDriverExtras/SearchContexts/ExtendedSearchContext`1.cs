@@ -257,15 +257,15 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
         if (searchOptions.Values.Any(x => !x.IsSafely) && !isMissing)
         {
-            By firstLeftBy = leftBys.FirstOrDefault();
+            By? firstLeftBy = leftBys.FirstOrDefault();
 
             throw ElementNotMissingException.Create(
                 new SearchFailureData
                 {
                     By = firstLeftBy,
                     SearchTime = searchWatch.Elapsed,
-                    SearchOptions = firstLeftBy != null ? searchOptions[firstLeftBy] : null,
-                    SearchContext = firstLeftBy != null ? byContextPairs[firstLeftBy] : null
+                    SearchOptions = firstLeftBy is not null ? searchOptions[firstLeftBy] : null,
+                    SearchContext = firstLeftBy is not null ? byContextPairs[firstLeftBy] : null
                 });
         }
         else
