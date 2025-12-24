@@ -163,8 +163,7 @@ public class ExtendedSearchContext<T> : IExtendedSearchContext
 
     public TResult? Until<TResult>(Func<T, TResult> condition, RetryOptions options)
     {
-        if (condition is null)
-            throw new ArgumentNullException(nameof(condition));
+        Guard.ThrowIfNull(condition);
 
         options ??= new();
 
