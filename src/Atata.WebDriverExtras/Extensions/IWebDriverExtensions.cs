@@ -70,8 +70,7 @@ public static class IWebDriverExtensions
     /// </returns>
     public static bool TryAs<TInterface>(this IWebDriver webDriver, [NotNullWhen(true)] out TInterface? castedWebDriver)
     {
-        if (webDriver is null)
-            throw new ArgumentNullException(nameof(webDriver));
+        Guard.ThrowIfNull(webDriver);
 
         if (webDriver is TInterface casted)
         {
