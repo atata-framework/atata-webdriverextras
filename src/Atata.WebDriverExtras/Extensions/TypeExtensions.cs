@@ -27,7 +27,7 @@ public static class TypeExtensions
         if (genericType is null)
             return null;
 
-        Type typeToCheck = type;
+        Type? typeToCheck = type;
         int depth = 0;
 
         while (typeToCheck is not null && typeToCheck != typeof(object))
@@ -59,6 +59,6 @@ public static class TypeExtensions
     /// <param name="type">The type.</param>
     /// <param name="genericType">Type of the generic interface.</param>
     /// <returns>The actual generic interface type or <see langword="null"/>.</returns>
-    public static Type GetGenericInterfaceType(this Type type, Type genericType) =>
+    public static Type? GetGenericInterfaceType(this Type type, Type genericType) =>
         Array.Find(type.GetInterfaces(), x => x.IsGenericType && x.GetGenericTypeDefinition() == genericType);
 }
