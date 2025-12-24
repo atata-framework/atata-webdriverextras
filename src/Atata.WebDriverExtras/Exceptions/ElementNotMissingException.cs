@@ -3,7 +3,6 @@
 /// <summary>
 /// An exception that is thrown when the expected missing element is actually found.
 /// </summary>
-[Serializable]
 public class ElementNotMissingException : Exception
 {
     public ElementNotMissingException()
@@ -17,11 +16,6 @@ public class ElementNotMissingException : Exception
 
     public ElementNotMissingException(string? message, Exception? innerException)
         : base(message, innerException)
-    {
-    }
-
-    protected ElementNotMissingException(SerializationInfo info, StreamingContext context)
-        : base(info, context)
     {
     }
 
