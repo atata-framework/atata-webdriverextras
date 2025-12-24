@@ -34,8 +34,6 @@ public static class IWebElementExtensions
 
     public static string ToDetailedString(this IWebElement element)
     {
-        Guard.ThrowIfNull(element);
-
         try
         {
             StringBuilder builder = new();
@@ -63,9 +61,9 @@ public static class IWebElementExtensions
 
             return builder.ToString();
         }
-        catch (WebDriverException)
+        catch
         {
-            return element.ToString();
+            return element.ToString() ?? string.Empty;
         }
     }
 
