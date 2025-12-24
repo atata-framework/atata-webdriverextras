@@ -71,15 +71,28 @@ public static class IWebElementExtensions
     /// Gets the element identifier.
     /// </summary>
     /// <param name="element">The element.</param>
-    /// <returns>The value of element's <c>Id</c> property or <see langword="null"/> if property is missing.</returns>
+    /// <returns>The value of element's <c>Id</c> property.</returns>
     public static string GetElementId(this IWebElement element)
     {
-        Guard.ThrowIfNull(element);
+        const string idPropertyName = "Id";
 
-        PropertyInfo property = element.GetType().GetProperty(
-            "Id",
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+#if NET8_0_OR_GREATER
+        if (element is WebElement castedWebElement)
+        {
+            [UnsafeAccessor(UnsafeAccessorKind.Method, Name = $"get_{idPropertyName}")]
+            static extern string GetId(WebElement element);
 
-        return (string)property.GetValue(element, []);
+            return GetId(castedWebElement);
+        }
+#endif
+
+        Type elementType = element.GetType();
+
+        PropertyInfo property = elementType.GetProperty(
+            idPropertyName,
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+            ?? throw new MissingMemberException(elementType.FullName, idPropertyName);
+
+        return (string)property.GetValue(element, [])!;
     }
 }
