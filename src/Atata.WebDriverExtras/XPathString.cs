@@ -44,8 +44,8 @@ public class XPathString
     /// <param name="value">The string value.</param>
     /// <returns>The valid XPath string.</returns>
     public static string ConvertTo(string value) =>
-        value != null && value.Contains("'")
-            ? value.Contains("\"")
+        value is not null && value.Contains('\'')
+            ? value.Contains('\"')
                 ? NormalizeHybridQuotedString(value)
                 : $"\"{value}\""
             : $"'{value}'";
