@@ -52,7 +52,8 @@ public static class IWebDriverExtensions
     /// <typeparam name="TInterface">The type of the interface.</typeparam>
     /// <param name="webDriver">The <see cref="IWebDriver"/> instance.</param>
     /// <returns>
-    ///   <c>true</c> if [is] [the specified web driver]; otherwise, <c>false</c>.
+    /// <see langword="true"/> if <paramref name="webDriver"/> is <typeparamref name="TInterface"/>;
+    /// otherwise, <see langword="false"/>.
     /// </returns>
     public static bool Is<TInterface>(this IWebDriver webDriver) =>
         webDriver.TryAs<TInterface>(out _);

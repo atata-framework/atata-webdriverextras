@@ -67,9 +67,9 @@ public class SearchOptions : ICloneable
 
     /// <summary>
     /// Gets or sets a value indicating whether the search element is safely searching.
-    /// If it is <c>true</c> then <c>null</c> is returned after the search,
+    /// If it is <see langword="true"/> then <see langword="null"/> is returned after the search,
     /// otherwise an exception of <see cref="ElementNotFoundException"/> or <see cref="ElementNotMissingException"/> is thrown.
-    /// The default value is <c>false</c>.
+    /// The default value is <see langword="false"/>.
     /// </summary>
     public bool IsSafely
     {
