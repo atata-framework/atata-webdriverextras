@@ -13,7 +13,7 @@ Is a part of [Atata Framework](https://atata.io).
 
 *The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
 
-**[What's new in v3.3.0](https://github.com/atata-framework/atata-webdriverextras/releases/tag/v3.3.0)**
+**[What's new in v3.5.0](https://github.com/atata-framework/atata-webdriverextras/releases/tag/v3.5.0)**
 
 ## Usage
 
