@@ -10,10 +10,14 @@ public class SetUpFixture
     private CliCommand? _dotnetRunCommand;
 
     [OneTimeSetUp]
-    public async Task GlobalSetUpAsync() =>
+    public async Task GlobalSetUpAsync()
+    {
+        DriverSetup.GlobalConfiguration.WithCheckCertificateRevocationList(false);
+
         await Task.WhenAll(
             DriverSetup.AutoSetUpAsync(BrowserNames.Chrome),
             Task.Run(SetUpTestApp));
+    }
 
     private static bool IsTestAppRunning() =>
         Array.Exists(
