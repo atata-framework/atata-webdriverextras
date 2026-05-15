@@ -138,6 +138,9 @@ public static class IWebDriverExtensionsTests
             // Method intentionally left empty.
         }
 
+        public ValueTask DisposeAsync() =>
+            ValueTask.CompletedTask;
+
         public IWebElement FindElement(By by) => throw new NotSupportedException();
 
         public ReadOnlyCollection<IWebElement> FindElements(By by) => throw new NotSupportedException();
