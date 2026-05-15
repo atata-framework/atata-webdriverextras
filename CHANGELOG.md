@@ -27,6 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Remove obsolete `ITimeoutsExtensions` class.
 
+## [3.7.0] - 2026-05-15
+
+### Changed
+
+- Upgrade Selenium.WebDriver package reference to v4.44.0.
+
 ## [3.6.0] - 2026-03-16
 
 ### Changed
@@ -65,7 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgrade Selenium.WebDriver package reference to v4.28.0 (#61).
 
-[Unreleased]: https://github.com/atata-framework/atata-webdriverextras/compare/v3.6.0...HEAD
+[Unreleased]: https://github.com/atata-framework/atata-webdriverextras/compare/v3.7.0...HEAD
+[3.7.0]: https://github.com/atata-framework/atata-webdriverextras/compare/v3.6.0...v3.7.0
 [3.6.0]: https://github.com/atata-framework/atata-webdriverextras/compare/v3.5.0...v3.6.0
 [3.5.0]: https://github.com/atata-framework/atata-webdriverextras/compare/v3.4.0...v3.5.0
 [3.4.0]: https://github.com/atata-framework/atata-webdriverextras/compare/v3.3.0...v3.4.0
