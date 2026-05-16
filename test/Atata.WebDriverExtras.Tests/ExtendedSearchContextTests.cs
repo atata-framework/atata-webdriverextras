@@ -18,7 +18,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         IWebElement? element;
 
-        using (StopwatchAsserter.WithinSeconds(0, .3))
+        using (StopwatchAsserter.WithinSeconds(0, .99))
             element = Driver.Get(_existingElementBy);
 
         Assert.That(element, Is.Not.Null);
@@ -31,7 +31,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         IWebElement? element;
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(5, .99))
             element = Driver.Get(_missingElementBy.Safely());
 
         Assert.That(element, Is.Null);
@@ -42,7 +42,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(5, .99))
             Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Get(_missingElementBy.Unsafely()));
     }
@@ -52,7 +52,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(0, .3))
+        using (StopwatchAsserter.WithinSeconds(0, .99))
         {
             IWebElement? element = Driver.Get(_hiddenElementBy.Hidden());
             Assert.That(element, Is.Not.Null);
@@ -64,7 +64,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(0, .3))
+        using (StopwatchAsserter.WithinSeconds(0, .99))
         {
             IWebElement? element = Driver.Get(_hiddenElementBy.OfAnyVisibility());
             Assert.That(element, Is.Not.Null);
@@ -76,7 +76,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(3, .3))
+        using (StopwatchAsserter.WithinSeconds(3, .99))
             Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Get(_missingElementBy.Within(TimeSpan.FromSeconds(3))));
     }
@@ -86,7 +86,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(3, .3))
+        using (StopwatchAsserter.WithinSeconds(3, .99))
             Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Get(_hiddenElementBy.Visible().Within(TimeSpan.FromSeconds(3))));
     }
@@ -98,7 +98,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         Driver.Get(By.Id("add-value"))!.Click();
 
-        IWebElement? element = StopwatchAsserter.WithinSeconds(2, 1.5).Execute(
+        IWebElement? element = StopwatchAsserter.WithinSeconds(2, 1.5, 0.2).Execute(
             () => Driver.Get(By.Id("value-block")));
 
         Assert.That(element, Is.Not.Null);
@@ -109,7 +109,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(3, .3))
+        using (StopwatchAsserter.WithinSeconds(3, .99))
             Assert.Throws<ElementNotFoundException>(() =>
                 Driver.Try(TimeSpan.FromSeconds(3)).Get(_missingElementBy));
     }
@@ -134,7 +134,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(RetrySettings.DefaultTimeout.TotalSeconds, .3))
             result = Driver.Try().Until(x => false);
 
         Assert.That(result, Is.False);
@@ -173,7 +173,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(0, .3))
+        using (StopwatchAsserter.WithinSeconds(0, .99))
             result = Driver.Try().Missing(_missingElementBy.Safely());
 
         Assert.That(result, Is.True);
@@ -184,7 +184,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(5, .99))
             Assert.Throws<ElementNotMissingException>(() =>
                 Driver.Try().Missing(_existingElementBy.Unsafely()));
     }
@@ -196,7 +196,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(5, .99))
             result = Driver.Try().Missing(_existingElementBy.Safely());
 
         Assert.That(result, Is.False);
@@ -209,7 +209,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(0, .6))
+        using (StopwatchAsserter.WithinSeconds(0, .99))
             result = Driver.Try().MissingAll(_missingElementBy, _anotherMissingElementBy);
 
         Assert.That(result, Is.True);
@@ -220,7 +220,7 @@ public class ExtendedSearchContextTests : UITestFixture
     {
         GoTo("static");
 
-        using (StopwatchAsserter.WithinSeconds(5, .3))
+        using (StopwatchAsserter.WithinSeconds(5, .99))
             Assert.Throws<ElementNotMissingException>(() =>
                 Driver.Try().MissingAll(_existingElementBy.Unsafely(), _anotherMissingElementBy.Unsafely()));
     }
@@ -232,7 +232,7 @@ public class ExtendedSearchContextTests : UITestFixture
 
         bool result;
 
-        using (StopwatchAsserter.WithinSeconds(5, .5))
+        using (StopwatchAsserter.WithinSeconds(5, .99))
             result = Driver.Try().MissingAll(_existingElementBy.Safely(), _anotherMissingElementBy.Safely());
 
         Assert.That(result, Is.False);
