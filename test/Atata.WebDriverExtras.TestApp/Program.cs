@@ -1,4 +1,6 @@
-﻿namespace Atata.WebDriverExtras.TestApp;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Atata.WebDriverExtras.TestApp;
 
 public static class Program
 {
@@ -6,6 +8,7 @@ public static class Program
         CreateWebApplication(new() { Args = args })
             .Run();
 
+    [SuppressMessage("Minor Vulnerability", "S4507:Debugging features should not be enabled in production")]
     public static WebApplication CreateWebApplication(WebApplicationOptions options)
     {
         var builder = WebApplication.CreateBuilder(options);
