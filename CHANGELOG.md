@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Change package target frameworks from .NET Standard 2.0 to .NET 8.0 and .NET Framework 4.6.2.
+- Upgrade Selenium.WebDriver package reference to v4.47.0.
 - Make obsolete `ElementExceptionFactory.CreateForNotFound` methods.
   Use `ElementNotFoundException.Create(...)` instead.
 - Make obsolete `ElementExceptionFactory.CreateForNotMissing` methods.
