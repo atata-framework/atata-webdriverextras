@@ -16,7 +16,7 @@ The package targets .NET 8.0 and .NET Framework 4.6.2.
     <RepositoryUrl>https://github.com/atata-framework/atata-webdriverextras</RepositoryUrl>
     <PackageId>Atata.WebDriverExtras</PackageId>
     <PackageTags>atata automation testing test selenium webdriver browser</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/atata-framework/atata-webdriverextras/blob/main/CHANGELOG.md</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/atata-framework/atata-webdriverextras</PackageProjectUrl>
   </PropertyGroup>
 
