@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <RootNamespace>Atata</RootNamespace>
-    <Version>3.8.0</Version>
+    <Version>3.9.0</Version>
     <Title>Atata WebDriver Extras</Title>
     <Description>A set of extension methods and other extra classes for Selenium WebDriver. Is a part of Atata Framework.
 
