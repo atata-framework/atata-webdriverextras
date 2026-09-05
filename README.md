@@ -10,9 +10,9 @@
 A set of C#/.NET extension methods and other extra classes for Selenium WebDriver.
 Is a part of [Atata Framework](https://atata.io).
 
-*The package targets .NET Standard 2.0, which supports .NET 5+, .NET Framework 4.6.1+ and .NET Core/Standard 2.0+.*
+*The package targets .NET 8.0 and .NET Framework 4.6.2.*
 
-**[What's new in v3.9.0](https://github.com/atata-framework/atata-webdriverextras/releases/tag/v3.9.0)**
+**[What's new in v4.0.0](https://github.com/atata-framework/atata-webdriverextras/releases/tag/v4.0.0)**
 
 ## Usage
 
