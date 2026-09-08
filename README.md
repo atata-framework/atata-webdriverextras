@@ -2,7 +2,7 @@
 
 [![NuGet](http://img.shields.io/nuget/v/Atata.WebDriverExtras.svg?style=flat)](https://www.nuget.org/packages/Atata.WebDriverExtras/)
 [![GitHub release](https://img.shields.io/github/release/atata-framework/atata-webdriverextras.svg)](https://github.com/atata-framework/atata-webdriverextras/releases)
-[![Build status](https://dev.azure.com/atata-framework/atata-webdriverextras/_apis/build/status/atata-webdriverextras-ci?&branchName=main)](https://dev.azure.com/atata-framework/atata-webdriverextras/_build/latest?definitionId=11&branchName=main)
+[![Build status](https://dev.azure.com/atata-framework/atata-webdriverextras/_apis/build/status/atata-webdriverextras-ci?&branchName=main)](https://dev.azure.com/atata-framework/atata-webdriverextras/_build/latest?definitionId=11&branchName=main)\
 [![Slack](https://img.shields.io/badge/join-Slack-green.svg?colorB=4EB898)](https://join.slack.com/t/atata-framework/shared_invite/zt-5j3lyln7-WD1ZtMDzXBhPm0yXLDBzbA)
 [![Atata docs](https://img.shields.io/badge/docs-Atata_Framework-orange.svg)](https://atata.io)
 [![X](https://img.shields.io/badge/follow-@AtataFramework-blue.svg)](https://x.com/AtataFramework)
@@ -10,9 +10,9 @@
 A set of C#/.NET extension methods and other extra classes for Selenium WebDriver.
 Is a part of [Atata Framework](https://atata.io).
 
-*The package targets .NET 8.0 and .NET Framework 4.6.2.*
-
 **[What's new in v4.0.0](https://github.com/atata-framework/atata-webdriverextras/releases/tag/v4.0.0)**
+
+*The package targets .NET 8.0 and .NET Framework 4.6.2.*
 
 ## Usage
 
@@ -79,11 +79,20 @@ or use another [Atata Contact](https://atata.io/contact/) way.
 
 ## Contact author
 
-Contact me if you need a help in test automation using Atata Framework, or if you are looking for a quality test automation implementation for your project.
+Contact me, Yevhenii Shunevych, if you need help with test automation using the Atata Framework.
+You can [hire me for test automation development or consulting](https://atata.io/consulting/) if you are looking for a high-quality, maintainable automation solution for your project.
 
 - LinkedIn: https://www.linkedin.com/in/yevgeniy-shunevych
 - Email: yevgeniy.shunevych@gmail.com
 - Consulting: https://atata.io/consulting/
+
+## Sponsorship
+
+Many thanks to the sponsors that regularly support the development of Atata Framework through donations:
+
+- **[Lombiq Technologies](https://lombiq.com/)**
+
+If Atata Framework is useful to you or your company, consider supporting the framework development with a [donation](https://atata.io/donate/).
 
 ## Contributing
 
