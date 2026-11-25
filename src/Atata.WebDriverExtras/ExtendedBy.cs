@@ -3,6 +3,7 @@
 internal class ExtendedBy : By
 {
     internal ExtendedBy(By by)
+        : base(by.Mechanism, by.Criteria)
     {
         Guard.ThrowIfNull(by);
 

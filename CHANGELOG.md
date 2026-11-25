@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Upgrade Selenium.WebDriver package reference to v4.49.0.
+- `ExtendedBy` properties `Mechanism` and `Criteria` to return corresponding values of original `By`, instead of empty strings.
 
 ## [4.0.0] - 2026-09-05
 
